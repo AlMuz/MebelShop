@@ -1,0 +1,24 @@
+header{
+	background: grey;
+}
+
+footer {
+	background: white;
+	border-top: 1px solid lightgrey;
+}
+
+.centerinfo{
+	/**border-left: 1px solid lightgrey;
+	border-right:  1px solid lightgrey;**/
+}
+.li-form-search{
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+}
+.maincont{
+	padding: 60px 15px;
+}
+.divinlog{
+	padding:3px 20px;
+}
