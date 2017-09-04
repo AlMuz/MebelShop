@@ -26,4 +26,6 @@ class Category extends Entity
         '*' => true,
         'idCategory' => false
     ];
+
+    
 }

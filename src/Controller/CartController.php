@@ -3,13 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Cart Controller
- *
- * @property \App\Model\Table\CartTable $Cart
- *
- * @method \App\Model\Entity\Cart[] paginate($object = null, array $settings = [])
- */
+
 class CartController extends AppController
 {
 

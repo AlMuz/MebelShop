@@ -1,10 +1,3 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Category[]|\Cake\Collection\CollectionInterface $category
-  */
-?>
-
 <div class="category index large-9 medium-8 columns content">
     <h3><?= __('All categories') ?></h3>
 

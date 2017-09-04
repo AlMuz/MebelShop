@@ -11,9 +11,8 @@
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('css.css') ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <script src="/js/bootstrap.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <script src="/js/jquery.min.js"></script>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -21,6 +20,7 @@
 </head>
 <body>
 <header>
+  <div class="container">
     <!--Navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -30,7 +30,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-
                 </button>
                 <a class="navbar-brand" href="/">MuzFurniture</a>
             </div>
@@ -53,7 +52,7 @@
                     <li><a href="/about/">About us</a></li>
 
                 </ul >
-                <ul class="nav navbar-nav">
+                <!-- <ul class="nav navbar-nav">
                     <li class="li-form-search">
                         <div class="col-sm-12">
                             <div class="input-group">
@@ -61,15 +60,16 @@
                                 <span class="input-group-btn">
                       <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
-                            </div><!-- /input-group -->
+                            </div>
                         </div>
                     </li>
 
-                </ul>
+                </ul> -->
                 <ul class="nav navbar-nav navbar-right">
-                    <!---admin panel -->
-
-                    <!---User panel -->
+                  <li>
+                   <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.'</span>',
+                                 array('controller'=>'cart','action'=>'view'),array('escape'=>false));?>
+                 </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User section<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -98,7 +98,7 @@
             </div>
         </aside>
         <main class="col-sm-8 text-left centerinfo">
-            <?= $this->Flash->render() ?>
+
             <div class="container clearfix">
                 <?= $this->fetch('content') ?>
             </div>
@@ -117,6 +117,12 @@
     </div>
 </div>
     <footer>
+      <br>
+      <br>
+      <br>
+      <br>
     </footer>
+  </div>
+  <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

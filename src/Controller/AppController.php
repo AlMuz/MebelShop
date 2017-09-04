@@ -43,8 +43,10 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->set('category', $category);
-        $this->set('_serialize', ['category']);
+        $this->set('maintitle', 'Internet veikals - MuzFurn');
+        // $this->loadModel('Category');
+        // $this->set('category', $this->$category);
+        // $this->set('_serialize', ['category']);
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
