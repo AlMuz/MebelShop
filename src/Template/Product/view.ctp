@@ -4,20 +4,25 @@
 <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
-			<li><?= $this->Html->link('Home','/');?>
+			<li>
+				<?= $this->Html->link('Home','/');?>
 			</li>
-			<li class="active"><?= $product->Name;?>
+			<li>
+				<a href='/Category/view/<?=$product->Category_idCategory ?>'><?= $product->Category_idCategory?></a>
+			</li>
+			<li class="active">
+				<?= $product->Name;?>
 			</li>
 		</ol>
 	</div>
 </div>
 
-<div class="row ">
-	<div class="col-lg-6 col-md-6">
-		<?=$this->Html->image($product->MainImage,array('class'=>'thumbnail'));?>
+<div class="row">
+	<div class="col-sm-6 col-md-4 mainproduct">
+		<?=$this->Html->image($product->MainImage,array('escape'=>false,'class'=>'thumbnail'));?>
 	</div>
 
-	<div class="col-lg-6 col-md-6">
+	<div class="col-sm-6 col-md-4 mainproduct">
 		<h1>
 			<?= $product->Name;?>
 		</h1>

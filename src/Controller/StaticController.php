@@ -2,10 +2,10 @@
 namespace App\Controller;
 use App\Controller\AppController;
 
-class AboutController extends AppController
+class StaticController extends AppController
 {
-    public function index(){
-    
+    public function about(){
+
     }
 
 }

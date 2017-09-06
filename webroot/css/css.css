@@ -8,8 +8,8 @@ footer {
 }
 
 .centerinfo{
-	border-left: 1px solid lightgrey;
-	border-right:  1px solid lightgrey;
+	/*border-left: 1px solid lightgrey;*/
+	/*border-right:  1px solid lightgrey;*/
 }
 .li-form-search{
 	position: relative;
@@ -17,9 +17,28 @@ footer {
 	padding: 10px 15px;
 }
 .maincont{
-	margin-top: 50px;
-	/*padding: 0 15px 30px 15px;*/
+	margin-top: 60px;
+	padding: 0 15px 30px 15px;
 }
 .divinlog{
 	padding:3px 20px;
+}
+
+.leftpos{
+	text-align: left;
+}
+.mainproduct{
+	padding-top: 30px;
+}
+
+.leftpos a{
+	font-size: 17px;
+}
+
+.navbar-default{
+	background-color: #f5d8d8;
+}
+
+.thumbnail{
+	margin-bottom: 5px;
 }

@@ -31,7 +31,7 @@ class ProductController extends AppController
         $product = $this->Product->get($id, [
             'contain' => []
         ]);
-
+        
         $this->set('product', $product);
         $this->set('_serialize', ['product']);
     }

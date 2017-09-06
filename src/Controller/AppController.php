@@ -27,6 +27,9 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
+    public $paginate = [
+  		'limit' => 15
+  	];
 
     /**
      * Initialization hook method.
@@ -44,15 +47,12 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->set('maintitle', 'Internet veikals - MuzFurn');
-        // $this->loadModel('Category');
-        // $this->set('category', $this->$category);
-        // $this->set('_serialize', ['category']);
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
-        //$this->loadComponent('Security');
-        //$this->loadComponent('Csrf');
+         $this->loadComponent('Security');
+         $this->loadComponent('Csrf');
     }
 
     /**
@@ -63,6 +63,8 @@ class AppController extends Controller
      */
     public function beforeRender(Event $event)
     {
+        $this->loadModel('Category');
+        $this->set('cat', $this->Category->find());
         // Note: These defaults are just to get started quickly with development
         // and should not be used in production. You should instead set "_serialize"
         // in each action as required.

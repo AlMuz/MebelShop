@@ -33,6 +33,7 @@ class ProductTable extends Table
         $this->setTable('product');
         $this->setDisplayField('idProduct');
         $this->setPrimaryKey('idProduct');
+        $this->belongsTo('Category');
     }
 
     /**

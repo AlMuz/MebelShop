@@ -21,7 +21,7 @@
 <body>
 <header>
   <div class="container">
-    <!--Navbar -->
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -40,31 +40,20 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown-header">Select Category</li>
                             <li role="separator" class="divider"></li>
-                            <?php foreach ($category as $category): ?>
+                            <?php foreach ($cat as $category): ?>
                               <?php $id = $category->idCategory; ?>
-                            <li><a href='/Category/view/'><?= $category->Title ?></a></li>
+                              <li>
+                                <a href='/Category/view/<?=$id ?>'><?= $category->Title ?></a>
+                              </li>
                             <?php endforeach; ?>
                             <li role="separator" class="divider"></li>
                             <li><a href="/category/">All categories</a></li>
                         </ul>
-
                     </li>
-                    <li><a href="/about/">About us</a></li>
-
+                    <li><a href="/static/about">About us</a></li>
                 </ul >
-                <!-- <ul class="nav navbar-nav">
-                    <li class="li-form-search">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
-                            </div>
-                        </div>
-                    </li>
 
-                </ul> -->
+
                 <ul class="nav navbar-nav navbar-right">
                   <li>
                    <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.'</span>',
@@ -77,8 +66,8 @@
                         </ul>
                     </li>
                 </ul>
+
             </div>
-            <!--/.nav-collapse -->
 
         </div>
     </nav>
@@ -97,11 +86,8 @@
                 <p></p>
             </div>
         </aside>
-        <main class="col-sm-8 text-left centerinfo">
-
-            <div class="container clearfix">
-                <?= $this->fetch('content') ?>
-            </div>
+        <main class="col-sm-8 leftpos">
+          <?= $this->fetch('content') ?>
         </main>
         <aside class="col-sm-2 sidenav hidden-xs">
             <div class="hide">
