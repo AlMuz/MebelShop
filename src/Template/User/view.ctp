@@ -29,12 +29,32 @@
             <td><?= h($user->Email) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Name') ?></th>
+            <td><?= h($user->Name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Surname') ?></th>
+            <td><?= h($user->Surname) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Ip') ?></th>
+            <td><?= h($user->Ip) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('IdUser') ?></th>
             <td><?= $this->Number->format($user->idUser) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Phonenumber') ?></th>
+            <td><?= $this->Number->format($user->Phonenumber) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Root') ?></th>
             <td><?= $this->Number->format($user->Root) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Date') ?></th>
+            <td><?= h($user->Date) ?></td>
         </tr>
     </table>
 </div>

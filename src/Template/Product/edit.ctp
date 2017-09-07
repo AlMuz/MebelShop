@@ -23,7 +23,6 @@
             echo $this->Form->control('Name');
             echo $this->Form->control('Price');
             echo $this->Form->control('Description');
-            echo $this->Form->control('MiniDescription');
             echo $this->Form->control('MainImage');
             echo $this->Form->control('Category_idCategory');
         ?>

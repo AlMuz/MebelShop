@@ -1,3 +1,4 @@
+<!-- <?php debug(); ?> -->
 <?php $this->assign('title', 'Galvena lapa - '.$maintitle);?>
 <div class="row">
 	<?php foreach ($product as $product):?>
@@ -14,7 +15,7 @@
 			</div>
 			<div>
 					Price:
-					<?= $product->Price;?>
+					<?= $product->Price;?> &euro;
 			</div>
 	</div>
 	<?php endforeach;?>

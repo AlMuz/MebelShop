@@ -31,7 +31,12 @@ class ProductController extends AppController
         $product = $this->Product->get($id, [
             'contain' => []
         ]);
-        
+
+        // $category = $this->Product->Category->find('all',
+        // array('conditions' => array('Category.idCategory' => '1')));
+        // $this->set('category', 'category');
+        // debug($category);
+
         $this->set('product', $product);
         $this->set('_serialize', ['product']);
     }

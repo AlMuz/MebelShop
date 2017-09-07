@@ -33,6 +33,7 @@ class CategoryTable extends Table
         $this->setTable('category');
         $this->setDisplayField('idCategory');
         $this->setPrimaryKey('idCategory');
+        
         $this->hasMany('Product')
          ->setForeignKey('idProduct');
     }

@@ -19,6 +19,11 @@
                 <th scope="col"><?= $this->Paginator->sort('Login') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Password') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Email') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Surname') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Phonenumber') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Ip') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Date') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Root') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -30,6 +35,11 @@
                 <td><?= h($user->Login) ?></td>
                 <td><?= h($user->Password) ?></td>
                 <td><?= h($user->Email) ?></td>
+                <td><?= h($user->Name) ?></td>
+                <td><?= h($user->Surname) ?></td>
+                <td><?= $this->Number->format($user->Phonenumber) ?></td>
+                <td><?= h($user->Ip) ?></td>
+                <td><?= h($user->Date) ?></td>
                 <td><?= $this->Number->format($user->Root) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $user->idUser]) ?>

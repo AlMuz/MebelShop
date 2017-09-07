@@ -63,6 +63,31 @@ class UserTable extends Table
             ->notEmpty('Email');
 
         $validator
+            ->scalar('Name')
+            ->requirePresence('Name', 'create')
+            ->notEmpty('Name');
+
+        $validator
+            ->scalar('Surname')
+            ->requirePresence('Surname', 'create')
+            ->notEmpty('Surname');
+
+        $validator
+            ->integer('Phonenumber')
+            ->requirePresence('Phonenumber', 'create')
+            ->notEmpty('Phonenumber');
+
+        $validator
+            ->scalar('Ip')
+            ->requirePresence('Ip', 'create')
+            ->notEmpty('Ip');
+
+        $validator
+            ->dateTime('Date')
+            ->requirePresence('Date', 'create')
+            ->notEmpty('Date');
+
+        $validator
             ->integer('Root')
             ->requirePresence('Root', 'create')
             ->notEmpty('Root');

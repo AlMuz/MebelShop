@@ -1,38 +1,36 @@
 <?php
 /**
   * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Cart[]|\Cake\Collection\CollectionInterface $cart
+  * @var \App\Model\Entity\Image[]|\Cake\Collection\CollectionInterface $image
   */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Cart'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Image'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="cart index large-9 medium-8 columns content">
-    <h3><?= __('Cart') ?></h3>
+<div class="image index large-9 medium-8 columns content">
+    <h3><?= __('Image') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('idCart') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('FullPrice') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Quantity') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('idImage') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Image') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Product_idProduct') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($cart as $cart): ?>
+            <?php foreach ($image as $image): ?>
             <tr>
-                <td><?= $this->Number->format($cart->idCart) ?></td>
-                <td><?= $this->Number->format($cart->FullPrice) ?></td>
-                <td><?= $this->Number->format($cart->Quantity) ?></td>
-                <td><?= $this->Number->format($cart->Product_idProduct) ?></td>
+                <td><?= $this->Number->format($image->idImage) ?></td>
+                <td><?= h($image->Image) ?></td>
+                <td><?= $this->Number->format($image->Product_idProduct) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $cart->idCart]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $cart->idCart]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $cart->idCart], ['confirm' => __('Are you sure you want to delete # {0}?', $cart->idCart)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $image->idImage]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $image->idImage]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $image->idImage], ['confirm' => __('Are you sure you want to delete # {0}?', $image->idImage)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

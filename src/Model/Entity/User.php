@@ -10,6 +10,11 @@ use Cake\ORM\Entity;
  * @property string $Login
  * @property string $Password
  * @property string $Email
+ * @property string $Name
+ * @property string $Surname
+ * @property int $Phonenumber
+ * @property string $Ip
+ * @property \Cake\I18n\FrozenTime $Date
  * @property int $Root
  */
 class User extends Entity

@@ -31,13 +31,13 @@
       <?= $product->Description;?>
     </br></br>
 			Price:
-			<?= $product->Price;?>
+			<?= $product->Price;?> &euro;
 		</h2>
 		<p>
-			<!-- <?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'carts','action'=>'add')));?>
-			<?= $this->Form->hidden('product_id',array('value'=>$product['Product']['id']))?>
+			<?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'carts','action'=>'add')));?>
+			<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
 			<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn btn-lg'));?>
-			<?= $this->Form->end();?> -->
+			<?= $this->Form->end();?>
 		</p>
 	</div>
 </div>

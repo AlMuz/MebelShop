@@ -23,6 +23,11 @@
             echo $this->Form->control('Login');
             echo $this->Form->control('Password');
             echo $this->Form->control('Email');
+            echo $this->Form->control('Name');
+            echo $this->Form->control('Surname');
+            echo $this->Form->control('Phonenumber');
+            echo $this->Form->control('Ip');
+            echo $this->Form->control('Date');
             echo $this->Form->control('Root');
         ?>
     </fieldset>

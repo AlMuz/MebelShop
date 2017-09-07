@@ -4,16 +4,13 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Comment Entity
+ * Image Entity
  *
- * @property int $idComments
- * @property string $Login
- * @property string $Comment
- * @property \Cake\I18n\FrozenTime $Date
- * @property int $Moderation
+ * @property int $idImage
+ * @property string $Image
  * @property int $Product_idProduct
  */
-class Comment extends Entity
+class Image extends Entity
 {
 
     /**
@@ -27,6 +24,6 @@ class Comment extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'idComments' => false
+        'idImage' => false
     ];
 }

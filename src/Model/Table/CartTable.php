@@ -6,6 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+
 /**
  * Cart Model
  *
@@ -33,6 +34,7 @@ class CartTable extends Table
         $this->setTable('cart');
         $this->setDisplayField('idCart');
         $this->setPrimaryKey('idCart');
+        $this->belongsToMany('Product');
     }
 
     /**
@@ -64,4 +66,53 @@ class CartTable extends Table
 
         return $validator;
     }
+
+    public function addProduct($productId) {
+  		$allProducts = $this->readProduct();
+  		if (null!=$allProducts) {
+  			if (array_key_exists($productId, $allProducts)) {
+  				$allProducts[$productId]++;
+  			} else {
+  				$allProducts[$productId] = 1;
+  			}
+  		} else {
+  			$allProducts[$productId] = 1;
+  		}
+
+  		$this->saveProduct($allProducts);
+  	}
+
+  	/*
+  	 * get total count of products
+  	 */
+  	public function getCount() {
+  		$allProducts = $this->readProduct();
+
+  		if (count($allProducts)<1) {
+  			return 0;
+  		}
+
+  		$count = 0;
+  		foreach ($allProducts as $product) {
+  			$count=$count+$product;
+  		}
+
+  		return $count;
+  	}
+
+  	/*
+  	 * save data to session
+  	 */
+  	public function saveProduct($data) {
+  		return $session->write('cart',$data);
+  	}
+
+  	/*
+  	 * read cart data from session
+  	 */
+  	public function readProduct() {
+      $cart = $this->request->session()->read('carts');
+  		return $cart;
+  	}
+
 }

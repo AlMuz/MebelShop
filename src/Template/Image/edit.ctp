@@ -8,20 +8,19 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $cart->idCart],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $cart->idCart)]
+                ['action' => 'delete', $image->idImage],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $image->idImage)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Cart'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Image'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="cart form large-9 medium-8 columns content">
-    <?= $this->Form->create($cart) ?>
+<div class="image form large-9 medium-8 columns content">
+    <?= $this->Form->create($image) ?>
     <fieldset>
-        <legend><?= __('Edit Cart') ?></legend>
+        <legend><?= __('Edit Image') ?></legend>
         <?php
-            echo $this->Form->control('FullPrice');
-            echo $this->Form->control('Quantity');
+            echo $this->Form->control('Image');
             echo $this->Form->control('Product_idProduct');
         ?>
     </fieldset>

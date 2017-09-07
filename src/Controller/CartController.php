@@ -7,99 +7,42 @@ use App\Controller\AppController;
 class CartController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $cart = $this->paginate($this->Cart);
+  	public $uses = array('Product','Cart');
 
-        $this->set(compact('cart'));
-        $this->set('_serialize', ['cart']);
-    }
+  	public function add() {
+  		$this->autoRender = false;
+  		if ($this->request->is('post')) {
+  			$this->Cart->addProduct($this->request->data['Cart']['product_id']);
+  		}
+  		echo $this->Cart->getCount();
+  	}
 
-    /**
-     * View method
-     *
-     * @param string|null $id Cart id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $cart = $this->Cart->get($id, [
-            'contain' => []
-        ]);
+  	public function view() {
+  		$carts = $this->Cart->readProduct();
+  		$products = array();
+  		if (null!=$carts) {
+  			foreach ($carts as $productId => $count) {
+  				$product = $this->Product->read(null,$productId);
+  				$product['Product']['count'] = $count;
+  				$products[]=$product;
+  			}
+  		}
+  		$this->set(compact('products'));
+  	}
 
-        $this->set('cart', $cart);
-        $this->set('_serialize', ['cart']);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $cart = $this->Cart->newEntity();
-        if ($this->request->is('post')) {
-            $cart = $this->Cart->patchEntity($cart, $this->request->getData());
-            if ($this->Cart->save($cart)) {
-                $this->Flash->success(__('The cart has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The cart could not be saved. Please, try again.'));
-        }
-        $this->set(compact('cart'));
-        $this->set('_serialize', ['cart']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Cart id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $cart = $this->Cart->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $cart = $this->Cart->patchEntity($cart, $this->request->getData());
-            if ($this->Cart->save($cart)) {
-                $this->Flash->success(__('The cart has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The cart could not be saved. Please, try again.'));
-        }
-        $this->set(compact('cart'));
-        $this->set('_serialize', ['cart']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Cart id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $cart = $this->Cart->get($id);
-        if ($this->Cart->delete($cart)) {
-            $this->Flash->success(__('The cart has been deleted.'));
-        } else {
-            $this->Flash->error(__('The cart could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
-    }
+  	public function update() {
+  		if ($this->request->is('post')) {
+  			if (!empty($this->request->data)) {
+  				$cart = array();
+  				foreach ($this->request->data['Cart']['count'] as $index=>$count) {
+  					if ($count>0) {
+  						$productId = $this->request->data['Cart']['product_id'][$index];
+  						$cart[$productId] = $count;
+  					}
+  				}
+  				$this->Cart->saveProduct($cart);
+  			}
+  		}
+  		$this->redirect(array('action'=>'view'));
+  	}
 }

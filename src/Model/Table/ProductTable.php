@@ -33,7 +33,18 @@ class ProductTable extends Table
         $this->setTable('product');
         $this->setDisplayField('idProduct');
         $this->setPrimaryKey('idProduct');
-        $this->belongsTo('Category');
+
+        $this->belongsTo('Category',[
+          'foreignKey' => 'idCategory',
+          'joinType' => 'INNER'
+        ]);
+
+        $this->hasMany('Images',[
+          'foreignKey' => 'idImage',
+          'joinType' => 'INNER'
+        ]);
+
+          $this->belongsToMany('Carts');
     }
 
     /**
@@ -62,11 +73,6 @@ class ProductTable extends Table
             ->scalar('Description')
             ->requirePresence('Description', 'create')
             ->notEmpty('Description');
-
-        $validator
-            ->scalar('MiniDescription')
-            ->requirePresence('MiniDescription', 'create')
-            ->notEmpty('MiniDescription');
 
         $validator
             ->scalar('MainImage')

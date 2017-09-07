@@ -10,18 +10,19 @@
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('css.css') ?>
+    <?= $this->Html->css('menu.css') ?>
+    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     <script src="/js/jquery.min.js"></script>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
+
 <body>
 <header>
   <div class="container">
-
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -56,13 +57,18 @@
 
                 <ul class="nav navbar-nav navbar-right">
                   <li>
-                   <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.'</span>',
-                                 array('controller'=>'cart','action'=>'view'),array('escape'=>false));?>
-                 </li>
+          	      	<?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.'</span>',
+          	      								array('controller'=>'cart','action'=>'view'),array('escape'=>false));?>
+          	      </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User section<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-
+                          <li>
+                              <a href='/user/login'>Login</a>
+                          </li>
+                          <li>
+                              <a href='/user/register'>Register</a>
+                          </li>
                         </ul>
                     </li>
                 </ul>
@@ -77,27 +83,17 @@
     <div class="row content">
         <aside class="col-sm-2 sidenav hidden-xs">
             <div class="hide">
-                <p>side left</p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+
             </div>
         </aside>
         <main class="col-sm-8 leftpos">
+          <?= $this->Flash->render(); ?>
+
           <?= $this->fetch('content') ?>
         </main>
         <aside class="col-sm-2 sidenav hidden-xs">
             <div class="hide">
-                <p>side right</p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+
             </div>
         </aside>
     </div>
