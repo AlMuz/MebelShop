@@ -3,13 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Category Controller
- *
- * @property \App\Model\Table\CategoryTable $Category
- *
- * @method \App\Model\Entity\Category[] paginate($object = null, array $settings = [])
- */
+
 class CategoryController extends AppController
 {
     public $paginate = [
@@ -27,18 +21,16 @@ class CategoryController extends AppController
         $this->set('_serialize', ['category']);
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Category id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
+      $this->paginate=['limit' => 15
+      // 'order' => [
+      //     'Category.Title' => 'asc']
+        ];
 
+        $category = $this->paginate($this->Category);
         $category = $this->Category->get($id, [
-            'contain' => []
+            'contain' => ['Product']
         ]);
 
         $this->set('category', $category);

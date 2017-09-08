@@ -28,7 +28,10 @@ class AppController extends Controller
         $this->loadModel('Category');
         $this->loadModel('Cart');
 
-        $this->set('cat', $this->Category->find());
+        $this->set('cat', $this->Category->find()
+        ->limit(10)
+
+        );
 
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])

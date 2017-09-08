@@ -6,26 +6,11 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-/**
- * Product Model
- *
- * @method \App\Model\Entity\Product get($primaryKey, $options = [])
- * @method \App\Model\Entity\Product newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Product[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Product|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Product patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Product[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Product findOrCreate($search, callable $callback = null, $options = [])
- */
+
 class ProductTable extends Table
 {
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
+
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -39,12 +24,12 @@ class ProductTable extends Table
           'joinType' => 'INNER'
         ]);
 
-        $this->hasMany('Images',[
-          'foreignKey' => 'idImage',
+        $this->hasMany('Image',[
+          'foreignKey' => 'Product_idProduct',
           'joinType' => 'INNER'
         ]);
 
-          $this->belongsToMany('Carts');
+        $this->belongsToMany('Carts');
     }
 
     /**

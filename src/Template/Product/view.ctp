@@ -1,4 +1,5 @@
 <?php $this->assign('title', $product->Name.' - '.$maintitle);
+// debug($product);
 ?>
 
 <div class="row">
@@ -18,11 +19,14 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-6 col-md-4 mainproduct">
-		<?=$this->Html->image($product->MainImage,array('escape'=>false,'class'=>'thumbnail'));?>
+	<div class="col-sm-3 col-md-6 mainproduct">
+		<?=$this->Html->image($product->MainImage,array('escape'=>false,'class'=>'thumbnail','style'=>'height:280px; width:370px;'));?>
+		<?php foreach ($product->image as $image):?>
+			<?=$this->Html->image($image->Image,array('escape'=>false,'class'=>'thumbnail','style'=>'height:140px; width:185px;'));?>
+		<?php endforeach;?>
 	</div>
 
-	<div class="col-sm-6 col-md-4 mainproduct">
+	<div class="col-sm-6 col-md-6 mainproduct">
 		<h1>
 			<?= $product->Name;?>
 		</h1>

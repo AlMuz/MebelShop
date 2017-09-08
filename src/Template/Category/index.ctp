@@ -1,12 +1,12 @@
+<?php $this->assign('title', 'Category - '.$maintitle);?>
+
 <div class="category index large-9 medium-8 columns content">
     <h3><?= __('All categories') ?></h3>
-
-            <?php foreach ($category as $category): ?>
-                <?= $this->Html->link(__($category->Title), ['action' => 'view', $category->idCategory]) ?>
-                <?php echo ' - '. $category->Description ?>
-                </br>
-            <?php endforeach; ?>
-
+    <?php foreach ($category as $category): ?>
+      <?= $this->Html->link(__($category->Title), ['action' => 'view', $category->idCategory]) ?>
+      <?php echo ' - '. $category->Description ?>
+      </br>
+    <?php endforeach; ?>
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>

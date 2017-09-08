@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,7 @@
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('css.css') ?>
     <?= $this->Html->css('menu.css') ?>
-    
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/js/jquery.min.js"></script>
 
@@ -37,9 +36,9 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Categories') ?><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">Select Category</li>
+                            <li class="dropdown-header"><?= __('Select Category') ?></li>
                             <li role="separator" class="divider"></li>
                             <?php foreach ($cat as $category): ?>
                               <?php $id = $category->idCategory; ?>
@@ -48,10 +47,10 @@
                               </li>
                             <?php endforeach; ?>
                             <li role="separator" class="divider"></li>
-                            <li><a href="/category/">All categories</a></li>
+                            <li><a href="/category/"><?= __('All categories') ?></a></li>
                         </ul>
                     </li>
-                    <li><a href="/static/about">About us</a></li>
+                    <li><a href="/static/about"><?= __('About us') ?></a></li>
                 </ul >
 
 
@@ -61,13 +60,13 @@
           	      								array('controller'=>'cart','action'=>'view'),array('escape'=>false));?>
           	      </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User section<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('User Section') ?><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li>
-                              <a href='/user/login'>Login</a>
+                              <a href='/user/login'><?= __('Login') ?></a>
                           </li>
                           <li>
-                              <a href='/user/register'>Register</a>
+                              <a href='/user/register'><?= __('Register') ?></a>
                           </li>
                         </ul>
                     </li>
@@ -82,12 +81,13 @@
 <div class="container-fluid text-center maincont">
     <div class="row content">
         <aside class="col-sm-2 sidenav hidden-xs">
+          <?= $this->Flash->render(); ?>
             <div class="hide">
 
             </div>
         </aside>
         <main class="col-sm-8 leftpos">
-          <?= $this->Flash->render(); ?>
+
 
           <?= $this->fetch('content') ?>
         </main>

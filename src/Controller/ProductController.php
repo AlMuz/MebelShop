@@ -3,21 +3,16 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Product Controller
- *
- * @property \App\Model\Table\ProductTable $Product
- *
- * @method \App\Model\Entity\Product[] paginate($object = null, array $settings = [])
- */
+
 class ProductController extends AppController
 {
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
+  public $paginate = [
+    'limit' => 15,
+    'order' => [
+      'Product.Interest' => 'desc'
+    ]
+  ];
     public function index()
     {
         $product = $this->paginate($this->Product);
@@ -29,7 +24,7 @@ class ProductController extends AppController
     public function view($id = null)
     {
         $product = $this->Product->get($id, [
-            'contain' => []
+            'contain' => ['Image']
         ]);
 
         // $category = $this->Product->Category->find('all',
