@@ -31,7 +31,6 @@ class UserFixture extends TestFixture
         'Name' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'Surname' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'Phonenumber' => ['type' => 'integer', 'length' => 8, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'Ip' => ['type' => 'string', 'length' => 45, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'Date' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'Root' => ['type' => 'integer', 'length' => 1, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_constraints' => [
@@ -58,8 +57,7 @@ class UserFixture extends TestFixture
             'Name' => 'Lorem ipsum dolor sit amet',
             'Surname' => 'Lorem ipsum dolor sit amet',
             'Phonenumber' => 1,
-            'Ip' => 'Lorem ipsum dolor sit amet',
-            'Date' => '2017-09-07 07:53:29',
+            'Date' => '2017-09-11 07:04:14',
             'Root' => 1
         ],
     ];

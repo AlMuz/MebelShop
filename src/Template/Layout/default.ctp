@@ -8,6 +8,8 @@
     </title>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('bootstrap.min.css') ?>
+    <?= $this->Html->css('message.css') ?>
+
     <?= $this->Html->css('css.css') ?>
     <?= $this->Html->css('menu.css') ?>
 
@@ -81,14 +83,14 @@
 <div class="container-fluid text-center maincont">
     <div class="row content">
         <aside class="col-sm-2 sidenav hidden-xs">
-          <?= $this->Flash->render(); ?>
+
             <div class="hide">
 
             </div>
         </aside>
         <main class="col-sm-8 leftpos">
 
-
+          <?= $this->Flash->render(); ?>
           <?= $this->fetch('content') ?>
         </main>
         <aside class="col-sm-2 sidenav hidden-xs">

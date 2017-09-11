@@ -1,4 +1,3 @@
-<!-- <?php debug($product); ?> -->
 <?php $this->assign('title', 'Galvena lapa - '.$maintitle);?>
 <?php if (!empty($product)): ?>
 	<div class="row sortdiv">

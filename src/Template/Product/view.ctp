@@ -1,6 +1,4 @@
-<?php $this->assign('title', $product->Name.' - '.$maintitle);
-// debug($product);
-?>
+<?php $this->assign('title', $product->Name.' - '.$maintitle);?>
 
 <div class="row">
 	<div class="col-lg-12">

@@ -21,6 +21,28 @@ class AppController extends Controller
 
         $this->loadComponent('Security');
         $this->loadComponent('Csrf');
+
+        $this->loadComponent('Auth',[
+          'authenticate' => [
+                'Basic' => [
+                    'fields' => ['username' => 'login', 'password' => 'password'],
+                    'userModel' => 'User'
+                ],
+            ],
+            'loginRedirect' => [
+                'controller' => 'product',
+                'action' => 'index'
+            ],
+            'logoutRedirect' => [
+                'controller' => 'product',
+                'action' => 'index'
+            ]
+        ]);
+    }
+
+    public function beforeFilter(Event $event)
+    {
+      $this->Auth->allow(['index', 'view','register','login', 'display','about']);
     }
 
     public function beforeRender(Event $event)

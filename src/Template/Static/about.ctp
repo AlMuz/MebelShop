@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'About - '.$maintitle);?>
+
 <div class= "bg-about1">
   <div class="container-fluid text-center">
     <div class="row content">

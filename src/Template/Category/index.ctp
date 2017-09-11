@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Category - '.$maintitle);?>
+<?php $this->assign('title', 'All categories - '.$maintitle);?>
 
 <div class="category index large-9 medium-8 columns content">
     <h3><?= __('All categories') ?></h3>
