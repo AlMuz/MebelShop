@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
+
 class UserController extends AppController
 {
     public function beforeFilter(Event $event)
@@ -31,15 +33,16 @@ class UserController extends AppController
     {
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
-            // debug($user);
-            // die();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
                 $this->Flash->success(__('You successfuly logged in'));
+                return $this->redirect($this->Auth->redirectUrl());
+
+
 
             }
             $this->Flash->error(__('Invalid username or password, try again'));
+
         }
     }
 
@@ -51,10 +54,53 @@ class UserController extends AppController
 
     public function index()
     {
-        $user = $this->paginate($this->User);
+      $this->redirect(['action' => 'profile']);
 
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
+        // $user = $this->paginate($this->User);
+        //
+        // $this->set(compact('user'));
+        // $this->set('_serialize', ['user']);
+    }
+
+    public function profile() {
+
+      $id = $this->Auth->user('idUser');
+      if (empty($id)) {
+        throw new NotFoundException();
+      }
+
+      $user = $this->Users->get($id);
+      if (empty($user)) {
+        throw new NotFoundException();
+      }
+
+      if (!empty($this->request->data)) {
+
+        if ($this->request->is('ajax')) {
+
+          $this->request->data['modified_by'] = 'self';
+
+          $save = $this->Users->patchEntity($user, $this->request->data, ['validate' => 'update']);
+          if ($this->Users->save($save)) {
+            $return = array_keys($this->request->data);
+            $return[] = 'status_ok';
+            echo json_encode($return);
+
+            $this->Logs->Log($id, 'Users:profile - updated profile', 'success');
+            $this->Auth->setUser($save);
+            die;
+          } else {
+            echo json_encode($save->errors());
+            die;
+          }
+        }
+      }
+
+      $show_password_text = array(__('Show password'), __('Hide password'));
+
+
+      $this->set(compact('user', 'show_password_text'));
+      $this->set('title_for_layout', __('My Data'));
     }
 
 

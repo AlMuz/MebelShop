@@ -55,10 +55,6 @@ class UserTable extends Table
             ->notEmpty('Phonenumber');
 
         $validator
-            ->dateTime('Date')
-            ->allowEmpty('Date', 'create');
-
-        $validator
             ->integer('Root')
             ->allowEmpty('Root', 'create');
 

@@ -57,6 +57,11 @@
 
 
                 <ul class="nav navbar-nav navbar-right">
+                  <?php if($adminIn) : ?>
+                    <li>
+                      <a href="/admin"><?= __('Admin') ?></a>
+                    </li>
+                  <?php endif; ?>
                   <li>
           	      	<?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.'</span>',
           	      								array('controller'=>'cart','action'=>'view'),array('escape'=>false));?>
@@ -64,12 +69,18 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('User Section') ?><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li>
-                              <a href='/user/login'><?= __('Login') ?></a>
-                          </li>
-                          <li>
-                              <a href='/user/register'><?= __('Register') ?></a>
-                          </li>
+                          <?php if($loggedIn) : ?>
+                            <li>
+                              <a href="/user/logout"><?= __('Logout') ?></a>
+                            </li>
+                          <?php else :   ?>
+                            <li>
+                                <a href='/user/login'><?= __('Login') ?></a>
+                            </li>
+                            <li>
+                                <a href='/user/register'><?= __('Register') ?></a>
+                            </li>
+                          <?php endif; ?>
                         </ul>
                     </li>
                 </ul>

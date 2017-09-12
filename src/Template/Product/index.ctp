@@ -23,6 +23,7 @@
 			  </div>
 			</li>
 		</ul>
+		<!-- <?php debug($this->request->session()->read('Auth.User.Root')); ?> -->
 
 		<?php foreach ($product as $product):?>
 			<div class="col-sm-6 col-md-4 mainproduct">
