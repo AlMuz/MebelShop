@@ -5,7 +5,8 @@
       <fieldset>
           <legend><?= __('Login') ?></legend>
           <?= $this->Form->control('Login') ?>
-          <?= $this->Form->control('Password') ?>
+          <?= $this->Form->label('Password','Password'); ?>
+          <?= $this->Form->password('Password',['label' => ['text' => 'Password']]) ?>
       </fieldset>
   <?= $this->Form->button(__('Login')); ?>
   <?= $this->Form->end() ?>

@@ -17,7 +17,7 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->set('maintitle', 'Internet veikals - MuzFurn');
+        $this->set('maintitle', 'Online store - MuzFurn');
         //
         // $this->loadComponent('Security');
         // $this->loadComponent('Csrf');
@@ -91,7 +91,7 @@ class AppController extends Controller
           $this->set('adminIn',true);
         }else{
           $this->set('adminIn',false);
-        }        
+        }
 
     }
 

@@ -20,7 +20,6 @@ class UserController extends AppController
           $user = $this->User->patchEntity($user, $this->request->getData());
           if ($this->User->save($user)) {
               $this->Flash->success(__('You successfuly registered'));
-
               return $this->redirect(['controller'=>'user','action' => 'login']);
           }
           $this->Flash->error(__('Error! Please, try again.'));
@@ -37,9 +36,6 @@ class UserController extends AppController
                 $this->Auth->setUser($user);
                 $this->Flash->success(__('You successfuly logged in'));
                 return $this->redirect($this->Auth->redirectUrl());
-
-
-
             }
             $this->Flash->error(__('Invalid username or password, try again'));
 

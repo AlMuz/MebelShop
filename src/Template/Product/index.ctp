@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Galvena lapa - '.$maintitle);?>
+<?php $this->assign('title', 'Products - '.$maintitle);?>
 <?php if (!empty($product)): ?>
 	<div class="row sortdiv">
 		<ul class="sortproduct">
@@ -23,8 +23,6 @@
 			  </div>
 			</li>
 		</ul>
-		<!-- <?php debug($this->request->session()->read('Auth.User.Root')); ?> -->
-
 		<?php foreach ($product as $product):?>
 			<div class="col-sm-6 col-md-4 mainproduct">
 
@@ -60,5 +58,5 @@
 			<p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
 	</div>
 <?php else: ?>
-123
+	<p>nav products</p>
 <?php endif; ?>
