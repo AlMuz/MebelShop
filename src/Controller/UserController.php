@@ -44,6 +44,7 @@ class UserController extends AppController
 
     public function logout()
     {
+        $this->Flash->success(__('You logged off'));
         return $this->redirect($this->Auth->logout());
     }
 
