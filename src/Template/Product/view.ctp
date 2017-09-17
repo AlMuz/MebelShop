@@ -1,5 +1,5 @@
 <?php $this->assign('title', $product->Name.' - '.$maintitle);?>
-
+<!-- <?= $this->Html->css('prodview'); ?> -->
 <!-- <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb">
@@ -21,7 +21,7 @@
 	<?= $this->Html->link($this->Html->image($product->MainImage),
 			array('action'=>'view',$product->idProduct),
 			array('escape'=>false,'class'=>'thumbnail'));?>
-			
+
 	<div style="display:inline;" class="">
 		<?php foreach ($product->image as $image):?>
 			<?=$this->Html->image($image->Image,array('escape'=>false,'class'=>'thumbnail','style'=>'height:140px; width:185px;display: inline;'));?>
