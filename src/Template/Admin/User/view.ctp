@@ -48,9 +48,5 @@
             <th scope="row"><?= __('Root') ?></th>
             <td><?= $this->Number->format($user->Root) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Date') ?></th>
-            <td><?= h($user->Date) ?></td>
-        </tr>
     </table>
 </div>

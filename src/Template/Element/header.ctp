@@ -1,11 +1,15 @@
 <header>
-<div class="jumbotron">
-  <div class="container text-center">
-    <h1>MuzFurniture</h1>
-    <p>Online furniture store</p>
-  </div>
-</div>
-<nav class="navbar navbar-inverse"  data-spy="affix" data-offset-top="197">
+  <?php if(!$loggedIn) : ?>
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>MuzFurniture</h1>
+        <p>Online furniture store</p>
+      </div>
+    </div>
+    <nav class="navbar navbar-inverse"  data-spy="affix" data-offset-top="197">
+  <?php else: ?>
+    <nav class="navbar navbar-default navbar-fixed-top">
+  <?php endif; ?>
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -61,6 +65,12 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('User Section') ?><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <?php if($loggedIn) : ?>
+                      <li>
+                        <a href="/user/"><?= __('Profile') ?></a>
+                      </li>
+                      <li>
+                        <a href="/user/order"><?= __('Order') ?></a>
+                      </li>
                       <li>
                         <a href="/user/logout"><?= __('Logout') ?></a>
                       </li>
