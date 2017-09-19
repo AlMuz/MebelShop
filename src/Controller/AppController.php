@@ -18,26 +18,7 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->set('maintitle', 'Online store - MuzFurn');
-        //
-        // $this->loadComponent('Security');
-        // $this->loadComponent('Csrf');
-        //
-        // $this->loadComponent('Auth',[
-        //   'authenticate' => [
-        //         'Basic' => [
-        //             'fields' => ['username' => 'login', 'password' => 'password'],
-        //             'userModel' => 'User'
-        //         ],
-        //     ],
-        //     'loginRedirect' => [
-        //         'controller' => 'product',
-        //         'action' => 'index'
-        //     ],
-        //     'logoutRedirect' => [
-        //         'controller' => 'product',
-        //         'action' => 'index'
-        //     ]
-        // ]);
+        $this->set('currency', 'EUR');
 
 
         $this->loadComponent('Auth', [
@@ -92,6 +73,10 @@ class AppController extends Controller
         }else{
           $this->set('adminIn',false);
         }
+
+
+
+
 
     }
 

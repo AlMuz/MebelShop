@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 08, 2017 at 04:31 PM
+-- Generation Time: Sep 14, 2017 at 03:43 PM
 -- Server version: 5.7.19-0ubuntu0.16.04.1
 -- PHP Version: 5.6.31-4+ubuntu16.04.1+deb.sury.org+4
 
@@ -125,14 +125,25 @@ INSERT INTO `product` (`idProduct`, `Name`, `Price`, `Description`, `Interest`, 
 CREATE TABLE `user` (
   `idUser` int(11) NOT NULL,
   `Login` varchar(45) NOT NULL,
-  `Password` varchar(45) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `Email` varchar(100) NOT NULL,
   `Name` varchar(45) NOT NULL,
   `Surname` varchar(45) NOT NULL,
   `Phonenumber` int(8) NOT NULL,
-  `Date` datetime NOT NULL,
+  `created` datetime DEFAULT NULL,
   `Root` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`idUser`, `Login`, `Password`, `Email`, `Name`, `Surname`, `Phonenumber`, `created`, `Root`) VALUES
+(1, 'men', '$2y$10$Qk5B2LkB7dTHy4vILhg9AeO5edUAT0eEPV8Cqx7h4VGqO5bs5hWmC', 'men@men.lv', 'men', 'men1', 123, NULL, 1),
+(2, 'nem', '$2y$10$bIPy/RaezpmXI1uofDAyjOMslnrtuXbNhm.61axUp8kAkr27QZRr2', 'nem@nem.lv', 'nem', 'nem', 123123, NULL, 0),
+(3, 'login', '$2y$10$UzG9fmgluKFRxU1xSCXcjOiuZoXZEkXKd28akyowoSnYUUDMZCSYy', 'login@login.lv', 'login', 'login', 123, NULL, 0),
+(4, '123', '$2y$10$Rd7D3cvYAv7MrqKybQl.KOxmCgCC/64NL6iHDkC1grn8iJ5oWt1sK', '123@123', '123', '123', 123, NULL, 0),
+(5, 'nig', '$2y$10$jsEaZMUw5KxScMST0KERjOPyDvYUTMBoEZ.2ngnjtLvmue5iR5i9m', 'nig@gmail.com', 'nig', 'nig', 12312312, NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -207,12 +218,12 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Constraints for dumped tables
 --

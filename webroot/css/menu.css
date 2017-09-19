@@ -1,7 +1,19 @@
 /*Navbar*/
+.jumbotron {
+ margin-bottom: 0;
+}
+.affix {
+		top: 0;
+		width: 100%;
+}
+.navbar{
+		z-index: 9999;
+		border-radius: 0;
+}
 .navbar-default{
 	background-color: #292929;
 	border-bottom: 0px;
+
 }
 .navbar-default .navbar-brand{
 	color: #9d9d9d;
@@ -16,10 +28,8 @@
 
 }
 .navbar-default .navbar-nav>li>a:hover{
-
 	color:white;
 }
-
 .li-form-search{
 	position: relative;
 	display: block;

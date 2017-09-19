@@ -3,29 +3,34 @@
 
       <h1><?= h($category->Title).' - kategorija' ?></h1>
       <h2><?= h($category->Description) ?></h2>
-      <div class="row sortdiv">
-      	<ul class="sortproduct">
-      		<li>
-      			<?= $this->Paginator->limitControl([15=>15, 30 => 30, 45 => 45] ); ?>
-      		</li>
-      		<li>
-      			<div class="dropdown">
-      		    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Sort
-      		    <span class="caret"></span></button>
-      		    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-      					<li>
-      						<?= $this->Paginator->sort('category->product->Interest', 'Popular products',['direction' => 'desc', 'lock' => true]); ?>
-      					</li>
-      					<li>
-      						<?= $this->Paginator->sort('Price', 'Price asc',['direction' => 'asc', 'lock' => true]); ?>
-      					</li>
-      					<li>
-      						<?= $this->Paginator->sort('Price', 'Price desc',['direction' => 'desc', 'lock' => true]); ?>
-      					</li>
-      		    </ul>
-      		  </div>
-      		</li>
-      	</ul>
+      <div class="row">
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td style="padding-right: 10px; padding-top:5px"><?= $this->Paginator->limitControl([15=>15, 30 => 30, 45 => 45] ); ?></td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                      Sort <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                      <li>
+                        <?= $this->Paginator->sort('Interest', 'Popular products',['direction' => 'desc', 'lock' => true]); ?>
+                      </li>
+                      <li>
+                        <?= $this->Paginator->sort('Price', 'Price asc',['direction' => 'asc', 'lock' => true]); ?>
+                      </li>
+                      <li>
+                        <?= $this->Paginator->sort('Price', 'Price desc',['direction' => 'desc', 'lock' => true]); ?>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <?php if (!empty($category->product)): ?>
       	<?php foreach ($category->product as $product):?>
 
