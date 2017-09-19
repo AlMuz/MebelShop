@@ -7,7 +7,7 @@ use App\Controller\AppController;
 class CartController extends AppController
 {
 
-  	public $uses = array('Product','Cart');
+  	// public $uses = array('Product');
 
   	public function add() {
   		$this->autoRender = false;

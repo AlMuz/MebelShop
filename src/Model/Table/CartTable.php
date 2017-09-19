@@ -31,10 +31,6 @@ class CartTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('cart');
-        $this->setDisplayField('idCart');
-        $this->setPrimaryKey('idCart');
-        $this->belongsToMany('Product');
     }
 
     /**
@@ -43,31 +39,8 @@ class CartTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->integer('idCart')
-            ->allowEmpty('idCart', 'create');
 
-        $validator
-            ->integer('FullPrice')
-            ->requirePresence('FullPrice', 'create')
-            ->notEmpty('FullPrice');
-
-        $validator
-            ->integer('Quantity')
-            ->requirePresence('Quantity', 'create')
-            ->notEmpty('Quantity');
-
-        $validator
-            ->integer('Product_idProduct')
-            ->requirePresence('Product_idProduct', 'create')
-            ->notEmpty('Product_idProduct');
-
-        return $validator;
-    }
-
-    public function addProduct($productId) {
+    public function addProduct($idProduct) {
   		$allProducts = $this->readProduct();
   		if (null!=$allProducts) {
   			if (array_key_exists($productId, $allProducts)) {
@@ -111,7 +84,10 @@ class CartTable extends Table
   	 * read cart data from session
   	 */
   	public function readProduct() {
-      $cart = $this->request->session()->read('carts');
+      // $name = $this->request->session->read('User.name');
+      // $session->write('cart',' ');
+      // $cart = $session->read('carts');
+      $cart = '123';
   		return $cart;
   	}
 
