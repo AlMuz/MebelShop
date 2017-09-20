@@ -1,13 +1,13 @@
 <?php $this->assign('title', $product->Name.' - '.$maintitle);?>
 <!-- <?= $this->Html->css('prodview'); ?> -->
-<!-- <div class="row">
+<div class="row">
 	<div class="col-lg-12">
-		<ol class="breadcrumb">
+		<ol class="breadcrumb" style="margin-bottom: 0">
 			<li>
 				<?= $this->Html->link('Home','/');?>
 			</li>
 			<li>
-				<a href='/Category/view/<?=$product->Category_idCategory ?>'><?= $product->Category_idCategory?></a>
+				<a href='/Category/view/<?=$product->Category_idCategory ?>'><?=$product->category->Title ?></a>
 			</li>
 			<li class="active">
 				<?= $product->Name;?>
@@ -15,7 +15,7 @@
 		</ol>
 	</div>
 </div>
- -->
+
 
 <div class="col-sm-6 col-md-6 mainproduct">
 	<?= $this->Html->link($this->Html->image($product->MainImage),
@@ -32,7 +32,7 @@
 
 <div class="">
 	<h1>
-		<?= $product->Name;?>
+		<b><?= $product->Name;?></b>
 	</h1>
 	<p>
     Description:

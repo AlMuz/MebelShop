@@ -15,6 +15,8 @@ class ProductController extends AppController
   ];
     public function index()
     {
+
+      debug($this->$adminIn);
         $product = $this->paginate($this->Product);
 
         $this->set(compact('product'));
@@ -24,12 +26,12 @@ class ProductController extends AppController
     public function view($id = null)
     {
         $product = $this->Product->get($id, [
-            'contain' => ['Image']
+            'contain' => ['Image','Category']
         ]);
 
         // $category = $this->Product->Category->find('all',
         // array('conditions' => array('Category.idCategory' => '1')));
-        // $this->set('category', 'category');
+        $this->set('category', 'category');
         // debug($category);
 
         $this->set('product', $product);

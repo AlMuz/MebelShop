@@ -20,7 +20,7 @@ class ProductTable extends Table
         $this->setPrimaryKey('idProduct');
 
         $this->belongsTo('Category',[
-          'foreignKey' => 'idCategory',
+          'foreignKey' => 'Category_idCategory',
           'joinType' => 'INNER'
         ]);
 

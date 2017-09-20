@@ -73,11 +73,5 @@ class AppController extends Controller
         }else{
           $this->set('adminIn',false);
         }
-
-
-
-
-
     }
-
 }

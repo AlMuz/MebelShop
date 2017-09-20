@@ -1,4 +1,4 @@
-<?php $this->assign('title', $this->request->session()->read('Auth.User.Login').' Profile - '.$maintitle);?>
+<?php $this->assign('title', 'Profile - '.$maintitle);?>
 
 <div class="container-fluid well span6">
 	<div class="row-fluid">
