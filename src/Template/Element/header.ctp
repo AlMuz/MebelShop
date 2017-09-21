@@ -71,6 +71,8 @@
                       <li>
                         <a href="/user/order"><?= __('Order') ?></a>
                       </li>
+                      <li role="separator" class="divider"></li>
+                      
                       <li>
                         <a href="/user/logout"><?= __('Logout') ?></a>
                       </li>

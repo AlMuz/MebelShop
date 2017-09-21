@@ -7,10 +7,10 @@ class PagesController extends AppController
 {
   public function index()
      {
-       if(!$this->$adminIn){
-        //  $this->redirect(['controller'=>'product','action' => 'index']);
-        $this->redirect($this->referer());
-       }
+      //  if(!$this->$adminIn){
+      //   //  $this->redirect(['controller'=>'product','action' => 'index']);
+      //   $this->redirect($this->referer());
+      //  }
      }
 
 }

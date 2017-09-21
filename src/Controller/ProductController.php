@@ -16,7 +16,7 @@ class ProductController extends AppController
     public function index()
     {
 
-      debug($this->$adminIn);
+
         $product = $this->paginate($this->Product);
 
         $this->set(compact('product'));
@@ -32,7 +32,7 @@ class ProductController extends AppController
         // $category = $this->Product->Category->find('all',
         // array('conditions' => array('Category.idCategory' => '1')));
         $this->set('category', 'category');
-        // debug($category);
+
 
         $this->set('product', $product);
         $this->set('_serialize', ['product']);

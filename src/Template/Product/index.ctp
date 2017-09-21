@@ -4,7 +4,7 @@
 		<!-- will be some carousel-->
 	</div>
 	<div class="row">
-		<div>
+		<div style="padding-left:15px;">
 			<table>
 				<tbody>
 					<tr>
