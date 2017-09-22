@@ -6,7 +6,7 @@ use Cake\Event\Event;
 
 class AdminAppController extends \App\Controller\AppController
 {
-  ublic function initialize()
+  public function initialize()
     {
         parent::initialize();
     }

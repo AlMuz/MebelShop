@@ -60,21 +60,21 @@
 }
 
 div.message {
+    width: 250px;
+    position: absolute;
     text-align: center;
     cursor: pointer;
     display: block;
     font-weight: normal;
-    /*padding: 0 1.5rem 0 1.5rem;*/
     transition: height 300ms ease-out 0s;
     background-color: #a0d3e8;
     color: #626262;
-    top: 15px;
-    right: 15px;
+    right: 10px;
+    top: 50px;
     z-index: 999;
     overflow: hidden;
     height: auto;
     line-height: 2.5em;
-    box-radius: 5px;
 }
 
 div.message:before {
@@ -97,6 +97,7 @@ div.message:before {
 div.message.error {
     background-color: #C3232D;
     color: #FFF;
+    width: 325px;
 }
 
 div.message.error:before {

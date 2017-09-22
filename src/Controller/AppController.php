@@ -22,6 +22,9 @@ class AppController extends Controller
 
 
         $this->loadComponent('Auth', [
+          'loginAction' => [
+            'controller' => 'User',
+            'action' => 'login'],
     			'loginRedirect' => ['controller' => 'product', 'action' => 'index'],
     			'logoutRedirect' => '/',
     			'authenticate' => [
@@ -42,14 +45,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-      $this->Auth->allow(['index', 'view','register','login', 'display','about']);
-      // if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
-      //       $this->viewBuilder()->setLayout('admin');
-      //   }
-      //   else{
-      //     $this->viewBuilder()->setLayout('admin');
-      //
-      //   }
+      $this->Auth->allow(['about']);
     }
 
     public function beforeRender(Event $event)
@@ -60,12 +56,6 @@ class AppController extends Controller
         $this->set('cat', $this->Category->find()
         ->limit(10)
         );
-
-        if (!array_key_exists('_serialize', $this->viewVars) &&
-            in_array($this->response->type(), ['application/json', 'application/xml'])
-        ) {
-            $this->set('_serialize', true);
-        }
 
         //login check
         if($this->request->session()->read('Auth.User')){

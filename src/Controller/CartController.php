@@ -7,8 +7,11 @@ use App\Controller\AppController;
 class CartController extends AppController
 {
 
-  	// public $uses = array('Product');
-
+  	public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow();
+    }
   	public function add() {
   		$this->autoRender = false;
   		if ($this->request->is('post')) {

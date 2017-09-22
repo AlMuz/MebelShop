@@ -10,6 +10,8 @@
   <?php else: ?>
     <nav class="navbar navbar-default navbar-fixed-top">
   <?php endif; ?>
+  <?= $this->Flash->render(); ?>
+
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -38,15 +40,13 @@
                     </ul>
                 </li>
                 <li><a href="/static/about"><?= __('About us') ?></a></li>
+                <!--search field  -->
+                <li>
+                  <?= $this->Form->create();  ?>
+                  <?= $this->Form->input('text',['class' => 'form-control input-form','id' => 'myInput','placeholder' => 'Search','label'=>false]);  ?>
+                  <?= $this->Form->end();  ?>
+                </li>
             </ul >
-<!--
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form> -->
-
 
             <ul class="nav navbar-nav navbar-right">
               <?php if($adminIn) : ?>
@@ -72,7 +72,7 @@
                         <a href="/user/order"><?= __('Order') ?></a>
                       </li>
                       <li role="separator" class="divider"></li>
-                      
+
                       <li>
                         <a href="/user/logout"><?= __('Logout') ?></a>
                       </li>

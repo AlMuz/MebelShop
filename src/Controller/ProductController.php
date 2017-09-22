@@ -2,39 +2,41 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 
 class ProductController extends AppController
 {
-
+  public function beforeFilter(Event $event)
+  {
+      parent::beforeFilter($event);
+      $this->Auth->allow();
+  }
+  
   public $paginate = [
     'limit' => 15,
     'order' => [
       'Product.Interest' => 'desc'
     ]
   ];
-    public function index()
-    {
 
+  public function index()
+  {
 
-        $product = $this->paginate($this->Product);
+      $product = $this->paginate($this->Product);
 
-        $this->set(compact('product'));
-        $this->set('_serialize', ['product']);
-    }
+      $this->set(compact('product'));
+      // $this->set('_serialize', ['product']);
+  }
 
-    public function view($id = null)
-    {
-        $product = $this->Product->get($id, [
-            'contain' => ['Image','Category']
-        ]);
+  public function view($id = null)
+  {
+      $product = $this->Product->get($id, [
+          'contain' => ['Image','Category']
+      ]);
 
-        // $category = $this->Product->Category->find('all',
-        // array('conditions' => array('Category.idCategory' => '1')));
-        $this->set('category', 'category');
-
-
-        $this->set('product', $product);
-        $this->set('_serialize', ['product']);
-    }
+      $this->set('category', 'category');
+      $this->set('product', $product);
+      // $this->set('_serialize', ['product']);
+  }
 }

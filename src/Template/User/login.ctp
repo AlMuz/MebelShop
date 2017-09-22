@@ -11,10 +11,10 @@
             <?= $this->Form->create() ?>
             <fieldset>
 			    	  <div class="form-group">
-                  <?= $this->Form->control('Login',['class' => 'form-control','label'=>false,'placeholder' => 'Username','required' => true,'tabindex' => '1']) ?>
+                  <?= $this->Form->control('Login',['class' => 'form-control','label'=>false,'placeholder' => 'Username','tabindex' => '1']) ?>
 			    		</div>
 			    		<div class="form-group">
-                <?= $this->Form->password('Password',['class' => 'form-control','label'=>false,'placeholder' => 'Password','required' => true,'tabindex' => '2']) ?>
+                <?= $this->Form->password('Password',['class' => 'form-control','label'=>false,'placeholder' => 'Password','tabindex' => '2']) ?>
 			    		</div>
               <?= $this->Form->button(__('Login'),['class' => 'btn btn-success','tabindex' => '3']); ?>
 			    	</fieldset>
@@ -28,3 +28,6 @@
 		</div>
 	</div>
 </div>
+
+
+<script src="/js/validation.js"></script>

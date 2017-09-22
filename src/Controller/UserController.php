@@ -10,19 +10,33 @@ class UserController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('register','logout');
+        $this->Auth->allow('register','login');
+        $this->Auth->deny('index','logout','order','edit');
     }
 
     public function register()
     {
+
       $user = $this->User->newEntity();
+
       if ($this->request->is('post')) {
           $user = $this->User->patchEntity($user, $this->request->getData());
-          if ($this->User->save($user)) {
-              $this->Flash->success(__('You successfuly registered'));
-              return $this->redirect(['controller'=>'user','action' => 'login']);
+          $conditions = array(
+              'conditions' => array(
+                  'Login' => $user->Login
+               )
+          );
+          $result = $this->User->find('list', $conditions);
+
+          if (!$result->count()==0){
+            $this->Flash->error(__('This username already exists'));
           }
-          $this->Flash->error(__('Error! Please, try again.'));
+          else{
+            if ($this->User->save($user)) {
+                $this->Flash->success(__('You successfuly registered'));
+                return $this->redirect(['controller'=>'user','action' => 'login']);
+            }
+          }
       }
       $this->set('user', $user);
     }
