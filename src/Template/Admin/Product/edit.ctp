@@ -1,7 +1,7 @@
 <?php
 /**
-  * @var \App\View\AppView $this
-  */
+ * @var \App\View\AppView $this
+ */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
@@ -23,6 +23,7 @@
             echo $this->Form->control('Name');
             echo $this->Form->control('Price');
             echo $this->Form->control('Description');
+            echo $this->Form->control('Interest');
             echo $this->Form->control('MainImage');
             echo $this->Form->control('Category_idCategory');
         ?>

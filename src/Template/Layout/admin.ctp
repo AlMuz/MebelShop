@@ -10,6 +10,9 @@
       <?= $this->Html->meta('icon') ?>
       <?= $this->Html->css('bootstrap.min.css') ?>
       <?= $this->Html->css('local.css') ?>
+      <?= $this->Html->css('message.css') ?>
+      <?= $this->Html->script('functions'); ?>
+
       <script src="/js/jquery.min.js"></script>
       <script src="/js/bootstrap.min.js"></script>
 
@@ -28,47 +31,29 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="index.html">Admin Panel</a>
+                  <a class="navbar-brand" href="/">To the shop</a>
               </div>
               <div class="collapse navbar-collapse navbar-ex1-collapse">
                   <ul class="nav navbar-nav side-nav">
-                      <li class="active"><a href="index.html"><i class="fa fa-bullseye"></i> Dashboard</a></li>
-                      <li><a href="portfolio.html"><i class="fa fa-tasks"></i> Portfolio</a></li>
-                      <li><a href="blog.html"><i class="fa fa-globe"></i> Blog</a></li>
-                      <li><a href="forms.html"><i class="fa fa-list-ol"></i> Forms</a></li>
-                      <li><a href="typography.html"><i class="fa fa-font"></i> Typography</a></li>
-                      <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
-                      <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i > Bootstrap Grid</a></li>
+                      <li><a href="/admin">Main</a></li>
+                      <li><a href="admin/user">Users</a></li>
+                      <li><a href="admin/product">Product</a></li>
+                      <li><a href="admin/category">Category</a></li>
+                      <li><a href="admin/image">Images</a></li>
+
+
+
+
                   </ul>
                   <ul class="nav navbar-nav navbar-right navbar-user">
-                      <li class="dropdown messages-dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">2</span> <b class="caret"></b></a>
-                          <ul class="dropdown-menu">
-                              <li class="dropdown-header">2 New Messages</li>
-                              <li class="message-preview">
-                                  <a href="#">
-                                      <span class="avatar"><i class="fa fa-bell"></i></span>
-                                      <span class="message">Security alert</span>
-                                  </a>
-                              </li>
-                              <li class="divider"></li>
-                              <li class="message-preview">
-                                  <a href="#">
-                                      <span class="avatar"><i class="fa fa-bell"></i></span>
-                                      <span class="message">Security alert</span>
-                                  </a>
-                              </li>
-                              <li class="divider"></li>
-                              <li><a href="#">Go to Inbox <span class="badge">2</span></a></li>
-                          </ul>
-                      </li>
+
                       <li class="dropdown user-dropdown">
-                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Steve Miller<b class="caret"></b></a>
+                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><b class="caret"></b></a>
                          <ul class="dropdown-menu">
                              <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                              <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
                              <li class="divider"></li>
-                             <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                             <li><a href="/user/logout"><i class="fa fa-power-off"></i> Log Out</a></li>
                          </ul>
                      </li>
                   </ul>
@@ -76,6 +61,8 @@
           </nav>
 
           <div id="page-wrapper">
+            <?= $this->Flash->render(); ?>
+            <?= $this->fetch('content') ?>
               <!-- content  -->
           </div>
           <!-- /#page-wrapper -->

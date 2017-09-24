@@ -45,30 +45,58 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
+      //show in prefix admin - admin layout and check access to admin
       $this->Auth->allow(['about']);
+      if (isset($this->request->params['prefix']) == 'admin') {
+        if($this->Auth->user('Root') == 1){
+          $this->viewBuilder()->layout('admin');
+        } else{
+           $this->redirect($this->referer());
+           $this->Flash->error(__('You shall not pass!'));
+
+        }
+
+
+
+  		} else {
+  			$authUser = $this->Auth->user();
+          	$this->viewBuilder()->layout('default');
+  		}
+
+      // //login check old
+      // if($this->request->session()->read('Auth.User')){
+      //   $this->set('loggedIn',true);
+      // }else{
+      //   $this->set('loggedIn',false);
+      // }
+
+      //login check
+      if($this->Auth->user()){
+        $this->set('loggedIn',true);
+      }else{
+        $this->set('loggedIn',false);
+      }
+
+      // //admin check old
+      // if($this->request->session()->read('Auth.User.Root')){
+      //   $this->set('adminIn',true);
+      // }else{
+      //   $this->set('adminIn',false);
+      // }
+
+      //admin check
+      if($this->Auth->user('Root')){
+        $this->set('adminIn',true);
+      }else{
+        $this->set('adminIn',false);
+      }
     }
 
     public function beforeRender(Event $event)
     {
         $this->loadModel('Category');
-        $this->loadModel('Cart');
-
         $this->set('cat', $this->Category->find()
         ->limit(10)
         );
-
-        //login check
-        if($this->request->session()->read('Auth.User')){
-          $this->set('loggedIn',true);
-        }else{
-          $this->set('loggedIn',false);
-        }
-
-        //admin check
-        if($this->request->session()->read('Auth.User.Root')){
-          $this->set('adminIn',true);
-        }else{
-          $this->set('adminIn',false);
-        }
     }
 }

@@ -12,7 +12,7 @@ class ProductController extends AppController
       parent::beforeFilter($event);
       $this->Auth->allow();
   }
-  
+
   public $paginate = [
     'limit' => 15,
     'order' => [
@@ -22,7 +22,7 @@ class ProductController extends AppController
 
   public function index()
   {
-
+    // debug($this->Auth->user('Root'));
       $product = $this->paginate($this->Product);
 
       $this->set(compact('product'));

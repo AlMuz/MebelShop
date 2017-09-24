@@ -29,7 +29,7 @@ class ProductTable extends Table
           'joinType' => 'INNER'
         ]);
 
-        $this->belongsToMany('Carts');
+        // $this->belongsToMany('Carts');
     }
 
     /**
