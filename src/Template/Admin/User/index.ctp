@@ -5,12 +5,13 @@
             <tr>
               <th scope="col"><?= $this->Paginator->sort('idUser') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Login') ?></th>
-              <th scope="col"><?= $this->Paginator->sort('Password') ?></th>
+              <th scope="col"><?= ('Password') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Email') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Name') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Surname') ?></th>
               <th scope="col"><?= ('Phonenumber') ?></th>
-              <th scope="col"><?= $this->Paginator->sort('Date') ?></th>
+              <th scope="col"><?= $this->Paginator->sort('City') ?></th>
+              <th scope="col"><?= ('Adress') ?></th>
               <th scope="col"><?= ('Root') ?></th>
               <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -25,8 +26,10 @@
               <td><?= h($user->Name) ?></td>
               <td><?= h($user->Surname) ?></td>
               <td><?= h($user->Phonenumber) ?></td>
-              <td><?= h($user->Date) ?></td>
-              <td><?= $this->Number->format($user->Root) ?></td>
+              <td><?= h($user->City) ?></td>
+              <td><?= h($user->Adress) ?></td>
+
+              <td><?= h($user->Root) ? __('Yes') : __('No') ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('<i class="glyphicon glyphicon-eye-open"></i>'), ['action' => 'view',$user->idUser], ['class' => 'btn btn-xs btn-primary', 'escapeTitle' => false]) ?>
                     <?= $this->Html->link(__('<i class="glyphicon glyphicon-edit"></i>'), ['action' => 'edit', $user->idUser], ['class' => 'btn btn-xs btn-warning', 'escapeTitle' => false]) ?>

@@ -21,7 +21,8 @@
         echo $this->Form->control('Name');
         echo $this->Form->control('Surname');
         echo $this->Form->control('Phonenumber');
-        echo $this->Form->control('Date');
+        echo $this->Form->control('City');
+        echo $this->Form->control('Adress');
         echo $this->Form->control('Root');
         ?>
     </fieldset>

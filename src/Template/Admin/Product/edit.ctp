@@ -25,7 +25,10 @@
             echo $this->Form->control('Description');
             echo $this->Form->control('Interest');
             echo $this->Form->control('MainImage');
+            echo $this->Form->control('Material');
+            echo $this->Form->control('Size');
             echo $this->Form->control('Category_idCategory');
+            debug($product->category->Title);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
