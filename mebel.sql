@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 25 2017 г., 21:30
+-- Время создания: Сен 26 2017 г., 23:10
 -- Версия сервера: 10.1.26-MariaDB
 -- Версия PHP: 7.1.8
 
@@ -21,6 +21,17 @@ SET time_zone = "+00:00";
 --
 -- База данных: `mebel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `cart`
+--
+
+CREATE TABLE `cart` (
+  `idCart` int(11) NOT NULL,
+  `TotalAmount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -74,8 +85,9 @@ INSERT INTO `image` (`idImage`, `Image`, `Product_idProduct`) VALUES
 CREATE TABLE `order` (
   `idOrder` int(11) NOT NULL,
   `Status` int(1) NOT NULL,
-  `Cart_idCart` int(11) NOT NULL,
-  `User_IdUser` int(11) NOT NULL
+  `User_IdUser` int(11) NOT NULL,
+  `Date` datetime NOT NULL,
+  `cart_idCart` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -111,6 +123,18 @@ INSERT INTO `product` (`idProduct`, `Name`, `Price`, `Description`, `Interest`, 
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `product_has_cart`
+--
+
+CREATE TABLE `product_has_cart` (
+  `product_idProduct` int(11) NOT NULL,
+  `cart_idCart` int(11) NOT NULL,
+  `Quantity` smallint(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `user`
 --
 
@@ -132,15 +156,20 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`idUser`, `Login`, `Password`, `Email`, `Name`, `Surname`, `Phonenumber`, `City`, `Adress`, `Root`) VALUES
-(1, 'men', '$2y$10$Nj9QLkbYcjPpYZyj0Xw9k.eKv67rN9c8jkvue.LDbMV1HOO5bJiKO', 'men300@inbox.lv', 'men', 'men', 1231231, '', '', 1),
-(2, 'men300', '$2y$10$g2njqD3Qfsm/AQDujOgdHei2O7ohjqsPYTGSznsQzXDwLjA2vZ20S', 'men300@inbox.lv', 'Alexey', 'Muzicenko', 20361226, '', '', 1),
-(3, 'mennem', '$2y$10$l.awuQzqRLIENGcqbQ4U.uZqd5ghR.LvGWar9089HM9IEQzQ5q1R2', 'men300@inbox.lv', 'alex', 'boris', 20361226, '1231', '23123123', 0),
-(4, 'mennem1', '$2y$10$GcgeZzeqEOhrZq5Y0o/vzuYc2H6A5NCCW8dH1r5V8ytGmZCo316QS', 'men300@inbox.lv', 'alex', 'boris', 20361226, '', '', 0),
-(5, 'mennem12', '$2y$10$LEJ8wygjEIx5BD5cOWNty.pS331g/Ie/Mz6ClwDLzbnVbEGPdeO0K', 'men300@inbox.lv', 'alex', 'boris', 20361226, '', '', 0);
+(6, 'men300', '$2y$10$XmOzp65mQsmrWqsQrtp/5eqBSm10KUyTln.OrCxdEU3M9pOe1t.He', 'men300@inbox.lv', 'Nigga', 'Meow', 22341241, 'Riga', 'Ilukstes iela 60-83', 0),
+(7, 'mennem', '$2y$10$lqEdrK9MCsCiOrait3VTJOVET2ZoxvqhkpL.UFXYHXy9zMqq/O3Lm', 'men300@inbox.lv', 'Alexey', 'Muzicenko', 20361226, 'Riga', 'brivibas iela', 0),
+(8, '1', '$2y$10$ARooLHVibiBNLho7f2XV3OLX9deiflmNvoF0uyTTC6//MkmBxLLJ.', '11@12312', '1', '1', 12312, '1', '12312', 0),
+(9, 'azazaza', '$2y$10$oIjFw1m.u2t1bNzlHeDmLumaMi1ytT4fN/Z4dHIZToBFXw3l.zNTK', 'men30@asda.lv', 'alex', 'muzicenko', 20361226, 'Riga', 'Latvia', 0);
 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`idCart`);
 
 --
 -- Индексы таблицы `category`
@@ -160,8 +189,8 @@ ALTER TABLE `image`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`idOrder`),
-  ADD KEY `fk_Order_Cart1_idx` (`Cart_idCart`),
-  ADD KEY `User_IdUser` (`User_IdUser`);
+  ADD KEY `User_IdUser` (`User_IdUser`),
+  ADD KEY `fk_order_cart1_idx` (`cart_idCart`);
 
 --
 -- Индексы таблицы `product`
@@ -169,6 +198,14 @@ ALTER TABLE `order`
 ALTER TABLE `product`
   ADD PRIMARY KEY (`idProduct`),
   ADD KEY `fk_Product_Category1_idx` (`Category_idCategory`);
+
+--
+-- Индексы таблицы `product_has_cart`
+--
+ALTER TABLE `product_has_cart`
+  ADD PRIMARY KEY (`product_idProduct`,`cart_idCart`),
+  ADD KEY `fk_product_has_cart_cart1_idx` (`cart_idCart`),
+  ADD KEY `fk_product_has_cart_product1_idx` (`product_idProduct`);
 
 --
 -- Индексы таблицы `user`
@@ -180,6 +217,11 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
+--
+-- AUTO_INCREMENT для таблицы `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `idCart` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `category`
 --
@@ -199,12 +241,12 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
@@ -219,7 +261,7 @@ ALTER TABLE `image`
 -- Ограничения внешнего ключа таблицы `order`
 --
 ALTER TABLE `order`
-  ADD CONSTRAINT `fk_Order_Cart1` FOREIGN KEY (`Cart_idCart`) REFERENCES `cart` (`idCart`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_order_cart1` FOREIGN KEY (`cart_idCart`) REFERENCES `cart` (`idCart`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`User_IdUser`) REFERENCES `user` (`idUser`);
 
 --
@@ -227,6 +269,13 @@ ALTER TABLE `order`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `fk_Product_Category1` FOREIGN KEY (`Category_idCategory`) REFERENCES `category` (`idCategory`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Ограничения внешнего ключа таблицы `product_has_cart`
+--
+ALTER TABLE `product_has_cart`
+  ADD CONSTRAINT `fk_product_has_cart_cart1` FOREIGN KEY (`cart_idCart`) REFERENCES `cart` (`idCart`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_product_has_cart_product1` FOREIGN KEY (`product_idProduct`) REFERENCES `product` (`idProduct`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

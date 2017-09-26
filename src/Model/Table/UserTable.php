@@ -16,47 +16,61 @@ class UserTable extends Table
         $this->setTable('user');
         $this->setDisplayField('idUser');
         $this->setPrimaryKey('idUser');
+        $this->hasMany('Order', [
+            'foreignKey' => 'User_IdUser',
+            'joinType' => 'INNER'
+        ]);
     }
 
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->integer('idUser')
-            ->allowEmpty('idUser', 'create');
+      $validator
+          ->integer('idUser')
+          ->allowEmpty('idUser', 'create');
 
-        $validator
-            ->scalar('Login')
-            ->requirePresence('Login', 'create')
-            ->notEmpty('Login');
+      $validator
+          ->scalar('Login')
+          ->requirePresence('Login', 'create')
+          ->notEmpty('Login');
 
-        $validator
-            ->scalar('Password')
-            ->requirePresence('Password', 'create')
-            ->notEmpty('Password');
+      $validator
+          ->scalar('Password')
+          ->requirePresence('Password', 'create')
+          ->notEmpty('Password');
 
-        $validator
-            ->scalar('Email')
-            ->requirePresence('Email', 'create')
-            ->notEmpty('Email');
+      $validator
+          ->scalar('Email')
+          ->requirePresence('Email', 'create')
+          ->notEmpty('Email');
 
-        $validator
-            ->scalar('Name')
-            ->requirePresence('Name', 'create')
-            ->notEmpty('Name');
+      $validator
+          ->scalar('Name')
+          ->requirePresence('Name', 'create')
+          ->notEmpty('Name');
 
-        $validator
-            ->scalar('Surname')
-            ->requirePresence('Surname', 'create')
-            ->notEmpty('Surname');
+      $validator
+          ->scalar('Surname')
+          ->requirePresence('Surname', 'create')
+          ->notEmpty('Surname');
 
-        $validator
-            ->integer('Phonenumber')
-            ->requirePresence('Phonenumber', 'create')
-            ->notEmpty('Phonenumber');
+      $validator
+          ->integer('Phonenumber')
+          ->requirePresence('Phonenumber', 'create')
+          ->notEmpty('Phonenumber');
 
-        $validator
-            ->integer('Root')
-            ->allowEmpty('Root', 'create');
+      $validator
+          ->scalar('City')
+          ->requirePresence('City', 'create')
+          ->notEmpty('City');
+
+      $validator
+          ->scalar('Adress')
+          ->requirePresence('Adress', 'create')
+          ->notEmpty('Adress');
+
+      $validator
+          ->integer('Root')
+          ->allowEmpty('Root', 'create');
 
         return $validator;
     }
