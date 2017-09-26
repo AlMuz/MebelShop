@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Sep 14, 2017 at 03:43 PM
--- Server version: 5.7.19-0ubuntu0.16.04.1
--- PHP Version: 5.6.31-4+ubuntu16.04.1+deb.sury.org+4
+-- Хост: 127.0.0.1
+-- Время создания: Сен 25 2017 г., 21:30
+-- Версия сервера: 10.1.26-MariaDB
+-- Версия PHP: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,26 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mebel`
+-- База данных: `mebel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
---
-
-CREATE TABLE `cart` (
-  `idCart` int(11) NOT NULL,
-  `FullPrice` int(11) NOT NULL,
-  `Quantity` int(11) NOT NULL,
-  `Product_idProduct` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
+-- Структура таблицы `category`
 --
 
 CREATE TABLE `category` (
@@ -46,7 +35,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `category`
+-- Дамп данных таблицы `category`
 --
 
 INSERT INTO `category` (`idCategory`, `Title`, `Description`) VALUES
@@ -58,7 +47,7 @@ INSERT INTO `category` (`idCategory`, `Title`, `Description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image`
+-- Структура таблицы `image`
 --
 
 CREATE TABLE `image` (
@@ -68,16 +57,18 @@ CREATE TABLE `image` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `image`
+-- Дамп данных таблицы `image`
 --
 
 INSERT INTO `image` (`idImage`, `Image`, `Product_idProduct`) VALUES
-(1, 'suv2.jpg', 1);
+(1, 'suv2.jpg', 1),
+(2, 'suv2.jpg', 1),
+(3, 'suv2.jpg', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Структура таблицы `order`
 --
 
 CREATE TABLE `order` (
@@ -90,7 +81,7 @@ CREATE TABLE `order` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Структура таблицы `product`
 --
 
 CREATE TABLE `product` (
@@ -99,27 +90,28 @@ CREATE TABLE `product` (
   `Price` decimal(10,2) NOT NULL,
   `Description` longtext NOT NULL,
   `Interest` int(11) NOT NULL DEFAULT '1',
+  `Material` varchar(255) NOT NULL,
+  `Size` int(255) NOT NULL,
   `MainImage` varchar(250) DEFAULT NULL,
   `Category_idCategory` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `product`
+-- Дамп данных таблицы `product`
 --
 
-INSERT INTO `product` (`idProduct`, `Name`, `Price`, `Description`, `Interest`, `MainImage`, `Category_idCategory`) VALUES
-(1, 'In jan', '15.93', 'Injan suvenirs. Koks', 30, 'suv1.jpg', 1),
-(2, 'Rascheska', '19.50', 'Just rascheska', 42, 'suv4.jpg', 1),
-(3, 'Brelok', '5.33', 'Just brelok', 99, 'suv3.jpg', 1),
-(4, 'Majins mazuliem', '150.00', 'Just home', 1, 'detdom1.jpg', 2),
-(5, 'Galds ', '228.00', 'Parasts galds', 54, 'galds1.jpg', 3),
-(6, 'Kresli 1', '43.95', 'Parasts kresls', 15, 'kresli1.jpg', 4),
-(7, 'Kreslo 228', '230.12', 'Parasta kresla', 13, 'kresli2.jpg', 4);
+INSERT INTO `product` (`idProduct`, `Name`, `Price`, `Description`, `Interest`, `Material`, `Size`, `MainImage`, `Category_idCategory`) VALUES
+(1, 'In jan', '15.93', 'Injan suvenirs. Koks', 30, '', 0, 'suv1.jpg', 1),
+(2, 'Rascheska', '19.50', 'Just rascheska', 42, '', 0, 'suv4.jpg', 1),
+(3, 'Brelok', '5.33', 'Just brelok', 99, '', 0, 'suv3.jpg', 1),
+(4, 'Majins mazuliem', '150.00', 'Just home', 1, '', 0, 'detdom1.jpg', 2),
+(5, 'Galds ', '228.00', 'Parasts galds', 54, '', 0, 'galds1.jpg', 3),
+(6, 'Kresli 1', '43.95', 'Parasts kresls', 15, '', 0, 'kresli1.jpg', 4);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Структура таблицы `user`
 --
 
 CREATE TABLE `user` (
@@ -130,47 +122,41 @@ CREATE TABLE `user` (
   `Name` varchar(45) NOT NULL,
   `Surname` varchar(45) NOT NULL,
   `Phonenumber` int(8) NOT NULL,
-  `created` datetime DEFAULT NULL,
+  `City` varchar(50) NOT NULL,
+  `Adress` varchar(150) NOT NULL,
   `Root` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`idUser`, `Login`, `Password`, `Email`, `Name`, `Surname`, `Phonenumber`, `created`, `Root`) VALUES
-(1, 'men', '$2y$10$Qk5B2LkB7dTHy4vILhg9AeO5edUAT0eEPV8Cqx7h4VGqO5bs5hWmC', 'men@men.lv', 'men', 'men1', 123, NULL, 1),
-(2, 'nem', '$2y$10$bIPy/RaezpmXI1uofDAyjOMslnrtuXbNhm.61axUp8kAkr27QZRr2', 'nem@nem.lv', 'nem', 'nem', 123123, NULL, 0),
-(3, 'login', '$2y$10$UzG9fmgluKFRxU1xSCXcjOiuZoXZEkXKd28akyowoSnYUUDMZCSYy', 'login@login.lv', 'login', 'login', 123, NULL, 0),
-(4, '123', '$2y$10$Rd7D3cvYAv7MrqKybQl.KOxmCgCC/64NL6iHDkC1grn8iJ5oWt1sK', '123@123', '123', '123', 123, NULL, 0),
-(5, 'nig', '$2y$10$jsEaZMUw5KxScMST0KERjOPyDvYUTMBoEZ.2ngnjtLvmue5iR5i9m', 'nig@gmail.com', 'nig', 'nig', 12312312, NULL, 0);
+INSERT INTO `user` (`idUser`, `Login`, `Password`, `Email`, `Name`, `Surname`, `Phonenumber`, `City`, `Adress`, `Root`) VALUES
+(1, 'men', '$2y$10$Nj9QLkbYcjPpYZyj0Xw9k.eKv67rN9c8jkvue.LDbMV1HOO5bJiKO', 'men300@inbox.lv', 'men', 'men', 1231231, '', '', 1),
+(2, 'men300', '$2y$10$g2njqD3Qfsm/AQDujOgdHei2O7ohjqsPYTGSznsQzXDwLjA2vZ20S', 'men300@inbox.lv', 'Alexey', 'Muzicenko', 20361226, '', '', 1),
+(3, 'mennem', '$2y$10$l.awuQzqRLIENGcqbQ4U.uZqd5ghR.LvGWar9089HM9IEQzQ5q1R2', 'men300@inbox.lv', 'alex', 'boris', 20361226, '1231', '23123123', 0),
+(4, 'mennem1', '$2y$10$GcgeZzeqEOhrZq5Y0o/vzuYc2H6A5NCCW8dH1r5V8ytGmZCo316QS', 'men300@inbox.lv', 'alex', 'boris', 20361226, '', '', 0),
+(5, 'mennem12', '$2y$10$LEJ8wygjEIx5BD5cOWNty.pS331g/Ie/Mz6ClwDLzbnVbEGPdeO0K', 'men300@inbox.lv', 'alex', 'boris', 20361226, '', '', 0);
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`idCart`),
-  ADD KEY `fk_Cart_Product1_idx` (`Product_idProduct`);
-
---
--- Indexes for table `category`
+-- Индексы таблицы `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`idCategory`);
 
 --
--- Indexes for table `image`
+-- Индексы таблицы `image`
 --
 ALTER TABLE `image`
   ADD PRIMARY KEY (`idImage`),
   ADD KEY `fk_Image_Product1_idx` (`Product_idProduct`);
 
 --
--- Indexes for table `order`
+-- Индексы таблицы `order`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`idOrder`),
@@ -178,80 +164,70 @@ ALTER TABLE `order`
   ADD KEY `User_IdUser` (`User_IdUser`);
 
 --
--- Indexes for table `product`
+-- Индексы таблицы `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`idProduct`),
   ADD KEY `fk_Product_Category1_idx` (`Category_idCategory`);
 
 --
--- Indexes for table `user`
+-- Индексы таблицы `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`idUser`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `idCart` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `category`
+-- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
   MODIFY `idCategory` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `image`
+-- AUTO_INCREMENT для таблицы `image`
 --
 ALTER TABLE `image`
-  MODIFY `idImage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idImage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT для таблицы `order`
 --
 ALTER TABLE `order`
   MODIFY `idOrder` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
   MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
   MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- Constraints for dumped tables
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Constraints for table `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `fk_Cart_Product1` FOREIGN KEY (`Product_idProduct`) REFERENCES `product` (`idProduct`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `image`
+-- Ограничения внешнего ключа таблицы `image`
 --
 ALTER TABLE `image`
   ADD CONSTRAINT `fk_Image_Product1` FOREIGN KEY (`Product_idProduct`) REFERENCES `product` (`idProduct`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `order`
+-- Ограничения внешнего ключа таблицы `order`
 --
 ALTER TABLE `order`
   ADD CONSTRAINT `fk_Order_Cart1` FOREIGN KEY (`Cart_idCart`) REFERENCES `cart` (`idCart`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`User_IdUser`) REFERENCES `user` (`idUser`);
 
 --
--- Constraints for table `product`
+-- Ограничения внешнего ключа таблицы `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `fk_Product_Category1` FOREIGN KEY (`Category_idCategory`) REFERENCES `category` (`idCategory`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

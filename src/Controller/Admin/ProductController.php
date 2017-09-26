@@ -36,13 +36,14 @@ class ProductController extends AppController
         }
         $this->Flash->error(__('The product could not be saved. Please, try again.'));
     }
+    debug($product);
     $this->set(compact('product'));
   }
 
   public function edit($id = null)
   {
       $product = $this->Product->get($id, [
-          'contain' => []
+          'contain' => ['Category', 'Image']
       ]);
       if ($this->request->is(['patch', 'post', 'put'])) {
           $product = $this->Product->patchEntity($product, $this->request->getData());
@@ -53,7 +54,8 @@ class ProductController extends AppController
           }
           $this->Flash->error(__('The product could not be saved. Please, try again.'));
       }
-      $this->set(compact('product'));
+      $categories = $this->Product->Category->find('list');
+      $this->set(compact('product','categories'));
   }
 
   public function delete($id = null)
