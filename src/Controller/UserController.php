@@ -14,6 +14,14 @@ class UserController extends AppController
         $this->Auth->deny('index','logout','order','edit');
     }
 
+    public function index()
+    {
+      $query = $this->User->find('all')
+      ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
+      $this->set('user',$query);
+
+    }
+
     public function register()
     {
       if ($this->Auth->user()){
@@ -44,7 +52,6 @@ class UserController extends AppController
       $this->set('user', $user);
     }
 
-
     public function login()
     {
         if ($this->Auth->user()){
@@ -68,19 +75,10 @@ class UserController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
-
-    public function index()
-    {
-      $query = $this->User->find('all')
-      ->where(['user.idUser = ' => $this->Auth->user('idUser')]);
-        $this->set('user',$query);
-
-    }
-
-
     public function order(){
 
     }
+
     public function edit()
     {
         $user = $this->User->get($this->Auth->user('idUser'), [
@@ -89,7 +87,7 @@ class UserController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->User->patchEntity($user, $this->request->getData());
             if ($this->User->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('New information in profile successfuly saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }

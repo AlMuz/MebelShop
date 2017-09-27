@@ -8,7 +8,7 @@
 			<table>
 				<tbody>
 					<tr>
-						<td style="padding-right: 10px; padding-top:5px"><?= $this->Paginator->limitControl([15=>15, 30 => 30, 45 => 45] ); ?></td>
+						<td style="padding: 5px 10px 0 5px;"><?= $this->Paginator->limitControl([15=>15, 30 => 30, 45 => 45] ); ?></td>
 						<td>
 							<div class="dropdown">
 								<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">

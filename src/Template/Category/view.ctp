@@ -1,14 +1,14 @@
 <?php $this->assign('title', $category->Title.' - '.$maintitle); ?>
     <div class="row">
-
-      <h1><?= h($category->Title).' - kategorija' ?></h1>
-      <h2><?= h($category->Description) ?></h2>
+      <h1 class="page-header"><?= h($category->Title).' - '.__('Category') ?></h1>
+      <h2>Category description: <?= h($category->Description) ?></h2>
+      <hr>
       <div class="row">
         <div>
           <table>
             <tbody>
               <tr>
-                <td style="padding-right: 10px; padding-top:5px"><?= $this->Paginator->limitControl([15=>15, 30 => 30, 45 => 45] ); ?></td>
+                <td style="padding: 5px 10px 0 15px;"><?= $this->Paginator->limitControl([15=>15, 30 => 30, 45 => 45] ); ?></td>
                 <td>
                   <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">

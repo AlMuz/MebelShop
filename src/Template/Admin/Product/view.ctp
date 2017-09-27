@@ -11,35 +11,38 @@
     </ul>
 </nav>
 <div class="product view large-9 medium-8 columns content">
-    <h3><?= h($product->idProduct) ?></h3>
+    <h3><?= $product->Name ?></h3>
+    <hr>
+    <br>
     <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($product->Name) ?></td>
-        </tr>
+
         <tr>
             <th scope="row"><?= __('MainImage') ?></th>
             <td><?= ($this->Html->image($product->MainImage,['class'=>'img-responsive', 'style' => 'max-height: 300px'])) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('IdProduct') ?></th>
-            <td><?= $this->Number->format($product->idProduct) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Price') ?></th>
-            <td><?= $this->Number->format($product->Price) ?></td>
+            <td><?= $this->Number->currency($product->Price, $currency) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Interest') ?></th>
-            <td><?= $this->Number->format($product->Interest) ?></td>
+            <td><?= $product->Interest ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Material') ?></th>
+            <td><?= h($product->Material) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Size') ?></th>
+            <td><?= $this->Number->format($product->Size) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Category IdCategory') ?></th>
             <td><?= $this->Number->format($product->Category_idCategory) ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($product->Description)); ?>
-    </div>
+      <div class="row">
+          <h4><?= __('Description') ?></h4>
+          <?= $this->Text->autoParagraph(h($product->Description)); ?>
+      </div>
 </div>

@@ -33,7 +33,10 @@ class CategoryController extends AppController
   {
       $category = $this->paginate($this->Category);
       $category = $this->Category->get($id, [
-          'contain' => ['Product']
+          'contain' => ['Product'],
+          'order' => [
+              'Category.Title' => 'asc'
+          ]
       ]);
 
       $this->set('category', $category);

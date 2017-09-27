@@ -22,11 +22,9 @@ class ProductController extends AppController
 
   public function index()
   {
-    // debug($this->Auth->user('Root'));
       $product = $this->paginate($this->Product);
 
       $this->set(compact('product'));
-      // $this->set('_serialize', ['product']);
   }
 
   public function view($id = null)
@@ -37,6 +35,11 @@ class ProductController extends AppController
 
       $this->set('category', 'category');
       $this->set('product', $product);
-      // $this->set('_serialize', ['product']);
   }
+
+  // public function search(){
+  //   $query = $this->Product->find('all')
+  //   ->where(['Product.Name LIKE ' => $search]);
+  //   $this->set('user',$query);
+  // }
 }

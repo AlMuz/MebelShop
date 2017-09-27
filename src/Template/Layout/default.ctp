@@ -5,7 +5,6 @@
   </head>
   <body>
     <?= $this->element('header') ?>
-
     <div class="container-fluid text-center maincont">
       <?= $this->element('leftsidenav') ?>
       <?= $this->element('main') ?>

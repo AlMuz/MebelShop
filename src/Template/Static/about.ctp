@@ -1,15 +1,31 @@
-<?php $this->assign('title', 'About - '.$maintitle);?>
+<?php $this->assign('title', 'About us - '.$maintitle);?>
 
-<div class= "bg-about1">
-  <div class="container-fluid text-center">
-    <div class="row content">
-      <article>
-        <h1 class= "article-h1-black">CONTACTS</h1>
-        <p class= "content-white">Alexey Muzichenko: almuz@inbox.lv</p>
-      </article>
-    </div>
+<!-- <form>
+<legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
+<address>
+    <strong>Twitter, Inc.</strong><br>
+    795 Folsom Ave, Suite 600<br>
+    San Francisco, CA 94107<br>
+    <abbr title="Phone">
+        P:</abbr>
+    (123) 456-7890
+</address>
+<address>
+    <strong>Full Name</strong><br>
+    <a href="mailto:#">first.last@example.com</a>
+</address>
+</form> -->
+
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <article>
+      <h1>About us</h1>
+      <p>Alexey Muzichenko: almuz@inbox.lv</p>
+    </article>
   </div>
 </div>
+
 <div id="googleMap" style="height:400px;" class="grey-map"></div>
   <script>
     function myMap() {

@@ -32,14 +32,13 @@
                         <?php foreach ($cat as $category): ?>
                           <?php $id = $category->idCategory; ?>
                           <li>
-                            <a href='/Category/view/<?=$id ?>'><?= $category->Title ?></a>
+                            <a href='/category/view/<?=$id ?>'><?= $category->Title ?></a>
                           </li>
                         <?php endforeach; ?>
                         <li role="separator" class="divider"></li>
                         <li><a href="/category/"><?= __('All categories') ?></a></li>
                     </ul>
                 </li>
-                <li><a href="/static/about"><?= __('About us') ?></a></li>
                 <!--search field  -->
                 <li>
                   <?= $this->Form->create();  ?>
@@ -72,7 +71,6 @@
                         <a href="/user/order"><?= __('Order') ?></a>
                       </li>
                       <li role="separator" class="divider"></li>
-
                       <li>
                         <a href="/user/logout"><?= __('Logout') ?></a>
                       </li>

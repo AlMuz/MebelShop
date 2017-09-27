@@ -16,7 +16,7 @@
         <legend><?= __('Edit User') ?></legend>
         <?php
         echo $this->Form->control('Login');
-        echo $this->Form->control('Password');
+        // echo $this->Form->control('Password');
         echo $this->Form->control('Email');
         echo $this->Form->control('Name');
         echo $this->Form->control('Surname');

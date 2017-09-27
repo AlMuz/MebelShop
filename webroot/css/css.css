@@ -1,12 +1,10 @@
 body{
 	background: White;
 }
-footer {
-	background: #333;
-	color:white;
-	border-top: 1px solid lightgrey;
-}
 
+.page-header{
+	margin: 0;
+}
 .centerinfo{
 	/*border-left: 1px solid lightgrey;*/
 	/*border-right:  1px solid lightgrey;*/
@@ -14,6 +12,18 @@ footer {
 .maincont{
 	margin-top: 60px;
 	padding: 0 15px 30px 15px;
+}
+
+@media (max-width: 991px){
+	.maincont{
+		padding-top:50px;
+	}
+
+}
+@media (max-width: 768px){
+	.maincont{
+		padding-top:0;
+	}
 }
 .divinlog{
 	padding:3px 20px;
@@ -41,7 +51,98 @@ footer {
  	list-style-type: none;
 }
 
-
 .sortproduct li{
  display: inline;
+}
+
+/*Footer*/
+
+#footer-sub{
+	color:white;
+  background-color: #333;
+  border-top: 1px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#footer-sub h5{
+  color:white;
+  margin-top: 25px;
+}
+
+#footer-sub ul{
+  list-style: none;
+  margin-top: 20px;
+}
+
+#footer-sub hr{
+  margin: 5px;
+}
+
+#footer-sub ul li{
+margin-left: -38px;
+}
+
+#footer-sub a:link {
+  text-decoration: none;
+  color:white;
+  font-size: 16px;
+}
+
+#footer-sub a:visited {
+  text-decoration: none;
+  color:white;
+}
+
+
+#footer-sub a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+
+#footer-sub a:active {
+  text-decoration: none;
+  color:#565656;
+}
+
+#footer-sub  .glyphicon {
+  font-size: 35px;
+   color:White;
+}
+
+#sub-two{
+  margin: 0px;
+  padding: 0px;
+}
+
+#footer-main ul{
+  list-style: none;
+}
+
+#footer-main ul li{
+  float:left;
+  text-decoration: none;
+  padding-left: 15px;
+  margin-top: 17px;
+}
+
+#footer-main a:link {
+  color:white;
+  font-size: 12px;
+}
+
+#footer-main a:visited {
+  color:white;
+}
+
+
+#footer-main a:hover {
+  text-decoration: none;
+  color: #00b9f5;
+}
+
+
+#footer-main a:active {
+  color:white;
 }

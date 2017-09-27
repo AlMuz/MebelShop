@@ -8,6 +8,8 @@
               <th scope="col"><?= $this->Paginator->sort('Name') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Price') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Interest') ?></th>
+              <th scope="col"><?= $this->Paginator->sort('Material') ?></th>
+              <th scope="col"><?= $this->Paginator->sort('Size') ?></th>
               <th scope="col"><?= ('MainImage') ?></th>
               <th scope="col"><?= ('Category') ?></th>
               <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -18,8 +20,10 @@
             <tr>
               <td><?= $this->Number->format($product->idProduct) ?></td>
               <td><?= h($product->Name) ?></td>
-              <td><?= $this->Number->format($product->Price) ?></td>
+              <td><?= $this->Number->currency($product->Price, $currency) ?></td>
               <td><?= $this->Number->format($product->Interest) ?></td>
+              <td><?= h($product->Material) ?></td>
+              <td><?= $product->Size ?></td>
               <td><?= ($this->Html->image($product->MainImage,['class'=>'img-responsive', 'style' => 'max-height: 300px'])) ?></td>
               <td><?= h($product->category->Title) ?></td>
               <td class="actions">

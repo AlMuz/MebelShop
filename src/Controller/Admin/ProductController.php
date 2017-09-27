@@ -5,10 +5,19 @@ use App\Controller\AppController;
 
 class ProductController extends AppController
 {
+  // public $paginate = [
+  //   'order' => [
+  //     'Product.Name' => 'asc'
+  //   ]
+  // ];
+
   public function index()
   {
       $this->paginate = [
-          'contain' => ['Category']
+          'contain' => ['Category'],
+          'order' => [
+              'Product.idProduct' => 'asc'
+          ]
       ];
       $product = $this->paginate($this->Product);
 
@@ -28,16 +37,24 @@ class ProductController extends AppController
   {
     $product = $this->Product->newEntity();
     if ($this->request->is('post')) {
+
         $product = $this->Product->patchEntity($product, $this->request->getData());
-        if ($this->Product->save($product)) {
+        $data = $this->request->data;
+
+        if($data['MainImage']['name']){
+					$filename = $this->Product->savefile($data);
+
+					$product->MainImage = $filename;
+					$result = $this->Product->save($product);
+					if($result) {
             $this->Flash->success(__('The product has been saved.'));
 
             return $this->redirect(['action' => 'index']);
-        }
-        $this->Flash->error(__('The product could not be saved. Please, try again.'));
+					}
+				}
     }
-    debug($product);
-    $this->set(compact('product'));
+    // $category = $this->Product->Category->find('all');
+    $this->set(compact('product','category'));
   }
 
   public function edit($id = null)
