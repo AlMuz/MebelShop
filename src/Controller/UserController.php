@@ -16,6 +16,9 @@ class UserController extends AppController
 
     public function register()
     {
+      if ($this->Auth->user()){
+           $this->redirect(['controller'=>'user','action' => 'index']);
+       }
 
       $user = $this->User->newEntity();
 
@@ -44,6 +47,9 @@ class UserController extends AppController
 
     public function login()
     {
+        if ($this->Auth->user()){
+             $this->redirect(['controller'=>'user','action' => 'index']);
+         }
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
@@ -65,7 +71,9 @@ class UserController extends AppController
 
     public function index()
     {
-
+      $query = $this->User->find('all')
+      ->where(['user.idUser = ' => $this->Auth->user('idUser')]);
+        $this->set('user',$query);
 
     }
 
@@ -75,20 +83,19 @@ class UserController extends AppController
     }
     public function edit()
     {
-      // debug($this->usid);
-        // $user = $this->User->get($this->usid, [
-        //     'contain' => []
-        // ]);
-        // if ($this->request->is(['patch', 'post', 'put'])) {
-        //     $user = $this->User->patchEntity($user, $this->request->getData());
-        //     if ($this->User->save($user)) {
-        //         $this->Flash->success(__('The user has been saved.'));
-        //
-        //         return $this->redirect(['action' => 'index']);
-        //     }
-        //     $this->Flash->error(__('The user could not be saved. Please, try again.'));
-        // }
-        // $this->set(compact('user'));
-        // $this->set('_serialize', ['user']);
+        $user = $this->User->get($this->Auth->user('idUser'), [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->User->patchEntity($user, $this->request->getData());
+            if ($this->User->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+        }
+        $this->set(compact('user'));
+        $this->set('_serialize', ['user']);
     }
 }

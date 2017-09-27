@@ -2,7 +2,8 @@ body{
 	background: White;
 }
 footer {
-	background: #292929;
+	background: #333;
+	color:white;
 	border-top: 1px solid lightgrey;
 }
 
