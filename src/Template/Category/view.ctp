@@ -31,8 +31,8 @@
             </tbody>
           </table>
         </div>
-        <?php if (!empty($category->product)): ?>
-      	<?php foreach ($category->product as $product):?>
+        <?php if (!empty($product)): ?>
+      	<?php foreach ($product as $product):?>
 
       	<div class="col-sm-6 col-md-4 mainproduct">
 

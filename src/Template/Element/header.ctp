@@ -46,7 +46,6 @@
                   <?= $this->Form->end();  ?>
                 </li>
             </ul >
-
             <ul class="nav navbar-nav navbar-right">
               <?php if($adminIn) : ?>
                 <li>
@@ -60,34 +59,38 @@
         	      </li>
               <?php endif; ?>
 
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('User Section') ?><span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <?php if($loggedIn) : ?>
+
+              <?php if($loggedIn) : ?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('User Section') ?><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
                       <li>
                         <a href="/user/"><?= __('Profile') ?></a>
                       </li>
                       <li>
                         <a href="/user/order"><?= __('Order') ?></a>
                       </li>
-                      <li role="separator" class="divider"></li>
+                        <li role="separator" class="divider"></li>
                       <li>
                         <a href="/user/logout"><?= __('Logout') ?></a>
                       </li>
-                    <?php else :   ?>
+                    </ul>
+                </li>
+              <?php else :   ?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Sign in') ?><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
                       <li>
-                          <a href='/user/login'><?= __('Login') ?></a>
+                          <a href='/user/login'><?= __('Sign in') ?></a>
                       </li>
                       <li>
                           <a href='/user/register'><?= __('Register') ?></a>
                       </li>
-                    <?php endif; ?>
-                  </ul>
-              </li>
+                    </ul>
+                </li>
+              <?php endif; ?>
             </ul>
-
         </div>
-
     </div>
 </nav>
 </header>

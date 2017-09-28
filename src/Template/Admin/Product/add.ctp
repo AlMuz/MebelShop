@@ -10,10 +10,11 @@
             echo $this->Form->control('Price');
             echo $this->Form->control('Description');
             echo $this->Form->control('Interest');
-            echo $this->Form->input('MainImage', array('label' => __('Add main image'),'type' => 'file'));
+            echo $this->Form->input('MainImage', ['label' => 'Add main image','type' => 'file']);
             echo $this->Form->control('Material');
             echo $this->Form->control('Size');
-            echo $this->Form->input('Category_idCategory');
+            echo $this->Form->control('Category_idCategory', ['options' => $category,'label'=>'Category']);
+            // debug($category);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

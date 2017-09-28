@@ -27,9 +27,8 @@
             // echo $this->Form->input('MainImage', array('label' => __('Add main image'),'type' => 'file'));
             echo $this->Form->control('Material');
             echo $this->Form->control('Size');
-            echo $this->Form->control('Category_idCategory');
-            // echo $this->Form->input('category');
-            // debug($categories);
+            echo $this->Form->control('Category_idCategory', ['options' => $category,'label'=>'Category']);
+
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

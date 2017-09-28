@@ -6,7 +6,7 @@
     <article>
       <h1>Contact us</h1>
       <h2>If you have any questions, feel free to contact with us!</h2>
-      <h3>123</h3>
+
     </article>
   </div>
 </div>

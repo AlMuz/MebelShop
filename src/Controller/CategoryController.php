@@ -14,32 +14,35 @@ class CategoryController extends AppController
       $this->Auth->allow();
   }
 
-  public $paginate = [
-    'limit' => 15,
-    'order' => [
-      'Category.Title' => 'asc'
-    ]
-  ];
-
   public function index()
   {
-      $category = $this->paginate($this->Category);
-
-      $this->set(compact('category'));
-      // $this->set('_serialize', ['category']);
-  }
-
-  public function view($id = null)
-  {
-      $category = $this->paginate($this->Category);
-      $category = $this->Category->get($id, [
-          'contain' => ['Product'],
+      $category = $this->paginate($this->Category, [
+          'limit' => 15,
           'order' => [
               'Category.Title' => 'asc'
           ]
       ]);
 
+      $this->set(compact('category'));
+  }
+
+  public function view($id = null)
+  {
+      $this->loadModel('Product');
+
+      $query = $this->Product->find('all')
+        ->where(['Product.Category_idCategory = ' => $id]);
+      $product = $this->paginate($query,[
+        'limit' => 15,
+        'order' => [
+          'Product.Interest' => 'desc'
+        ]
+      ]);
+
+      $category = $this->Category->get($id);
+
       $this->set('category', $category);
-      // $this->set('_serialize', ['category']);
+      $this->set('product', $product);
+
   }
 }

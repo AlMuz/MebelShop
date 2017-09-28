@@ -5,7 +5,7 @@
     	<div class="col-md-10">
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Login</h3>
+			    	<h3 class="panel-title">Sign in</h3>
 			 	  </div>
 			  	<div class="panel-body">
             <?= $this->Form->create() ?>
@@ -16,7 +16,7 @@
 			    		<div class="form-group">
                 <?= $this->Form->password('Password',['class' => 'form-control','label'=>false,'placeholder' => 'Password','tabindex' => '2']) ?>
 			    		</div>
-              <?= $this->Form->button(__('Login'),['class' => 'btn btn-success','tabindex' => '3']); ?>
+              <?= $this->Form->button(__('Sign in'),['class' => 'btn btn-success','tabindex' => '3']); ?>
 			    	</fieldset>
             <?= $this->Form->end() ?>
             </br>
@@ -28,6 +28,5 @@
 		</div>
 	</div>
 </div>
-
 
 <script src="/js/validation.js"></script>
