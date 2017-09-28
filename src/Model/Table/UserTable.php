@@ -16,8 +16,9 @@ class UserTable extends Table
         $this->setTable('user');
         $this->setDisplayField('idUser');
         $this->setPrimaryKey('idUser');
-        $this->hasMany('Order', [
-            'foreignKey' => 'User_IdUser',
+
+        $this->hasMany('Orders', [
+            'foreignKey' => 'IdUser',
             'joinType' => 'INNER'
         ]);
     }

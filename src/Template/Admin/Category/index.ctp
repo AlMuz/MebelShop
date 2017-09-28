@@ -17,9 +17,9 @@
                 <td><?= h($category->Title) ?></td>
                 <td><?= h($category->Description) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $category->idCategory]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->idCategory]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->idCategory], ['confirm' => __('Are you sure you want to delete # {0}?', $category->idCategory)]) ?>
+                    <?= $this->Html->link(__('<i class="glyphicon glyphicon-eye-open"></i>'), ['action' => 'view', $category->idCategory], ['class' => 'btn btn-xs btn-primary', 'escapeTitle' => false]) ?>
+                    <?= $this->Html->link(__('<i class="glyphicon glyphicon-edit"></i>'), ['action' => 'edit', $category->idCategory], ['class' => 'btn btn-xs btn-warning', 'escapeTitle' => false]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->idCategory], ['confirm' => __('Are you sure you want to delete # {0}?', $category->idCategory),'class' => 'btn btn-xs btn-danger', 'escapeTitle' => false]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -12,10 +12,11 @@ class ImageController extends AppController
    */
   public function index()
   {
-      $image = $this->paginate($this->Image);
-
+      $image = $this->paginate($this->Image,[
+          'contain' => ['Product']
+      ]);
       $this->set(compact('image'));
-      $this->set('_serialize', ['image']);
+      // $this->set('_serialize', ['image']);
   }
 
   /**
@@ -32,7 +33,7 @@ class ImageController extends AppController
       ]);
 
       $this->set('image', $image);
-      $this->set('_serialize', ['image']);
+      // $this->set('_serialize', ['image']);
   }
 
   /**
@@ -40,21 +41,21 @@ class ImageController extends AppController
    *
    * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
    */
-  public function add()
-  {
-      $image = $this->Image->newEntity();
-      if ($this->request->is('post')) {
-          $image = $this->Image->patchEntity($image, $this->request->getData());
-          if ($this->Image->save($image)) {
-              $this->Flash->success(__('The image has been saved.'));
+   public function add()
+    {
+        $image = $this->Image->newEntity();
+        if ($this->request->is('post')) {
+            $image = $this->Image->patchEntity($image, $this->request->getData());
+            if ($this->Image->save($image)) {
+                $this->Flash->success(__('The image has been saved.'));
 
-              return $this->redirect(['action' => 'index']);
-          }
-          $this->Flash->error(__('The image could not be saved. Please, try again.'));
-      }
-      $this->set(compact('image'));
-      $this->set('_serialize', ['image']);
-  }
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The image could not be saved. Please, try again.'));
+        }
+        $this->set(compact('image'));
+        $this->set('_serialize', ['image']);
+    }
 
   /**
    * Edit method
@@ -78,7 +79,7 @@ class ImageController extends AppController
           $this->Flash->error(__('The image could not be saved. Please, try again.'));
       }
       $this->set(compact('image'));
-      $this->set('_serialize', ['image']);
+      // $this->set('_serialize', ['image']);
   }
 
   /**

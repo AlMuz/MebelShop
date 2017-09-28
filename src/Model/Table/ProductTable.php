@@ -29,7 +29,10 @@ class ProductTable extends Table
           'joinType' => 'INNER'
         ]);
 
-        // $this->belongsToMany('Carts');
+        $this->belongsToMany('Orders', [
+            'joinTable' => 'product_has_orders',
+        ]);
+
     }
 
     /**
@@ -70,7 +73,7 @@ class ProductTable extends Table
           ->notEmpty('Material');
 
       $validator
-          ->integer('Size')
+          ->scalar('Size')
           ->requirePresence('Size', 'create')
           ->notEmpty('Size');
       //

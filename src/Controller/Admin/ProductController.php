@@ -79,6 +79,7 @@ class ProductController extends AppController
   {
       $this->request->allowMethod(['post', 'delete']);
       $product = $this->Product->get($id);
+      unlink(WWW_ROOT.'img/'.$product->MainImage);
       if ($this->Product->delete($product)) {
           $this->Flash->success(__('The product has been deleted.'));
       } else {

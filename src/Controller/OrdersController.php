@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Order Controller
+ * Orders Controller
  *
- * @property \App\Model\Table\OrderTable $Order
+ * @property \App\Model\Table\OrdersTable $Orders
  *
  * @method \App\Model\Entity\Order[] paginate($object = null, array $settings = [])
  */
-class OrderController extends AppController
+class OrdersController extends AppController
 {
 
     /**
@@ -20,10 +20,13 @@ class OrderController extends AppController
      */
     public function index()
     {
-        $order = $this->paginate($this->Order);
+        $this->paginate = [
+            'contain' => ['User']
+        ];
+        $orders = $this->paginate($this->Orders);
 
-        $this->set(compact('order'));
-        $this->set('_serialize', ['order']);
+        $this->set(compact('orders'));
+        $this->set('_serialize', ['orders']);
     }
 
     /**
@@ -35,8 +38,8 @@ class OrderController extends AppController
      */
     public function view($id = null)
     {
-        $order = $this->Order->get($id, [
-            'contain' => []
+        $order = $this->Orders->get($id, [
+            'contain' => ['User', 'Product']
         ]);
 
         $this->set('order', $order);
@@ -50,17 +53,19 @@ class OrderController extends AppController
      */
     public function add()
     {
-        $order = $this->Order->newEntity();
+        $order = $this->Orders->newEntity();
         if ($this->request->is('post')) {
-            $order = $this->Order->patchEntity($order, $this->request->getData());
-            if ($this->Order->save($order)) {
+            $order = $this->Orders->patchEntity($order, $this->request->getData());
+            if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
-        $this->set(compact('order'));
+        $user = $this->Orders->User->find('list', ['limit' => 200]);
+        $product = $this->Orders->Product->find('list', ['limit' => 200]);
+        $this->set(compact('order', 'user', 'product'));
         $this->set('_serialize', ['order']);
     }
 
@@ -73,19 +78,21 @@ class OrderController extends AppController
      */
     public function edit($id = null)
     {
-        $order = $this->Order->get($id, [
-            'contain' => []
+        $order = $this->Orders->get($id, [
+            'contain' => ['Product']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $order = $this->Order->patchEntity($order, $this->request->getData());
-            if ($this->Order->save($order)) {
+            $order = $this->Orders->patchEntity($order, $this->request->getData());
+            if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
-        $this->set(compact('order'));
+        $user = $this->Orders->User->find('list', ['limit' => 200]);
+        $product = $this->Orders->Product->find('list', ['limit' => 200]);
+        $this->set(compact('order', 'user', 'product'));
         $this->set('_serialize', ['order']);
     }
 
@@ -99,8 +106,8 @@ class OrderController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $order = $this->Order->get($id);
-        if ($this->Order->delete($order)) {
+        $order = $this->Orders->get($id);
+        if ($this->Orders->delete($order)) {
             $this->Flash->success(__('The order has been deleted.'));
         } else {
             $this->Flash->error(__('The order could not be deleted. Please, try again.'));

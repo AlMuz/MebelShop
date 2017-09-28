@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Order Model
+ * Orders Model
  *
  * @method \App\Model\Entity\Order get($primaryKey, $options = [])
  * @method \App\Model\Entity\Order newEntity($data = null, array $options = [])
@@ -17,7 +17,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Order[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Order findOrCreate($search, callable $callback = null, $options = [])
  */
-class OrderTable extends Table
+class OrdersTable extends Table
 {
 
     /**
@@ -30,9 +30,19 @@ class OrderTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('order');
+        $this->setTable('orders');
         $this->setDisplayField('idOrder');
         $this->setPrimaryKey('idOrder');
+
+        $this->belongsToMany('Product', [
+          'joinTable' => 'product_has_orders',
+        ]);
+        $this->belongsTo('User',[
+          'foreignKey' => '	User_IdUser',
+          'joinType' => 'INNER'
+        ]);
+
+
     }
 
     /**
@@ -48,34 +58,19 @@ class OrderTable extends Table
             ->allowEmpty('idOrder', 'create');
 
         $validator
-            ->scalar('Name')
-            ->requirePresence('Name', 'create')
-            ->notEmpty('Name');
+            ->integer('Status')
+            ->requirePresence('Status', 'create')
+            ->notEmpty('Status');
 
         $validator
-            ->scalar('Surname')
-            ->requirePresence('Surname', 'create')
-            ->notEmpty('Surname');
+            ->integer('User_IdUser')
+            ->requirePresence('User_IdUser', 'create')
+            ->notEmpty('User_IdUser');
 
         $validator
-            ->scalar('City')
-            ->requirePresence('City', 'create')
-            ->notEmpty('City');
-
-        $validator
-            ->scalar('Adress')
-            ->requirePresence('Adress', 'create')
-            ->notEmpty('Adress');
-
-        $validator
-            ->integer('PhoneNumber')
-            ->requirePresence('PhoneNumber', 'create')
-            ->notEmpty('PhoneNumber');
-
-        $validator
-            ->integer('Cart_idCart')
-            ->requirePresence('Cart_idCart', 'create')
-            ->notEmpty('Cart_idCart');
+            ->dateTime('Date')
+            ->requirePresence('Date', 'create')
+            ->notEmpty('Date');
 
         return $validator;
     }

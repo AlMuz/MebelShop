@@ -10,7 +10,7 @@ class CategoryController extends AppController
         $category = $this->paginate($this->Category);
 
         $this->set(compact('category'));
-        $this->set('_serialize', ['category']);
+        // $this->set('_serialize', ['category']);
     }
 
     public function view($id = null)
@@ -20,7 +20,7 @@ class CategoryController extends AppController
         ]);
 
         $this->set('category', $category);
-        $this->set('_serialize', ['category']);
+        // $this->set('_serialize', ['category']);
     }
 
     public function add()
@@ -36,7 +36,7 @@ class CategoryController extends AppController
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
         $this->set(compact('category'));
-        $this->set('_serialize', ['category']);
+        // $this->set('_serialize', ['category']);
     }
 
     public function edit($id = null)
@@ -54,7 +54,7 @@ class CategoryController extends AppController
             $this->Flash->error(__('The category could not be saved. Please, try again.'));
         }
         $this->set(compact('category'));
-        $this->set('_serialize', ['category']);
+        // $this->set('_serialize', ['category']);
     }
 
     public function delete($id = null)

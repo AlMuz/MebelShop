@@ -1,6 +1,6 @@
 <?php $this->assign('title', 'Admin panel - '.$maintitle);?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
       <?= $this->Html->charset() ?>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
