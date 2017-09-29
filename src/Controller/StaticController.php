@@ -12,6 +12,10 @@ class StaticController extends AppController
       $this->Auth->allow();
   }
 
+  public function index(){
+    $this->redirect(['controller' => 'Product', 'action' => 'index']);  
+  }
+
   public function about(){
 
   }
@@ -25,14 +29,6 @@ class StaticController extends AppController
   }
 
   public function subscriptions(){
-
-  }
-
-  public function payment(){
-
-  }
-
-  public function shipping(){
 
   }
 

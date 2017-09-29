@@ -5,11 +5,6 @@ use App\Controller\AppController;
 
 class ProductController extends AppController
 {
-  // public $paginate = [
-  //   'order' => [
-  //     'Product.Name' => 'asc'
-  //   ]
-  // ];
 
   public function index()
   {

@@ -1,27 +1,31 @@
 <?php $this->assign('title', 'About us - '.$maintitle);?>
 
-<!-- <form>
-<legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
-<address>
-    <strong>Twitter, Inc.</strong><br>
-    795 Folsom Ave, Suite 600<br>
-    San Francisco, CA 94107<br>
-    <abbr title="Phone">
-        P:</abbr>
-    (123) 456-7890
-</address>
-<address>
-    <strong>Full Name</strong><br>
-    <a href="mailto:#">first.last@example.com</a>
-</address>
-</form> -->
+<div class="container-fluid ">
+  <div class="col-md-4">
+    <article>
+      <h1>Adress and contacts</h1>
+      <address>
+        <strong>MuzFurniture</strong><br>
+        Online furniture store <br>
+        Iluksties iela<br>
+        Riga<br>
+        <abbr title="Phone">P:</abbr> +371 20361226 <br>
+        <abbr title="Email"><span class="glyphicon glyphicon-envelope"></span></abbr> almuz@inbox.lv
+      </address>
 
-
-<div class="container-fluid text-center">
-  <div class="row content">
+      <address>
+        <strong>Full Name</strong><br>
+        <p>Aleksejs Muzicenko</p>
+      </address>
+    </article>
+  </div>
+  <div class="col-md-8">
     <article>
       <h1>About us</h1>
-      <p>Alexey Muzichenko: almuz@inbox.lv</p>
+        <h4>Muzfurniture is a homemade furniture online store which offers furniture, interior decors and gifts.</h4>
+        <h5> In production process we try to use natural ingredients and materials</h5>
+
+
     </article>
   </div>
 </div>

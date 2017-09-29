@@ -17,37 +17,36 @@
 </div>
 
 <div class="col-md-12" style="margin-bottom: 20px">
-	<div class="col-sm-6 col-md-6">
-		<?= $this->Html->image($product->MainImage,['class'=>'img-responsive', 'style' => 'max-height: 500px']);?>
-	</div>
 
+	<div class="col-sm-6 col-md-6 pull-right">
+		<?= $this->Html->image($product->MainImage,['class'=>'img-responsive img', 'style' => 'max-height: 500px; z-index: 9999' ]);?>
+	</div>
 	<div class="col-sm-6 col-md-6 ">
 		<h1 class="page-header">
 			<b><?= $product->Name;?></b>
 		</h1>
-		<p>
-			Price:
+		<h2 style="padding: 0 5px 10px 10px;margin: 0;">Price:
 			<?= $this->Number->currency($product->Price, $currency);?>
-		</p>
+		</h2>
 		<?php if($loggedIn) : ?>
 			<?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'carts','action'=>'add')));?>
 			<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
-			<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn'));?>
+			<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px'));?>
 			<?= $this->Form->end();?>
 		<?php else :   ?>
-			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#buy">Add to cart</button>
+			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#buy" style="margin-left:10px">Add to cart</button>
 			<div id="buy" class="collapse out">
-				<p style="font-size:16px;"><br>If you want to add product in cart, <br>please login</p>
+				<p style="font-size:16px; margin-left:20px;"><br>If you want to add product in cart, <br>please login</p>
 				<?= $this->Html->link(
-			    'Login',
+			    'Sign in!',
 			    '/user/login',
-			    ['class' => 'btn btn-info']
+			    ['class' => 'btn btn-info', 'style' => 'margin-left:30px']
 					);
 				?>
 			</div>
 		<?php endif; ?>
 
-		<div style=" padding-top: 10px;">
+		<div style=" padding-top: 20px;">
 			<ul class="nav nav-tabs">
 		    <li class="active"><a data-toggle="tab" href="#home">Information</a></li>
 		    <li><a data-toggle="tab" href="#menu1">Galery</a></li>
@@ -70,7 +69,7 @@
 					<div style="display:inline;">
 						<?php if(!empty($product->image)): ?>
 							<?php foreach ($product->image as $image):?>
-								<?=$this->Html->image($image->Image,array('escape'=>false,'class'=>'thumbnail','style'=>'height:140px; width:185px;display: inline;'));?>
+								<?=$this->Html->image($image->Image,array('escape'=>false,'class'=>'img-responsive smallimg','style'=>'max-height:140px;display: inline; padding-bottom: 5px'));?>
 							<?php endforeach;?>
 						<?php else: ?>
 							<?= 'There are no photo in galery:(' ?>
@@ -81,6 +80,7 @@
 		  </div>
 		</div>
 	</div>
+
 </div>
 
 <script>
@@ -94,3 +94,25 @@ $(document).ready(function(){
 	});
 });
 </script>
+
+
+<style media="screen">
+.img:hover, .smallimg:hover{
+	color: #424242;
+-webkit-transition: all .3s ease-in;
+-moz-transition: all .3s ease-in;
+-ms-transition: all .3s ease-in;
+-o-transition: all .3s ease-in;
+transition: all .3s ease-in;
+opacity: 1;
+transform: scale(1.15);
+-ms-transform: scale(1.15); /* IE 9 */
+-webkit-transform: scale(1.15); /* Safari and Chrome */
+}
+
+.smallimg:hover{
+transform: scale(2);
+-ms-transform: scale(2); /* IE 9 */
+-webkit-transform: scale(1.6); /* Safari and Chrome */
+}
+</style>

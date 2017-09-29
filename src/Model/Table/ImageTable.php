@@ -48,19 +48,19 @@ class ImageTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-    //     $validator
-    //         ->integer('idImage')
-    //         ->allowEmpty('idImage', 'create');
-    //
-    //     $validator
-    //         // ->scalar('Image')
-    //         ->requirePresence('Image', 'create')
-    //         ->notEmpty('Image');
-    //
-    //     $validator
-    //         // ->integer('Product_idProduct')
-    //         ->requirePresence('Product_idProduct', 'create')
-    //         ->notEmpty('Product_idProduct');
+      $validator
+            ->integer('idImage')
+            ->allowEmpty('idImage', 'create');
+
+        $validator
+            ->scalar('Image')
+            ->requirePresence('Image', 'create')
+            ->notEmpty('Image');
+
+        $validator
+            ->integer('Product_idProduct')
+            ->requirePresence('Product_idProduct', 'create')
+            ->notEmpty('Product_idProduct');
 
         return $validator;
     }

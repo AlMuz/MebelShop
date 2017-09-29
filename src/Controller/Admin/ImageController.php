@@ -5,27 +5,16 @@ use App\Controller\AppController;
 
 class ImageController extends AppController
 {
-  /**
-   * Index method
-   *
-   * @return \Cake\Http\Response|void
-   */
+
   public function index()
   {
       $image = $this->paginate($this->Image,[
           'contain' => ['Product']
       ]);
       $this->set(compact('image'));
-      // $this->set('_serialize', ['image']);
   }
 
-  /**
-   * View method
-   *
-   * @param string|null $id Image id.
-   * @return \Cake\Http\Response|void
-   * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-   */
+
   public function view($id = null)
   {
       $image = $this->Image->get($id, [
@@ -33,37 +22,27 @@ class ImageController extends AppController
       ]);
 
       $this->set('image', $image);
-      // $this->set('_serialize', ['image']);
   }
 
-  /**
-   * Add method
-   *
-   * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-   */
-   public function add()
-    {
-        $image = $this->Image->newEntity();
-        if ($this->request->is('post')) {
-            $image = $this->Image->patchEntity($image, $this->request->getData());
-            if ($this->Image->save($image)) {
-                $this->Flash->success(__('The image has been saved.'));
+ public function add()
+  {
+      $image = $this->Image->newEntity();
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The image could not be saved. Please, try again.'));
-        }
-        $this->set(compact('image'));
-        $this->set('_serialize', ['image']);
-    }
+      if ($this->request->is('post')) {
+        debug($this->request->data);
+        // die();
+          $image = $this->Image->patchEntity($image, $this->request->getData());
 
-  /**
-   * Edit method
-   *
-   * @param string|null $id Image id.
-   * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-   * @throws \Cake\Network\Exception\NotFoundException When record not found.
-   */
+          if ($this->Image->save($image)) {
+              $this->Flash->success(__('The image has been saved.'));
+
+              return $this->redirect(['action' => 'index']);
+          }
+          $this->Flash->error(__('The image could not be saved. Please, try again.'));
+      }
+      $this->set(compact('image'));
+  }
+
   public function edit($id = null)
   {
       $image = $this->Image->get($id, [
@@ -79,16 +58,8 @@ class ImageController extends AppController
           $this->Flash->error(__('The image could not be saved. Please, try again.'));
       }
       $this->set(compact('image'));
-      // $this->set('_serialize', ['image']);
   }
 
-  /**
-   * Delete method
-   *
-   * @param string|null $id Image id.
-   * @return \Cake\Http\Response|null Redirects to index.
-   * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-   */
   public function delete($id = null)
   {
       $this->request->allowMethod(['post', 'delete']);
@@ -101,7 +72,4 @@ class ImageController extends AppController
 
       return $this->redirect(['action' => 'index']);
   }
-
-
-
 }

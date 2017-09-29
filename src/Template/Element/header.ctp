@@ -41,8 +41,8 @@
                 </li>
                 <!--search field  -->
                 <li>
-                  <?= $this->Form->create();  ?>
-                  <?= $this->Form->input('text',['class' => 'form-control input-form','id' => 'myInput','placeholder' => 'Search','label'=>false]);  ?>
+                  <?= $this->Form->create('Product', ['type' => 'GET', 'url' => ['controller' => 'product', 'action' => 'search','id' => 'searchform']]); ?>
+                  <?= $this->Form->input('search',['class' => 'form-control input-form','id' => 'myInput','placeholder' => 'Search','label'=>false, 'autocomplete' => 'off']);  ?>
                   <?= $this->Form->end();  ?>
                 </li>
             </ul >

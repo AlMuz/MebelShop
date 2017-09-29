@@ -6,8 +6,7 @@ body{
 	margin: 0;
 }
 .centerinfo{
-	/*border-left: 1px solid lightgrey;*/
-	/*border-right:  1px solid lightgrey;*/
+	
 }
 .maincont{
 	margin-top: 60px;
@@ -23,6 +22,12 @@ body{
 @media (max-width: 768px){
 	.maincont{
 		padding-top:0;
+	}
+}
+
+@media (max-width: 767px){
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
+		color:white;
 	}
 }
 .divinlog{
@@ -100,12 +105,6 @@ margin-left: -38px;
   color: black;
 }
 
-
-#footer-sub a:active {
-  text-decoration: none;
-  color:#565656;
-}
-
 #footer-sub  .glyphicon {
   font-size: 35px;
    color:White;
@@ -114,35 +113,4 @@ margin-left: -38px;
 #sub-two{
   margin: 0px;
   padding: 0px;
-}
-
-#footer-main ul{
-  list-style: none;
-}
-
-#footer-main ul li{
-  float:left;
-  text-decoration: none;
-  padding-left: 15px;
-  margin-top: 17px;
-}
-
-#footer-main a:link {
-  color:white;
-  font-size: 12px;
-}
-
-#footer-main a:visited {
-  color:white;
-}
-
-
-#footer-main a:hover {
-  text-decoration: none;
-  color: #00b9f5;
-}
-
-
-#footer-main a:active {
-  color:white;
 }

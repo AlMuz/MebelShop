@@ -37,9 +37,29 @@ class ProductController extends AppController
       $this->set('product', $product);
   }
 
-  // public function search(){
-  //   $query = $this->Product->find('all')
-  //   ->where(['Product.Name LIKE ' => $search]);
-  //   $this->set('user',$query);
-  // }
+  public function search(){
+    $search = null;
+    if(!empty($this->request->query['search']) || !empty($this->request->data['name'])) {
+        $search = empty($this->request->query['search']) ? $this->request->data['name'] : $this->request->query['search'];
+
+        $search = preg_replace('/[^a-zA-Z0-9 ]/', '', $search);
+        $terms = explode(' ', trim($search));
+        $terms = array_diff($terms, array(''));
+
+        foreach($terms as $term) {
+            $conditions[] = array("OR" => array (
+              'Product.Name LIKE' => '%' . $term . '%',
+              'Product.Description LIKE' => '%' . $term . '%'
+            ));
+        }
+
+        $products = $this->Product->find('all', array(
+            'recursive' => -1,
+            'conditions' => $conditions,
+            'limit' => 200,
+        ));
+        $this->set(compact('products'));
+    }
+    $this->set(compact('search'));
+  }
 }
