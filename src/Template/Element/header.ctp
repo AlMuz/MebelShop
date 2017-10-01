@@ -2,8 +2,8 @@
   <?php if(!$loggedIn) : ?>
     <div class="jumbotron">
       <div class="container text-center">
-        <h1>MuzFurniture</h1>
-        <p>Online furniture store</p>
+        <h1>MuzInterior</h1>
+        <p>Online interior store</p>
       </div>
     </div>
     <nav class="navbar navbar-inverse"  data-spy="affix" data-offset-top="197">
@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">MuzFurniture</a>
+            <a class="navbar-brand" href="/">MuzInterior</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

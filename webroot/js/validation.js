@@ -101,7 +101,6 @@ $( "#productadd" ).validate({
       required: true,
       minlength: 2,
       maxlength: 64,
-      lettersonly: true
     },
     Price: {
 			number: true,
@@ -109,7 +108,6 @@ $( "#productadd" ).validate({
     },
     Description:{
       required: true,
-      lettersonly: true,
 			minlength: 10
     },
     Interest:{
@@ -121,6 +119,10 @@ $( "#productadd" ).validate({
 			extension: "gif|jpeg|png|jpg"
     },
     Material:{
+      required: true,
+      minlength: 3
+		},
+		Size:{
       required: true,
       minlength: 5
 		}

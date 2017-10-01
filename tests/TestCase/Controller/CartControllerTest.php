@@ -16,7 +16,11 @@ class CartControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.cart'
+        'app.cart',
+        'app.product',
+        'app.category',
+        'app.image',
+        'app.product_has_cart'
     ];
 
     /**

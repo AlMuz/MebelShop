@@ -29,9 +29,12 @@ class ProductTable extends Table
           'joinType' => 'INNER'
         ]);
 
-        // $this->belongsToMany('Orders', [
-        //     'joinTable' => 'product_has_orders',
-        // ]);
+        $this->belongsToMany('Cart', [
+            'className' => 'Cart',
+            'joinTable' => 'product_has_cart',
+            'foreignKey' => 'product_idProduct',
+            'associationForeignKey' => 'product_idProduct'
+        ]);
 
     }
 

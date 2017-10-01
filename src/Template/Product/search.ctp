@@ -1,3 +1,5 @@
+<?php $this->assign('title', 'Search - '.$maintitle);?>
+
 <?php if($this->request->query['search'] != null): ?>
   <div class="row">
     <h2 style="text-align:center;">
@@ -35,5 +37,5 @@
 <?php else: ?>
   <h2 style="text-align:center;">No Results</h2>
   <hr style="border-top:1px solid #040404;">
-  
+
 <?php endif; ?>

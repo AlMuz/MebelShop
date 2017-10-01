@@ -17,7 +17,7 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->set('maintitle', 'Online store - MuzFurn');
+        $this->set('maintitle', 'Online store - MuzInterior');
         $this->set('currency', 'EUR');
 
 

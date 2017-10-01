@@ -35,7 +35,6 @@ class ProductController extends AppController
 
         $product = $this->Product->patchEntity($product, $this->request->getData());
         $data = $this->request->data;
-        $product->Category_idCategory = $data['Category_idCategory'] + 1;
         if($data['MainImage']['name']){
           debug($product);
           // die();
@@ -50,7 +49,8 @@ class ProductController extends AppController
 					}
 				}
     }
-    $category = $this->Product->Category->find('all',['fields'=>'Title']);
+    $category = $this->Product->Category->find('list',['keyField' => 'idCategory',
+    'valueField' => 'Title']);
     $this->set(compact('product','category'));
   }
 
@@ -62,8 +62,6 @@ class ProductController extends AppController
       if ($this->request->is(['patch', 'post', 'put'])) {
           $product = $this->Product->patchEntity($product, $this->request->getData());
 
-          $data = $this->request->data;
-          $product->Category_idCategory = $data['Category_idCategory'] + 1;
 
           if ($this->Product->save($product)) {
               $this->Flash->success(__('The product has been saved.'));
@@ -72,7 +70,8 @@ class ProductController extends AppController
           }
           $this->Flash->error(__('The product could not be saved. Please, try again.'));
       }
-      $category = $this->Product->Category->find('all',['fields'=>'Title']);
+      $category = $this->Product->Category->find('list',['keyField' => 'idCategory',
+      'valueField' => 'Title']);
       $this->set(compact('product','category'));
   }
 

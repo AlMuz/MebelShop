@@ -27,6 +27,7 @@ class ImageController extends AppController
  public function add()
   {
       $image = $this->Image->newEntity();
+      $this->loadModel('Product');
 
       if ($this->request->is('post')) {
         debug($this->request->data);
@@ -40,7 +41,9 @@ class ImageController extends AppController
           }
           $this->Flash->error(__('The image could not be saved. Please, try again.'));
       }
-      $this->set(compact('image'));
+      $product = $this->Product->find('list',['keyField' => 'idProduct',
+      'valueField' => 'Name']);
+      $this->set(compact('image','product'));
   }
 
   public function edit($id = null)
@@ -48,6 +51,7 @@ class ImageController extends AppController
       $image = $this->Image->get($id, [
           'contain' => []
       ]);
+        $this->loadModel('Product');
       if ($this->request->is(['patch', 'post', 'put'])) {
           $image = $this->Image->patchEntity($image, $this->request->getData());
           if ($this->Image->save($image)) {
@@ -57,7 +61,9 @@ class ImageController extends AppController
           }
           $this->Flash->error(__('The image could not be saved. Please, try again.'));
       }
-      $this->set(compact('image'));
+      $product = $this->Product->find('list',['keyField' => 'idProduct',
+      'valueField' => 'Name']);
+      $this->set(compact('image','product'));
   }
 
   public function delete($id = null)

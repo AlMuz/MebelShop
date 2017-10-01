@@ -3,58 +3,28 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
-
+/**
+ * Cart Entity
+ *
+ * @property int $idCart
+ * @property int $User_IdUser
+ * @property int $Status
+ * @property \Cake\I18n\FrozenTime $Date
+ */
 class Cart extends Entity
 {
-  public function addProduct($idProduct) {
-    $allProducts = $this->readProduct();
-    if (null!=$allProducts) {
-      if (array_key_exists($productId, $allProducts)) {
-        $allProducts[$productId]++;
-      } else {
-        $allProducts[$productId] = 1;
-      }
-    } else {
-      $allProducts[$productId] = 1;
-    }
 
-    $this->saveProduct($allProducts);
-  }
-
-  /*
-   * get total count of products
-   */
-  public function getCount() {
-    $allProducts = $this->readProduct();
-
-    if (count($allProducts)<1) {
-      return 0;
-    }
-
-    $count = 0;
-    foreach ($allProducts as $product) {
-      $count=$count+$product;
-    }
-
-    return $count;
-  }
-
-  /*
-   * save data to session
-   */
-  public function saveProduct($data) {
-    return $session->write('cart',$data);
-  }
-
-  /*
-   * read cart data from session
-   */
-  public function readProduct() {
-    $name = $this->request->session->read('User.name');
-    // $session->write('cart',' ');
-    // $cart = $session->read('carts');
-    $cart = '123';
-    return $cart;
-  }
-
+    /**
+     * Fields that can be mass assigned using newEntity() or patchEntity().
+     *
+     * Note that when '*' is set to true, this allows all unspecified fields to
+     * be mass assigned. For security purposes, it is advised to set '*' to false
+     * (or remove it), and explicitly make individual fields accessible as needed.
+     *
+     * @var array
+     */
+    protected $_accessible = [
+        '*' => true,
+        'idCart' => false
+    ];
 }

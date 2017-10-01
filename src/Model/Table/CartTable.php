@@ -6,6 +6,17 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+/**
+ * Cart Model
+ *
+ * @method \App\Model\Entity\Cart get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Cart newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Cart[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Cart|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Cart patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Cart[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Cart findOrCreate($search, callable $callback = null, $options = [])
+ */
 class CartTable extends Table
 {
 
@@ -19,7 +30,19 @@ class CartTable extends Table
     {
         parent::initialize($config);
 
+        $this->setTable('cart');
+        $this->setDisplayField('idCart');
+        $this->setPrimaryKey('idCart');
+
+        $this->belongsToMany('Product', [
+            // 'className' => 'Product',
+            'joinTable' => 'product_has_cart',
+            'foreignKey' => 'Cart_idCart',
+            'targetForeignKey' => 'product_idProduct'
+            // 'associationForeignKey' => 'product_idProduct'
+        ]);
     }
+
 
     /**
      * Default validation rules.
@@ -27,56 +50,27 @@ class CartTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->integer('idCart')
+            ->allowEmpty('idCart', 'create');
 
-    public function addProduct($idProduct) {
-  		$allProducts = $this->readProduct();
-  		if (null!=$allProducts) {
-  			if (array_key_exists($productId, $allProducts)) {
-  				$allProducts[$productId]++;
-  			} else {
-  				$allProducts[$productId] = 1;
-  			}
-  		} else {
-  			$allProducts[$productId] = 1;
-  		}
+        $validator
+            ->integer('User_IdUser')
+            ->requirePresence('User_IdUser', 'create')
+            ->notEmpty('User_IdUser');
 
-  		$this->saveProduct($allProducts);
-  	}
+        $validator
+            ->integer('Status')
+            ->requirePresence('Status', 'create')
+            ->notEmpty('Status');
 
-  	/*
-  	 * get total count of products
-  	 */
-  	public function getCount() {
-  		$allProducts = $this->readProduct();
+        $validator
+            ->dateTime('Date')
+            ->requirePresence('Date', 'create')
+            ->notEmpty('Date');
 
-  		if (count($allProducts)<1) {
-  			return 0;
-  		}
-
-  		$count = 0;
-  		foreach ($allProducts as $product) {
-  			$count=$count+$product;
-  		}
-
-  		return $count;
-  	}
-
-  	/*
-  	 * save data to session
-  	 */
-  	public function saveProduct($data) {
-  		return $session->write('cart',$data);
-  	}
-
-  	/*
-  	 * read cart data from session
-  	 */
-  	public function readProduct() {
-      // $name = $this->request->session->read('User.name');
-      // $session->write('cart',' ');
-      // $cart = $session->read('carts');
-      $cart = '123';
-  		return $cart;
-  	}
-
+        return $validator;
+    }
 }

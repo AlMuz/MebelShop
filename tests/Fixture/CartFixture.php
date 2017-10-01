@@ -24,16 +24,16 @@ class CartFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'idCart' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'FullPrice' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'Quantity' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'Product_idProduct' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'idCart' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'User_IdUser' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'Status' => ['type' => 'integer', 'length' => 1, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'Date' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
-            'fk_Cart_Product1_idx' => ['type' => 'index', 'columns' => ['Product_idProduct'], 'length' => []],
+            'User_IdUser' => ['type' => 'index', 'columns' => ['User_IdUser'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['idCart'], 'length' => []],
-            'fk_Cart_Product1' => ['type' => 'foreign', 'columns' => ['Product_idProduct'], 'references' => ['product', 'idProduct'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
+            'order_ibfk_1' => ['type' => 'foreign', 'columns' => ['User_IdUser'], 'references' => ['user', 'idUser'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -50,9 +50,9 @@ class CartFixture extends TestFixture
     public $records = [
         [
             'idCart' => 1,
-            'FullPrice' => 1,
-            'Quantity' => 1,
-            'Product_idProduct' => 1
+            'User_IdUser' => 1,
+            'Status' => 1,
+            'Date' => '2017-09-30 22:29:52'
         ],
     ];
 }

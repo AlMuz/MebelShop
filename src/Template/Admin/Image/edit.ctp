@@ -21,7 +21,7 @@
         <legend><?= __('Edit Image') ?></legend>
         <?php
             echo $this->Form->control('Image');
-            echo $this->Form->control('Product_idProduct');
+            echo $this->Form->control('Product_idProduct', ['options' => $product,'label'=>'Product','class' => 'form-control']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -5,8 +5,8 @@
     <article>
       <h1>Adress and contacts</h1>
       <address>
-        <strong>MuzFurniture</strong><br>
-        Online furniture store <br>
+        <strong>MuzInterior</strong><br>
+        Online interior store <br>
         Iluksties iela<br>
         Riga<br>
         <abbr title="Phone">P:</abbr> +371 20361226 <br>
@@ -22,10 +22,8 @@
   <div class="col-md-8">
     <article>
       <h1>About us</h1>
-        <h4>Muzfurniture is a homemade furniture online store which offers furniture, interior decors and gifts.</h4>
-        <h5> In production process we try to use natural ingredients and materials</h5>
-
-
+      <h4>MuzInterior is a homemade interior online store which offers furniture, interior decors and gifts.</h4>
+      <h5>In production process we try to use natural ingredients and materials</h5>
     </article>
   </div>
 </div>
