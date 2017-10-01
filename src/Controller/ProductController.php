@@ -7,6 +7,12 @@ use Cake\Event\Event;
 
 class ProductController extends AppController
 {
+  public function initialize()
+  {
+      parent::initialize();
+      $this->loadComponent('Cart');
+  }
+
   public function beforeFilter(Event $event)
   {
       parent::beforeFilter($event);
@@ -61,5 +67,24 @@ class ProductController extends AppController
         $this->set(compact('products'));
     }
     $this->set(compact('search'));
+  }
+
+  public function add()
+  {
+    if ($this->request->is('post')) {
+
+        $id = $this->request->data['product_id'];
+
+        $quantity = 1;
+
+        $product = $this->Cart->add($id, $quantity);
+
+    }
+    if(!empty($product)) {
+        $this->Flash->success($product['Product']['name'] . ' was added to your shopping cart.');
+    } else {
+        $this->Flash->danger('Unable to add this product to your shopping cart.');
+    }
+    $this->redirect($this->referer());
   }
 }

@@ -55,7 +55,7 @@
               <?php if($loggedIn) : ?>
                 <li>
         	      	<?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.'</span>',
-        	      								array('controller'=>'cart','action'=>'view'),array('escape'=>false));?>
+        	      								array('controller'=>'cart','action'=>'index'),array('escape'=>false));?>
         	      </li>
               <?php endif; ?>
 

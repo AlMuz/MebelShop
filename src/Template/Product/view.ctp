@@ -29,7 +29,7 @@
 			<?= $this->Number->currency($product->Price, $currency);?>
 		</h2>
 		<?php if($loggedIn) : ?>
-			<?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'carts','action'=>'add')));?>
+			<?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'product','action'=>'add')));?>
 			<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
 			<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px'));?>
 			<?= $this->Form->end();?>
@@ -83,7 +83,7 @@
 
 </div>
 
-<script>
+<!-- <script>
 $(document).ready(function(){
 	$('#add-form').submit(function(e){
 		e.preventDefault();
@@ -93,7 +93,7 @@ $(document).ready(function(){
 		});
 	});
 });
-</script>
+</script> -->
 
 
 <style media="screen">
