@@ -4,6 +4,7 @@
 <title>
     <?= $this->fetch('title') ?>
 </title>
+<?= $this->Html->meta('description', ' The best shop ever! Which offers furniture, interior decors and gifts. In production process we try to use natural ingredients and materials'); ?>
 <?= $this->Html->meta('icon') ?>
 
 <?= $this->Html->css('bootstrap.min.css') ?>

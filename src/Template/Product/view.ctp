@@ -29,10 +29,19 @@
 			<?= $this->Number->currency($product->Price, $currency);?>
 		</h2>
 		<?php if($loggedIn) : ?>
-			<?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'product','action'=>'add')));?>
-			<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
-			<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px'));?>
-			<?= $this->Form->end();?>
+			<div class="form-group">
+				<?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'product','action'=>'add')));?>
+				<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
+				<?= $this->Form->select(
+					    'quantity',
+					    [1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5],
+					    ['class' => 'form-control ', 'style' => 'margin-left:10px; width: auto','label'=>'Quantity: ']
+					);
+				?>
+				<br>
+				<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px'));?>
+				<?= $this->Form->end();?>
+			</div>
 		<?php else :   ?>
 			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#buy" style="margin-left:10px">Add to cart</button>
 			<div id="buy" class="collapse out">

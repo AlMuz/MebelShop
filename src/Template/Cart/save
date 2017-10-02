@@ -1,0 +1,39 @@
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th>ITEM</th>
+      <th>PRICE</th>
+      <th>QUANTITY</th>
+      <th>TOTAL</th>
+      <th>REMOVE</th>
+    </tr>
+  </thead>
+
+
+<?php foreach ($shop['OrderItem'] as $key => $item): ?>
+  <tbody>
+    <tr>
+      <td>
+        <strong>
+          <?php echo $this->Html->link($item['name'], array('controller' => 'product', 'action' => 'view', $item['product_id'])); ?>
+        </strong>
+      </td>
+      <td>
+        <?php echo $this->Number->currency($item['price'], $currency); ?>
+      </td>
+      <td>
+        <!-- <?php echo $this->Form->input('quantity-' . $item, array('div' => false, 'class' => 'numeric form-control input-small', 'label' => false, 'size' => 2, 'maxlength' => 2, 'tabindex' => $tabindex++, 'data-id' => $item['idProduct'], 'data-mods' => $mods, 'value' => $item['quantity'])); ?> -->
+        <?php echo $item['quantity'] ?>
+      </td>
+      <td>
+        <?php echo $this->Number->currency($item['total'], $currency); ?>
+      </td>
+      <td>
+        <?php echo $this->Html->link('Delete', array('controller' => 'cart', 'action' => 'remove', $key)); ?>
+      </td>
+    </tr>
+  </tbody>
+<?php endforeach; ?>
+</table>
+</div>

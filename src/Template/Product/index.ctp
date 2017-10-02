@@ -1,4 +1,4 @@
-<?php $this->assign('title', 'Products - '.$maintitle);?>
+<?php $this->assign('title', 'Main Page - '.$maintitle);?>
 <?php if (!empty($product)): ?>
 	<div class="">
 		<!-- will be some carousel-->

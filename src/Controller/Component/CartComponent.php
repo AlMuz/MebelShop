@@ -16,7 +16,7 @@ class CartComponent  extends Component{
       }
 
   public function add($id, $quantity = 1) {
-    $session = $this->request->session();
+      $session = $this->request->session();
 
       if(!is_numeric($quantity)) {
           $quantity = 1;

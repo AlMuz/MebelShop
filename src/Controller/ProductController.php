@@ -75,13 +75,13 @@ class ProductController extends AppController
 
         $id = $this->request->data['product_id'];
 
-        $quantity = 1;
+        $quantity =$this->request->data['quantity'] ;
 
         $product = $this->Cart->add($id, $quantity);
 
     }
     if(!empty($product)) {
-        $this->Flash->success($product['Product']['name'] . ' was added to your shopping cart.');
+        $this->Flash->success($product->Name. ' was added to your shopping cart.');
     } else {
         $this->Flash->danger('Unable to add this product to your shopping cart.');
     }
