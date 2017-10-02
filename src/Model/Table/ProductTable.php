@@ -88,6 +88,11 @@ class ProductTable extends Table
       //     ]);
 
       $validator
+          ->decimal('Weight')
+          ->requirePresence('Weight', 'create')
+          ->notEmpty('Weight');
+
+      $validator
           ->integer('Category_idCategory')
           ->requirePresence('Category_idCategory', 'create')
           ->notEmpty('Category_idCategory');

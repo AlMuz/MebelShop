@@ -76,9 +76,20 @@ class AppController extends Controller
 
     public function beforeRender(Event $event)
     {
+      // this must be for category menu in navbar
       $this->loadModel('Category');
       $this->set('cat', $this->Category->find()
       ->limit(10)
       );
+
+      // this part for cart counter 
+      $session = $this->request->session();
+      if($session->read('Shop.Order.quantity')!= null){
+        $count = $session->read('Shop.Order.quantity');
+      }
+      else {
+        $count = 0;
+      }
+      $this->set('count',$count);
     }
 }

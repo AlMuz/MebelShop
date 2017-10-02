@@ -54,7 +54,7 @@
               <?php endif; ?>
               <?php if($loggedIn) : ?>
                 <li>
-        	      	<?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.'</span>',
+        	      	<?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.$count.'</span>',
         	      								array('controller'=>'cart','action'=>'index'),array('escape'=>false));?>
         	      </li>
               <?php endif; ?>

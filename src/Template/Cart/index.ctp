@@ -1,4 +1,5 @@
 <?php $this->assign('title', 'Shopping cart - '.$maintitle);?>
+
 <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb" style="margin-bottom: 10px">
@@ -13,6 +14,7 @@
 </div>
 <div class="col-md-12" style="margin-bottom: 20px">
   <h1>Shopping Cart</h1>
+	<hr>
   <?php if(empty($shop['OrderItem'])) : ?>
     <h2>Shopping Cart is empty</h2>
   <?php else: ?>
@@ -26,6 +28,9 @@
         <div class="col col-sm-1">ACTION</div>
         <br>
     </div>
+		<br>
+		<?php $tabindex = 1; ?>
+
     <?php foreach ($shop['OrderItem'] as $key => $item): ?>
       <div class="row" id="row-<?php echo $key; ?>">
         <div class="col col-sm-7">
@@ -37,8 +42,12 @@
           <?php echo $this->Number->currency($item['price'], $currency); ?>
         </div>
         <div class="col col-sm-1">
-          <!-- <?php echo $this->Form->input('quantity-' . $item, array('div' => false, 'class' => 'numeric form-control input-small', 'label' => false, 'size' => 2, 'maxlength' => 2, 'tabindex' => $tabindex++, 'data-id' => $item['idProduct'], 'data-mods' => $mods, 'value' => $item['quantity'])); ?> -->
-          <?php echo $item['quantity'] ?>
+					<!-- <?php
+					echo $this->Form->control('quantity',['class' => 'form-control','label' => false, 'placeholder'=> $item['quantity'],'data-id' => $item['product_id']]);
+					 ?> -->
+					 <?php echo $this->Form->input('quantity-' . $key, array('div' => false, 'class' => 'numeric form-control input-small', 'label' => false, 'size' => 2, 'maxlength' => 2, 'tabindex' => $tabindex++, 'data-id' => $item['product_id'], 'value' => $item['quantity'])); ?>
+
+          <!-- <?php echo $item['quantity'] ?> -->
         </div>
         <div class="col col-sm-1">
           <?php echo $this->Number->currency($item['total'], $currency); ?>
@@ -49,7 +58,7 @@
       </div>
       <hr>
     <?php endforeach; ?>
-    <hr>
+    <!-- <hr> -->
     <div class="row">
       <div class="col-sm-12">
         <div class="pull-right" style="float:right">
@@ -62,9 +71,11 @@
     </div>
     <hr>
     <div class="row">
-      <div class="col col-sm-12 pull-right tr">
+      <div class=" pull-right">
           Order Total: <span class="red" id="total"><?php echo $this->Number->currency($shop['Order']['total'], $currency); ?></span>
           <br />
+					<br />
+
           <?php echo $this->Form->create(NULL, array('url' => array('controller' => 'shop', 'action' => 'step1'))); ?>
           <input type='image' name='submit' src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' border='0' align='top' alt='Check out with PayPal' class="sbumit" />
           <?php echo $this->Form->end(); ?>

@@ -34,17 +34,15 @@ class CartController extends AppController
     }
 
     public function cartupdate() {
-      debug($this->request->data);
-      die();
+      $arr = array('Product' =>$this->request->data);
         if ($this->request->is('post')) {
-            foreach($this->request->data['Product'] as $key => $value) {
+            foreach($arr['Product'] as $key => $value) {
                 $p = explode('-', $key);
                 $p = explode('_', $p[1]);
-                $this->Cart->add($p[0], $value, $p[1]);
+                $this->Cart->add($p[0], $value);
+                $this->Flash->success('Shopping Cart is updated.');
             }
-            // $this->Flash->success('Shopping Cart is updated.');
         }
-        return $this->redirect(array('action' => 'cart'));
+        return $this->redirect(array('action' => 'index'));
     }
-
 }

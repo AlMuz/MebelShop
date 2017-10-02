@@ -10,6 +10,7 @@
               <th scope="col"><?= $this->Paginator->sort('Interest') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Material') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Size') ?></th>
+              <th scope="col"><?= $this->Paginator->sort('Weight') ?></th>
               <th scope="col"><?= ('MainImage') ?></th>
               <th scope="col"><?= ('Category') ?></th>
               <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -24,6 +25,7 @@
               <td><?= $this->Number->format($product->Interest) ?></td>
               <td><?= h($product->Material) ?></td>
               <td><?= $product->Size ?></td>
+              <td><?= $product->Weight ?></td>
               <td><?= ($this->Html->image($product->MainImage,['class'=>'img-responsive', 'style' => 'max-height: 300px'])) ?></td>
               <!-- <td><?= h($product->category->Title) ?></td> -->
               <td><?= $this->Html->link(__($product->category->Title), ['controller'=>'category','action' => 'view',$product->category->idCategory]) ?></td>

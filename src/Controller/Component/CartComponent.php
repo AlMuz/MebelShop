@@ -22,27 +22,20 @@ class CartComponent  extends Component{
           $quantity = 1;
       }
 
-      $quantity = abs($quantity);
-
-
       if($quantity > $this->maxQuantity) {
           $quantity = $this->maxQuantity;
       }
 
-
-      if($quantity == 0) {
+      if($quantity <= 0) {
           $this->remove($id);
           return;
       }
-
 
       $product = $this->Product->get($id);
 
       if(empty($product)) {
           return false;
       }
-
-
 
       if($session->check('Shop.OrderItem.' . $id )) {
           $productmod['Productmod']['id'] = $session->read('Shop.OrderItem.' . $id . '.Product.productmod_id');
@@ -51,32 +44,13 @@ class CartComponent  extends Component{
 
       }
 
-
-      // if(isset($productmod)) {
-      //     $product['Product']['productmod_id'] = $productmod['Productmod']['id'];
-      //     $product['Product']['productmod_name'] = $productmod['Productmod']['name'];
-      //     $product['Product']['price'] = $productmod['Productmod']['price'];
-      //     $productmodId = $productmod['Productmod']['id'];
-      //     $data['productmod_id'] = $product['Product']['productmod_id'];
-      //     $data['productmod_name'] = $product['Product']['productmod_name'];
-      // } else {
-      //     $product['Product']['productmod_id'] = '';
-      //     $product['Product']['productmod_name'] = '';
-      //     $productmodId = 0;
-      //     $data['productmod_id'] = '';
-      //     $data['productmod_name'] = '';
-      // }
-      // debug($product);
-      // die();
       $data['product_id'] = $product->idProduct;
       $data['name'] = $product->Name;
       $data['price'] = $product->Price;
       $data['quantity'] = $quantity;
       $data['total'] = sprintf('%01.2f', $product->Price * $quantity);
-      // debug($data);
-      // die();
+
       $session->write('Shop.OrderItem.' . $id, $data);
-      // $session->write('Shop.Order.shop', +1);
 
       $this->cart();
 
