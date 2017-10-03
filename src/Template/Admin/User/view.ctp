@@ -1,8 +1,5 @@
-
 <div class="users view large-9 medium-8 columns content">
-
-        <?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->idUser]) ?>
-
+  <?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->idUser]) ?>
     <table class="table table-responsive table-condensed ">
       <tr>
           <th scope="row"><?= __('IdUser') ?></th>
@@ -33,6 +30,10 @@
           <td><?= ($user->Phonenumber) ?></td>
       </tr>
       <tr>
+          <th scope="row"><?= __('Country') ?></th>
+          <td><?= h($user->Country) ?></td>
+      </tr>
+      <tr>
           <th scope="row"><?= __('City') ?></th>
           <td><?= h($user->City) ?></td>
       </tr>
@@ -44,7 +45,5 @@
           <th scope="row"><?= __('Root') ?></th>
           <td><?= $user->Root ? __('Yes') : __('No') ?></td>
       </tr>
-
-
     </table>
 </div>

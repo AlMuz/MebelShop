@@ -64,7 +64,10 @@
 					<?= $product->Size;?>
 
 					<h2>Material</h2>
-					<?= $product->Material;?>
+					<?= $product->material->Title;?>
+
+					<h2>Weight</h2>
+					<?= $product->Weight.' Kilogram';?> 
 		    </div>
 
 		    <div id="menu1" class="tab-pane fade">
@@ -86,26 +89,25 @@
 </div>
 <div class="c"></div>
 <div class="col-md-12" style="margin-bottom: 20px">
-	<p>12</p>
 </div>
 
 <style media="screen">
-.img:hover, .smallimg:hover{
-	color: #424242;
--webkit-transition: all .3s ease-in;
--moz-transition: all .3s ease-in;
--ms-transition: all .3s ease-in;
--o-transition: all .3s ease-in;
-transition: all .3s ease-in;
-opacity: 1;
-transform: scale(1.15);
--ms-transform: scale(1.15); /* IE 9 */
--webkit-transform: scale(1.15); /* Safari and Chrome */
-}
+	.img:hover, .smallimg:hover{
+		color: #424242;
+		-webkit-transition: all .3s ease-in;
+		-moz-transition: all .3s ease-in;
+		-ms-transition: all .3s ease-in;
+		-o-transition: all .3s ease-in;
+		transition: all .3s ease-in;
+		opacity: 1;
+		transform: scale(1.15);
+		-ms-transform: scale(1.15); /* IE 9 */
+		-webkit-transform: scale(1.15); /* Safari and Chrome */
+	}
 
-.smallimg:hover{
-transform: scale(2);
--ms-transform: scale(2); /* IE 9 */
--webkit-transform: scale(1.6); /* Safari and Chrome */
-}
+	.smallimg:hover{
+		transform: scale(2);
+		-ms-transform: scale(2); /* IE 9 */
+		-webkit-transform: scale(1.6); /* Safari and Chrome */
+	}
 </style>

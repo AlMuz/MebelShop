@@ -36,7 +36,7 @@ class ProductController extends AppController
   public function view($id = null)
   {
       $product = $this->Product->get($id, [
-          'contain' => ['Image','Category']
+          'contain' => ['Image','Category','Material']
       ]);
 
       $this->set('category', 'category');

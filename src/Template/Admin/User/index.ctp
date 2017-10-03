@@ -3,13 +3,14 @@
     <table class="table table-responsive table-condensed table-striped">
         <thead>
             <tr>
-              <th scope="col"><?= $this->Paginator->sort('idUser') ?></th>
+              <th scope="col"><?= $this->Paginator->sort('idUser','User ID') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Login') ?></th>
               <th scope="col"><?= ('Password') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Email') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Name') ?></th>
               <th scope="col"><?= $this->Paginator->sort('Surname') ?></th>
               <th scope="col"><?= ('Phonenumber') ?></th>
+              <th scope="col"><?= $this->Paginator->sort('Country') ?></th>
               <th scope="col"><?= $this->Paginator->sort('City') ?></th>
               <th scope="col"><?= ('Adress') ?></th>
               <th scope="col"><?= ('Root') ?></th>
@@ -26,6 +27,7 @@
               <td><?= h($user->Name) ?></td>
               <td><?= h($user->Surname) ?></td>
               <td><?= h($user->Phonenumber) ?></td>
+              <td><?= h($user->Country) ?></td>
               <td><?= h($user->City) ?></td>
               <td><?= h($user->Adress) ?></td>
 

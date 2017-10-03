@@ -9,7 +9,7 @@ class ProductController extends AppController
   public function index()
   {
       $this->paginate = [
-          'contain' => ['Category'],
+          'contain' => ['Category','Material'],
           'order' => [
               'Product.idProduct' => 'asc'
           ]
@@ -22,7 +22,7 @@ class ProductController extends AppController
   public function view($id = null)
   {
       $product = $this->Product->get($id, [
-          'contain' => ['Category', 'Image']
+          'contain' => ['Category', 'Image','Material']
       ]);
 
       $this->set('product', $product);
@@ -36,32 +36,38 @@ class ProductController extends AppController
         $product = $this->Product->patchEntity($product, $this->request->getData());
         $data = $this->request->data;
         if($data['MainImage']['name']){
-          debug($product);
-          // die();
 					$filename = $this->Product->savefile($data);
 
 					$product->MainImage = $filename;
 					$result = $this->Product->save($product);
 					if($result) {
             $this->Flash->success(__('The product has been saved.'));
-
             return $this->redirect(['action' => 'index']);
 					}
+          else{
+            debug($product);
+            die();
+            $this->Flash->error(__('The product could not be saved. Please, try again.'));
+          }
 				}
     }
     $category = $this->Product->Category->find('list',['keyField' => 'idCategory',
     'valueField' => 'Title']);
-    $this->set(compact('product','category'));
+
+    $material = $this->Product->Material->find('list',['keyField' => 'idMaterial',
+    'valueField' => 'Title']);
+
+    $this->set(compact('product','category','material'));
+
   }
 
   public function edit($id = null)
   {
       $product = $this->Product->get($id, [
-          'contain' => ['Category', 'Image']
+          'contain' => ['Category', 'Image','Material']
       ]);
       if ($this->request->is(['patch', 'post', 'put'])) {
           $product = $this->Product->patchEntity($product, $this->request->getData());
-
 
           if ($this->Product->save($product)) {
               $this->Flash->success(__('The product has been saved.'));
@@ -72,7 +78,10 @@ class ProductController extends AppController
       }
       $category = $this->Product->Category->find('list',['keyField' => 'idCategory',
       'valueField' => 'Title']);
-      $this->set(compact('product','category'));
+
+      $material = $this->Product->Material->find('list',['keyField' => 'idMaterial',
+      'valueField' => 'Title']);
+      $this->set(compact('product','category','material'));
   }
 
   public function delete($id = null)

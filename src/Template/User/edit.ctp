@@ -20,22 +20,27 @@
           <?= $this->Form->control('Email',['class' => 'form-control','label'=>false,'placeholder' => 'Email Address', 'type' => 'email','tabindex' => '3']) ?>
         </div>
 
+				<div class="form-group">
+					<label>Country</label>
+					<?= $this->Form->control('Country',['class' => 'form-control','options' => $country,'label'=>false,'placeholder' => 'Riga', 'tabindex' => '4','id' => 'Country']) ?>
+				</div>
+
         <div class="form-group">
           <label>City</label>
-          <?= $this->Form->control('City',['class' => 'form-control','label'=>false,'placeholder' => 'Riga', 'tabindex' => '4','id' => 'City']) ?>
+          <?= $this->Form->control('City',['class' => 'form-control','label'=>false,'placeholder' => 'Riga', 'tabindex' => '5','id' => 'City']) ?>
         </div>
 
         <div class="form-group">
           <label>Adress</label>
-          <?= $this->Form->control('Adress',['class' => 'form-control','label'=>false,'placeholder' => 'Brivibas iela', 'tabindex' => '5','id' => 'Adress']) ?>
+          <?= $this->Form->control('Adress',['class' => 'form-control','label'=>false,'placeholder' => 'Brivibas iela', 'tabindex' => '6','id' => 'Adress']) ?>
         </div>
 
         <div class="form-group">
           <label>Phonenumber</label>
-          <?= $this->Form->control('Phonenumber',['type' => 'text','class' => 'form-control','label'=>false,'placeholder' => 'Phonenumber 20001234', 'tabindex' => '6']) ?>
+          <?= $this->Form->control('Phonenumber',['type' => 'text','class' => 'form-control','label'=>false,'placeholder' => 'Phonenumber 20001234', 'tabindex' => '7']) ?>
         </div>
       </fieldset>
-    <?= $this->Form->button(__('Submit'),['class' => 'btn btn-success col-xs-12 col-sm-1','tabindex' => '7']) ?>
+    <?= $this->Form->button(__('Submit'),['class' => 'btn btn-success col-xs-12 col-sm-1','tabindex' => '8']) ?>
     <?= $this->Form->end() ?>
   </div>
 </div>

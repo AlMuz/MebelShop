@@ -1,7 +1,7 @@
 // new method to check phine validation
-$.validator.addMethod( "phoneLV", function( value, element ) {
-	return this.optional( element ) || /^([2]{1})([0-9]{7})*$/.test( value );
-}, "Please specify a valid phone number. Example: 21234567" );
+// $.validator.addMethod( "phoneLV", function( value, element ) {
+// 	return this.optional( element ) || /^([2]{1})([0-9]{7})*$/.test( value );
+// }, "Please specify a valid phone number. Example: 21234567" );
 
 // registration form /user/register
 $( "#regform" ).validate({
@@ -41,9 +41,12 @@ $( "#regform" ).validate({
     Phonenumber:{
       required: true,
       digits: true,
-      minlength: 8,
-      // maxlength: 8,
-      phoneLV: true
+      minlength: 7,
+      maxlength: 8,
+      // phoneLV: true
+    },
+		Country:{
+      required: true
     },
     City:{
       required: true,
@@ -57,7 +60,7 @@ $( "#regform" ).validate({
   }
 });
 
-// registration form /user/index
+// profile edit form /user/edit
 $( "#profile" ).validate({
   rules: {
     Name: {
@@ -82,6 +85,9 @@ $( "#profile" ).validate({
       phoneLV: true,
       minlength: 8
     },
+		Country:{
+      required: true
+    },
     City:{
       required: true,
       minlength: 3,
@@ -94,7 +100,7 @@ $( "#profile" ).validate({
   }
 });
 
-// registration form /admin/product/add
+// product add form /admin/product/add
 $( "#productadd" ).validate({
   rules: {
     Name: {
@@ -118,9 +124,8 @@ $( "#productadd" ).validate({
       required: true,
 			extension: "gif|jpeg|png|jpg"
     },
-    Material:{
+    Weight:{
       required: true,
-      minlength: 3
 		},
 		Size:{
       required: true,
@@ -128,13 +133,3 @@ $( "#productadd" ).validate({
 		}
   }
 });
-
-
-// $( "#addtocart" ).validate({
-//   rules: {
-//     quantity: {
-//       max: 99;
-// 			min:0;
-//     }
-//   }
-// });

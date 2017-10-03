@@ -1,4 +1,4 @@
-<div class="products index large-9 medium-8 columns content">
+<div class="category index large-9 medium-8 columns content">
     <?= $this->Html->link(__('Add New'), ['action' => 'add'], ['class' => 'btn btn-success pull-right']) ?>
     <h3 class="page-header"><?= __('Categories') ?></h3>
     <table class="table table-responsive table-condensed table-striped">

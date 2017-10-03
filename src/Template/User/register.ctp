@@ -41,23 +41,26 @@
         					</div>
         			  </div>
         		  </div>
+              <div class="form-group">
+                <?= $this->Form->control('Country',['class' => 'form-control','options' => $country,'label'=>false,'placeholder' => 'Country','tabindex' => '7']) ?>
+          		</div>
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="form-group">
-                    <?= $this->Form->control('City',['class' => 'form-control','label'=>false,'placeholder' => 'Riga', 'tabindex' => '7','id' => 'City']) ?>
+                    <?= $this->Form->control('City',['class' => 'form-control','label'=>false,'placeholder' => 'City', 'tabindex' => '8','id' => 'City']) ?>
                   </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                   <div class="form-group">
-                    <?= $this->Form->control('Adress',['class' => 'form-control','label'=>false,'placeholder' => 'Brivibas iela', 'tabindex' => '8','id' => 'Adress']) ?>
+                    <?= $this->Form->control('Adress',['class' => 'form-control','label'=>false,'placeholder' => 'Adress', 'tabindex' => '9','id' => 'Adress']) ?>
                   </div>
                 </div>
               </div>
               <div class="form-group">
-                <?= $this->Form->control('Phonenumber',['type' => 'text','class' => 'form-control','label'=>false,'placeholder' => 'Phonenumber 20001234', 'tabindex' => '9']) ?>
+                <?= $this->Form->control('Phonenumber',['type' => 'text','class' => 'form-control','label'=>false,'placeholder' => 'Phonenumber 20001234', 'tabindex' => '10']) ?>
           		</div>
             </fieldset>
-            <?= $this->Form->button(__('Register'),['class' => 'btn btn-success col-xs-12 col-sm-1','tabindex' => '10']) ?>
+            <?= $this->Form->button(__('Register'),['class' => 'btn btn-success col-xs-12 col-sm-1','tabindex' => '11']) ?>
           <?= $this->Form->end() ?>
         </div>
       </div>

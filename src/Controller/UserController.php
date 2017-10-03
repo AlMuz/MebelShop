@@ -7,11 +7,15 @@ use Cake\Network\Exception\NotFoundException;
 
 class UserController extends AppController
 {
+
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
         $this->Auth->allow('register','login');
         $this->Auth->deny('index','logout','order','edit');
+
+        $country=['Latvia'=>'Latvia','Lithuania'=>'Lithuania','Estonia'=>'Estonia'];
+        $this->set('country', $country);
     }
 
     public function index()
@@ -49,6 +53,8 @@ class UserController extends AppController
             }
           }
       }
+
+
       $this->set('user', $user);
     }
 
@@ -71,7 +77,9 @@ class UserController extends AppController
 
     public function logout()
     {
+        $this->loadComponent('Cart');
         $this->Flash->success(__('You logged off'));
+        $this->Cart->clear();
         return $this->redirect($this->Auth->logout());
     }
 
@@ -94,6 +102,5 @@ class UserController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
     }
 }
