@@ -128,3 +128,13 @@ $( "#productadd" ).validate({
 		}
   }
 });
+
+
+// $( "#addtocart" ).validate({
+//   rules: {
+//     quantity: {
+//       max: 99;
+// 			min:0;
+//     }
+//   }
+// });

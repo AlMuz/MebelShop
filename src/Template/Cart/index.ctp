@@ -42,12 +42,7 @@
           <?php echo $this->Number->currency($item['price'], $currency); ?>
         </div>
         <div class="col col-sm-1">
-					<!-- <?php
-					echo $this->Form->control('quantity',['class' => 'form-control','label' => false, 'placeholder'=> $item['quantity'],'data-id' => $item['product_id']]);
-					 ?> -->
 					 <?php echo $this->Form->input('quantity-' . $key, array('div' => false, 'class' => 'numeric form-control input-small', 'label' => false, 'size' => 2, 'maxlength' => 2, 'tabindex' => $tabindex++, 'data-id' => $item['product_id'], 'value' => $item['quantity'])); ?>
-
-          <!-- <?php echo $item['quantity'] ?> -->
         </div>
         <div class="col col-sm-1">
           <?php echo $this->Number->currency($item['total'], $currency); ?>
@@ -83,3 +78,13 @@
     </div>
   <?php endif; ?>
 </div>
+
+
+
+<style media="screen">
+
+@media screen and (max-width: 600px) {
+
+}
+
+</style>

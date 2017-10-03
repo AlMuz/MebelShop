@@ -6,7 +6,7 @@ body{
 	margin: 0;
 }
 .centerinfo{
-	
+
 }
 .maincont{
 	margin-top: 60px;
@@ -58,6 +58,10 @@ body{
 
 .sortproduct li{
  display: inline;
+}
+
+.c {
+	clear: both;
 }
 
 /*Footer*/

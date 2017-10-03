@@ -83,7 +83,7 @@ class ProductController extends AppController
     if(!empty($product)) {
         $this->Flash->success($product->Name. ' was added to your shopping cart.');
     } else {
-        $this->Flash->danger('Unable to add this product to your shopping cart.');
+        $this->Flash->error('Unable to add this product to your shopping cart.');
     }
     $this->redirect($this->referer());
   }

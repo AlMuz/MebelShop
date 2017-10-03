@@ -25,21 +25,15 @@
 		<h1 class="page-header">
 			<b><?= $product->Name;?></b>
 		</h1>
-		<h2 style="padding: 0 5px 10px 10px;margin: 0;">Price:
+		<h2 style="padding: 0 5px 10px 10px; margin: 0;">Price:
 			<?= $this->Number->currency($product->Price, $currency);?>
 		</h2>
 		<?php if($loggedIn) : ?>
 			<div class="form-group">
-				<?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'product','action'=>'add')));?>
+				<?= $this->Form->create('Cart',array('id'=>'addtocart','url'=>array('controller'=>'product','action'=>'add')));?>
 				<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
-				<?= $this->Form->select(
-					    'quantity',
-					    [1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5],
-					    ['class' => 'form-control ', 'style' => 'margin-left:10px; width: auto','label'=>'Quantity: ']
-					);
-				?>
-				<br>
-				<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px'));?>
+				<?php echo $this->Form->input('quantity', ['class' => 'numeric form-control input-small','id' => 'quantity', 'placeholder' => 'Quantity', 'style' => 'margin-left:10px; width: auto', 'label' => false, 'maxlength' => 2,'value'=> '1' ]); ?>
+				<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px; margin-top: 10px;'));?>
 				<?= $this->Form->end();?>
 			</div>
 		<?php else :   ?>
@@ -89,21 +83,11 @@
 		  </div>
 		</div>
 	</div>
-
 </div>
-
-<!-- <script>
-$(document).ready(function(){
-	$('#add-form').submit(function(e){
-		e.preventDefault();
-		var tis = $(this);
-		$.post(tis.attr('action'),tis.serialize(),function(data){
-			$('#cart-counter').text(data);
-		});
-	});
-});
-</script> -->
-
+<div class="c"></div>
+<div class="col-md-12" style="margin-bottom: 20px">
+	<p>12</p>
+</div>
 
 <style media="screen">
 .img:hover, .smallimg:hover{
