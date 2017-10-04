@@ -6,26 +6,9 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-/**
- * Material Model
- *
- * @method \App\Model\Entity\Material get($primaryKey, $options = [])
- * @method \App\Model\Entity\Material newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Material[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Material|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Material patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Material[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Material findOrCreate($search, callable $callback = null, $options = [])
- */
 class MaterialTable extends Table
 {
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
     public function initialize(array $config)
     {
         parent::initialize($config);

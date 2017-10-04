@@ -81,6 +81,7 @@ class ProductController extends AppController
 
       $material = $this->Product->Material->find('list',['keyField' => 'idMaterial',
       'valueField' => 'Title']);
+      
       $this->set(compact('product','category','material'));
   }
 

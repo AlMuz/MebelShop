@@ -17,6 +17,7 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Csrf');
         $this->set('maintitle', 'Online store - MuzInterior');
         $this->set('currency', 'EUR');
 
@@ -45,7 +46,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-      //show in prefix admin - admin layout and check access to admin
+      //show in prefix admin - admin layout and check access to admin panel
       if (isset($this->request->params['prefix']) == 'admin') {
         if($this->Auth->user('Root') == 1){
           $this->viewBuilder()->layout('admin');
@@ -82,7 +83,7 @@ class AppController extends Controller
       ->limit(10)
       );
 
-      // this part for cart counter 
+      // this part for cart counter
       $session = $this->request->session();
       if($session->read('Shop.Order.quantity')!= null){
         $count = $session->read('Shop.Order.quantity');

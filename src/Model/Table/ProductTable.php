@@ -10,7 +10,6 @@ use Cake\Validation\Validator;
 class ProductTable extends Table
 {
 
-
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -34,15 +33,8 @@ class ProductTable extends Table
           'joinType' => 'INNER'
         ]);
 
-
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
     public function validationDefault(Validator $validator)
     {
       $validator

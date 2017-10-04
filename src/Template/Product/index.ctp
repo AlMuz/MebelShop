@@ -31,40 +31,10 @@
 				</tbody>
 			</table>
 		</div>
-		<?php foreach ($product as $product):?>
-			<div class="col-sm-6 col-md-4 mainproduct">
-
-					<?= $this->Html->link($this->Html->image($product->MainImage),
-							array('action'=>'view',$product->idProduct),
-							array('escape'=>false,'class'=>'thumbnail'));?>
-					<div class="caption">
-						<h4>
-							<?= $this->Html->link(($product->Name),
-		    					array('action'=>'view',$product->idProduct));
-									if(($product->Interest) > 50 ){
-											echo '<p style="float: right;"><span style="color:red" class="glyphicon glyphicon-heart"></span> TOP!</p>';
-									}
-							?>
-						</h4>
-					</div>
-					<div>
-							Price:
-							<?= $this->Number->currency($product->Price, $currency);?>
-					</div>
-			</div>
-		<?php endforeach;?>
+			<!-- it print product with their style  -->
+			<?= $this->element('product') ?>
 	</div>
+	<?= $this->element('paginator') ?>
 
-	<div class="paginator">
-			<ul class="pagination">
-					<?= $this->Paginator->first('<< ' . __('first')) ?>
-					<?= $this->Paginator->prev('< ' . __('previous')) ?>
-					<?= $this->Paginator->numbers() ?>
-					<?= $this->Paginator->next(__('next') . ' >') ?>
-					<?= $this->Paginator->last(__('last') . ' >>') ?>
-			</ul>
-			<!-- <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p> -->
-	</div>
-<?php else: ?>
-	<p>nav products</p>
+
 <?php endif; ?>

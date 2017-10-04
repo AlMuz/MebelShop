@@ -12,6 +12,7 @@ class ProductController extends AppController
       parent::initialize();
       $this->loadComponent('Cart');
   }
+  // allow to not authorized users access to all product pages
 
   public function beforeFilter(Event $event)
   {
@@ -26,6 +27,7 @@ class ProductController extends AppController
     ]
   ];
 
+  // Main page
   public function index()
   {
       $product = $this->paginate($this->Product);
@@ -33,6 +35,7 @@ class ProductController extends AppController
       $this->set(compact('product'));
   }
 
+  // specific product view
   public function view($id = null)
   {
       $product = $this->Product->get($id, [
@@ -43,15 +46,17 @@ class ProductController extends AppController
       $this->set('product', $product);
   }
 
+  // search page
   public function search(){
     $search = null;
     if(!empty($this->request->query['search']) || !empty($this->request->data['name'])) {
         $search = empty($this->request->query['search']) ? $this->request->data['name'] : $this->request->query['search'];
-
+        // checking for bad simbols. can be only alphabet and digits
         $search = preg_replace('/[^a-zA-Z0-9 ]/', '', $search);
         $terms = explode(' ', trim($search));
         $terms = array_diff($terms, array(''));
 
+        // condition for the query
         foreach($terms as $term) {
             $conditions[] = array("OR" => array (
               'Product.Name LIKE' => '%' . $term . '%',
@@ -59,27 +64,25 @@ class ProductController extends AppController
             ));
         }
 
-        $products = $this->Product->find('all', array(
+        $product = $this->Product->find('all', array(
             'recursive' => -1,
             'conditions' => $conditions,
             'limit' => 200,
         ));
-        $this->set(compact('products'));
+        $this->set(compact('product'));
     }
     $this->set(compact('search'));
   }
 
+  // function which add specific product and quantity to the cart
   public function add()
   {
     if ($this->request->is('post')) {
-
         $id = $this->request->data['product_id'];
-
         $quantity =$this->request->data['quantity'] ;
-
         $product = $this->Cart->add($id, $quantity);
-
     }
+    
     if(!empty($product)) {
         $this->Flash->success($product->Name. ' was added to your shopping cart.');
     } else {

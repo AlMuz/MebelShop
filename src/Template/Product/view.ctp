@@ -1,5 +1,4 @@
 <?php $this->assign('title', $product->Name.' - '.$maintitle);?>
-<!-- <?= $this->Html->css('prodview'); ?> -->
 <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb" style="margin-bottom: 10px">
@@ -7,7 +6,7 @@
 				<?= $this->Html->link('Home','/');?>
 			</li>
 			<li>
-				<a href='/Category/view/<?=$product->Category_idCategory ?>'><?=$product->category->Title ?></a>
+				<a href='/category/view/<?=$product->Category_idCategory ?>'><?=$product->category->Title ?></a>
 			</li>
 			<li class="active">
 				<?= $product->Name;?>
@@ -17,7 +16,6 @@
 </div>
 
 <div class="col-md-12" style="margin-bottom: 20px">
-
 	<div class="col-sm-6 col-md-6 pull-right">
 		<?= $this->Html->image($product->MainImage,['class'=>'img-responsive img', 'style' => 'max-height: 500px; z-index: 9999' ]);?>
 	</div>
@@ -32,7 +30,7 @@
 			<div class="form-group">
 				<?= $this->Form->create('Cart',array('id'=>'addtocart','url'=>array('controller'=>'product','action'=>'add')));?>
 				<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
-				<?php echo $this->Form->input('quantity', ['class' => 'numeric form-control input-small','id' => 'quantity', 'placeholder' => 'Quantity', 'style' => 'margin-left:10px; width: auto', 'label' => false, 'maxlength' => 2,'value'=> '1' ]); ?>
+				<?= $this->Form->input('quantity', ['class' => 'numeric form-control input-small','id' => 'quantity', 'placeholder' => 'Quantity', 'style' => 'margin-left:10px; width: auto', 'label' => false, 'maxlength' => 2,'value'=> '1' ]); ?>
 				<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px; margin-top: 10px;'));?>
 				<?= $this->Form->end();?>
 			</div>
@@ -67,7 +65,7 @@
 					<?= $product->material->Title;?>
 
 					<h2>Weight</h2>
-					<?= $product->Weight.' Kilogram';?> 
+					<?= $product->Weight.' Kilogram';?>
 		    </div>
 
 		    <div id="menu1" class="tab-pane fade">

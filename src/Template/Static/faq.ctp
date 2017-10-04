@@ -1,5 +1,18 @@
 <?php $this->assign('title', 'FAQ - '.$maintitle);?>
 
+<div class="row">
+	<div class="col-lg-12">
+		<ol class="breadcrumb" style="margin-bottom: 10px">
+			<li>
+				<?= $this->Html->link('Home','/');?>
+			</li>
+			<li class="active">
+        <?= 'FAQ' ?>
+			</li>
+		</ol>
+	</div>
+</div>
+
 <div class="container">
   <h1>Frequently asked questions (FAQ)</h1>
   <!--1 block   about registration-->
@@ -38,7 +51,7 @@
     </div>
   </div>
   <br>
-  <!--2 block  - shipping -->
+  <!--3 block  - shipping -->
   <a href="#shipping" data-toggle="collapse">Shipping</a>
   <div id="shipping" class="collapse">
     <a href="#shipping1" data-toggle="collapse" style="padding-left:10px;">sub main 1</a>

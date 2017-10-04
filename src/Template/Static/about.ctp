@@ -1,5 +1,18 @@
 <?php $this->assign('title', 'About us - '.$maintitle);?>
 
+<div class="row">
+	<div class="col-lg-12">
+		<ol class="breadcrumb" style="margin-bottom: 10px">
+			<li>
+				<?= $this->Html->link('Home','/');?>
+			</li>
+			<li class="active">
+        <?= 'About us' ?>
+			</li>
+		</ol>
+	</div>
+</div>
+
 <div class="container-fluid ">
   <div class="col-md-4">
     <article>
@@ -7,8 +20,10 @@
       <address>
         <strong>MuzInterior</strong><br>
         Online interior store <br>
-        Iluksties iela<br>
+        We are heading in <b>Latvia</b><br>
         Riga<br>
+        Iluksties iela<br>
+
         <abbr title="Phone">P:</abbr> +371 20361226 <br>
         <abbr title="Email"><span class="glyphicon glyphicon-envelope"></span></abbr> almuz@inbox.lv
       </address>

@@ -4,17 +4,21 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\ORM\TableRegistry;
 
+// This is cart Component which saves information in session
 class CartComponent  extends Component{
 
   public $controller;
 
+  //  max quantity for product to add in cart
   public $maxQuantity = 99;
 
+  //  loading product model
   public function initialize(array $config)
       {
         $this->Product = TableRegistry::get('Product');
       }
 
+  // adding product to the cart. quantity must be from 1 to 99.
   public function add($id, $quantity = 1) {
       $session = $this->request->session();
 
@@ -26,6 +30,7 @@ class CartComponent  extends Component{
           $quantity = $this->maxQuantity;
       }
 
+      //  if quantity less or equals 0 product will be removed from the cart
       if($quantity <= 0) {
           $this->remove($id);
           return;
@@ -37,19 +42,13 @@ class CartComponent  extends Component{
           return false;
       }
 
-      if($session->check('Shop.OrderItem.' . $id )) {
-          $productmod['Productmod']['id'] = $session->read('Shop.OrderItem.' . $id . '.Product.productmod_id');
-          $productmod['Productmod']['name'] = $session->read('Shop.OrderItem.' . $id . '.Product.productmod_name');
-          $productmod['Productmod']['price'] = $session->read('Shop.OrderItem.' . $id . '.Product.price');
-
-      }
-
+      // fetching data from database
       $data['product_id'] = $product->idProduct;
       $data['name'] = $product->Name;
       $data['price'] = $product->Price;
       $data['quantity'] = $quantity;
       $data['total'] = sprintf('%01.2f', $product->Price * $quantity);
-
+      // and saving it in session
       $session->write('Shop.OrderItem.' . $id, $data);
 
       $this->cart();
@@ -57,9 +56,9 @@ class CartComponent  extends Component{
       return $product;
   }
 
+  // this function remove specific product from cart
   public function remove($id) {
     $session = $this->request->session();
-
       if($session->check('Shop.OrderItem.' . $id)) {
           $product = $session->read('Shop.OrderItem.' . $id);
           $session->delete('Shop.OrderItem.' . $id);
@@ -101,6 +100,7 @@ class CartComponent  extends Component{
     }
   }
 
+  // this function clear all products in cart
   public function clear() {
       $session = $this->request->session();
       $session->delete('Shop');
