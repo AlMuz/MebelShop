@@ -45,9 +45,11 @@ class CartComponent  extends Component{
       // fetching data from database
       $data['product_id'] = $product->idProduct;
       $data['name'] = $product->Name;
+      $data['weight'] = $product->Weight;
       $data['price'] = $product->Price;
       $data['quantity'] = $quantity;
       $data['total'] = sprintf('%01.2f', $product->Price * $quantity);
+      $data['totalweight'] = sprintf('%01.2f', $product->Weight * $quantity);
       // and saving it in session
       $session->write('Shop.OrderItem.' . $id, $data);
 
@@ -80,12 +82,13 @@ class CartComponent  extends Component{
     if (count($shop['OrderItem']) > 0) {
         foreach ($shop['OrderItem'] as $item) {
             $quantity += $item['quantity'];
-
+            $weight += $item['totalweight'];
             $total += $item['total'];
             $order_item_count++;
         }
         $d['order_item_count'] = $order_item_count;
         $d['quantity'] = $quantity;
+        $d['weight'] = sprintf('%01.2f', $weight);
         $d['total'] = sprintf('%01.2f', $total);
         $session->write('Shop.Order',$d);
         return true;

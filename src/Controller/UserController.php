@@ -91,10 +91,6 @@ class UserController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
-    public function order(){
-
-    }
-
     // edit user profile function and page
     public function edit()
     {

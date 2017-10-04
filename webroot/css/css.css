@@ -8,12 +8,22 @@ body{
 }
 
 .maincont{
+	margin-top: 30px;
 	padding: 0 15px 30px 15px;
 }
 
+/* correcting margin navbar and maincontent for unauthorised user*/
 @media (max-width: 767px){
 	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
 		color:#FFFFFF;
+	}
+	.maincont{
+		margin-top: 95px;
+	}
+}
+@media (max-width: 407px) {
+	.maincont{
+		margin-top: 65px;
 	}
 }
 

@@ -59,7 +59,6 @@
       <div class="col-sm-12">
         <div class="pull-right" style="float:right">
         <?= $this->Html->link('Clear Shopping Cart', array('controller' => 'Cart', 'action' => 'clear'), array('class' => 'btn btn-sm btn-danger', 'escape' => false,'confirm' => __('Are you sure you want to clear all your cart?' ))); ?>
-        &nbsp; &nbsp;
         <?= $this->Form->button('Update', array('class' => 'btn btn-sm btn-default', 'escape' => false));?>
         <?= $this->Form->end(); ?>
         </div>
@@ -68,13 +67,14 @@
     <hr>
     <div class="row">
       <div class=" pull-right">
-          Order Total: <span class="red" id="total"><?= $this->Number->currency($shop['Order']['total'], $currency); ?></span>
-          <br />
-					<br />
-
-          <?= $this->Form->create(NULL, array('url' => array('controller' => 'shop', 'action' => 'step1'))); ?>
-          	<input type='image' name='submit' src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' border='0' align='top' alt='Check out with PayPal' class="submit" />
-          <?= $this->Form->end(); ?>
+        Order Total: <span class="red" id="total"><?= $this->Number->currency($shop['Order']['total'], $currency); ?></span>
+        <br />
+			  Total weight: <span class="red" id="total"><?= ($shop['Order']['weight']); ?> KG</span>
+				<br />
+				<br />
+        <?= $this->Form->create(NULL, array('url' => array('controller' => 'shop', 'action' => 'step1'))); ?>
+      		<input type='image' name='submit' src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' border='0' align='top' alt='Check out with PayPal' class="submit" />
+        <?= $this->Form->end(); ?>
       </div>
     </div>
   <?php endif; ?>

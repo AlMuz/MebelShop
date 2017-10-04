@@ -4,7 +4,7 @@
     <div class="jumbotron">
       <div class="container text-center">
         <h1>MuzInterior</h1>
-        <p>Online interior store</p>
+        <p>Online interior store for all baltic states!</p>
       </div>
     </div>
     <nav class="navbar navbar-inverse"  data-spy="affix" data-offset-top="197">
@@ -73,7 +73,7 @@
                         <a href="/user/"><?= __('Profile') ?></a>
                       </li>
                       <li>
-                        <a href="/user/order"><?= __('Order') ?></a>
+                        <a href="/orders"><?= __('Orders') ?></a>
                       </li>
                         <li role="separator" class="divider"></li>
                       <li>
