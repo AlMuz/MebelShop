@@ -1,37 +1,30 @@
+/*Main content*/
 body{
-	background: White;
+	background: #FFFFFF;
 }
 
 .page-header{
 	margin: 0;
 }
-.centerinfo{
-	
-}
+
 .maincont{
-	margin-top: 60px;
+	margin-top: 30px;
 	padding: 0 15px 30px 15px;
 }
 
-@media (max-width: 991px){
-	.maincont{
-		padding-top:50px;
-	}
-
-}
-@media (max-width: 768px){
-	.maincont{
-		padding-top:0;
-	}
-}
-
+/* correcting margin navbar and maincontent for unauthorised user*/
 @media (max-width: 767px){
 	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
-		color:white;
+		color:#FFFFFF;
+	}
+	.maincont{
+		margin-top: 95px;
 	}
 }
-.divinlog{
-	padding:3px 20px;
+@media (max-width: 407px) {
+	.maincont{
+		margin-top: 65px;
+	}
 }
 
 .leftpos{
@@ -50,28 +43,21 @@ body{
 	margin-bottom: 5px;
 }
 
-.sortproduct{
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
- 	list-style-type: none;
-}
-
-.sortproduct li{
- display: inline;
+.c {
+	clear: both;
 }
 
 /*Footer*/
-
 #footer-sub{
-	color:white;
+	color:#FFFFFF;
   background-color: #333;
-  border-top: 1px solid black;
+  border-top: 1px solid #000000;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 #footer-sub h5{
-  color:white;
+  color:#FFFFFF;
   margin-top: 25px;
 }
 
@@ -85,29 +71,29 @@ body{
 }
 
 #footer-sub ul li{
-margin-left: -38px;
+	margin-left: -38px;
 }
 
 #footer-sub a:link {
   text-decoration: none;
-  color:white;
+  color:#FFFFFF;
   font-size: 16px;
 }
 
 #footer-sub a:visited {
   text-decoration: none;
-  color:white;
+  color:#FFFFFF;
 }
 
 
 #footer-sub a:hover {
   text-decoration: none;
-  color: black;
+  color: #000000;
 }
 
 #footer-sub  .glyphicon {
   font-size: 35px;
-   color:White;
+   color:#FFFFFF;
 }
 
 #sub-two{

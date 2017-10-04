@@ -40,6 +40,8 @@ class UserController extends AppController
           }
           $this->Flash->error(__('The user could not be saved. Please, try again.'));
       }
+      $country=['Latvia'=>'Latvia','Lithuania'=>'Lithuania','Estonia'=>'Estonia'];
+      $this->set('country', $country);
       $this->set(compact('user'));
 
   }

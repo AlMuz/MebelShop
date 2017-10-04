@@ -7,13 +7,20 @@ use Cake\Network\Exception\NotFoundException;
 
 class UserController extends AppController
 {
+    // allow to not authorized users access to register and login pages
+    // disallow to use index( profile page), logout(function), order and edit pages if user unauthorized
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
         $this->Auth->allow('register','login');
         $this->Auth->deny('index','logout','order','edit');
+
+        // setting allowed countries to register
+        $country=['Latvia'=>'Latvia','Lithuania'=>'Lithuania','Estonia'=>'Estonia'];
+        $this->set('country', $country);
     }
 
+    // user profile
     public function index()
     {
       $query = $this->User->find('all')
@@ -22,6 +29,7 @@ class UserController extends AppController
 
     }
 
+    // Registration page
     public function register()
     {
       if ($this->Auth->user()){
@@ -32,6 +40,7 @@ class UserController extends AppController
 
       if ($this->request->is('post')) {
           $user = $this->User->patchEntity($user, $this->request->getData());
+          // check exists username or not
           $conditions = array(
               'conditions' => array(
                   'Login' => $user->Login
@@ -42,6 +51,7 @@ class UserController extends AppController
           if (!$result->count()==0){
             $this->Flash->error(__('This username already exists'));
           }
+          // if not exists username -> all right and successfull registration
           else{
             if ($this->User->save($user)) {
                 $this->Flash->success(__('You successfuly registered'));
@@ -49,9 +59,12 @@ class UserController extends AppController
             }
           }
       }
+
+
       $this->set('user', $user);
     }
 
+    // login page
     public function login()
     {
         if ($this->Auth->user()){
@@ -69,16 +82,16 @@ class UserController extends AppController
         }
     }
 
+    // function to logout user
     public function logout()
     {
+        $this->loadComponent('Cart');
         $this->Flash->success(__('You logged off'));
+        $this->Cart->clear();
         return $this->redirect($this->Auth->logout());
     }
 
-    public function order(){
-
-    }
-
+    // edit user profile function and page
     public function edit()
     {
         $user = $this->User->get($this->Auth->user('idUser'), [
@@ -94,6 +107,5 @@ class UserController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
     }
 }

@@ -3,111 +3,53 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Cart Controller
- *
- * @property \App\Model\Table\CartTable $Cart
- *
- * @method \App\Model\Entity\Cart[] paginate($object = null, array $settings = [])
- */
 class CartController extends AppController
 {
+  public function initialize()
+  {
+      parent::initialize();
+      $this->loadComponent('Cart');
+  }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
+    // cart page, where are all information about products in cart
     public function index()
     {
-        $cart = $this->paginate($this->Cart);
+      $session = $this->request->session();
 
-        $this->set(compact('cart'));
-        $this->set('_serialize', ['cart']);
+      $shop = $session->read('Shop');
+      $this->set(compact('shop'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Cart id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $cart = $this->Cart->get($id, [
-            'contain' => ['Product']
-        ]);
-
-        $this->set('cart', $cart);
-        $this->set('_serialize', ['cart']);
+    // function to clear all cart
+    public function clear() {
+        // call cart Component function
+        $this->Cart->clear();
+        $this->Flash->success(__('Cart successfully cleared'));
+        return $this->redirect('/');
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $cart = $this->Cart->newEntity();
+    // function to remove choosen product
+    public function remove($id = null) {
+        // call cart Component function
+        $product = $this->Cart->remove($id);
+        if(!empty($product)) {
+            $this->Flash->success($product['name'] . ' was removed from your shopping cart');
+        }
+        return $this->redirect(array('controller'=>'cart','action' => 'index'));
+    }
+
+    // function to update product quantity  in cart
+    public function cartupdate() {
+      $arr = array('Product' =>$this->request->data);
         if ($this->request->is('post')) {
-            $cart = $this->Cart->patchEntity($cart, $this->request->getData());
-            if ($this->Cart->save($cart)) {
-                $this->Flash->success(__('The cart has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            foreach($arr['Product'] as $key => $value) {
+                // this part catch from array product id to update specific product
+                $p = explode('-', $key);
+                $p = explode('_', $p[1]);
+                $this->Cart->add($p[0], $value);
+                $this->Flash->success('Shopping Cart is updated.');
             }
-            $this->Flash->error(__('The cart could not be saved. Please, try again.'));
         }
-        $product = $this->Cart->Product->find('list', ['limit' => 200]);
-        $this->set(compact('cart', 'product'));
-        $this->set('_serialize', ['cart']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Cart id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $cart = $this->Cart->get($id, [
-            'contain' => ['Product']
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $cart = $this->Cart->patchEntity($cart, $this->request->getData());
-            if ($this->Cart->save($cart)) {
-                $this->Flash->success(__('The cart has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The cart could not be saved. Please, try again.'));
-        }
-        $product = $this->Cart->Product->find('list', ['limit' => 200]);
-        $this->set(compact('cart', 'product'));
-        $this->set('_serialize', ['cart']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Cart id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $cart = $this->Cart->get($id);
-        if ($this->Cart->delete($cart)) {
-            $this->Flash->success(__('The cart has been deleted.'));
-        } else {
-            $this->Flash->error(__('The cart could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(array('action' => 'index'));
     }
 }

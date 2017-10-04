@@ -5,12 +5,9 @@ use Cake\ORM\Entity;
 
 class Category extends Entity
 {
-
-
     protected $_accessible = [
         '*' => true,
         'idCategory' => false
     ];
-
-
+    
 }

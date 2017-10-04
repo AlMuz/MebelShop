@@ -1,5 +1,4 @@
 <?php $this->assign('title', $product->Name.' - '.$maintitle);?>
-<!-- <?= $this->Html->css('prodview'); ?> -->
 <div class="row">
 	<div class="col-lg-12">
 		<ol class="breadcrumb" style="margin-bottom: 10px">
@@ -7,7 +6,7 @@
 				<?= $this->Html->link('Home','/');?>
 			</li>
 			<li>
-				<a href='/Category/view/<?=$product->Category_idCategory ?>'><?=$product->category->Title ?></a>
+				<a href='/category/view/<?=$product->Category_idCategory ?>'><?=$product->category->Title ?></a>
 			</li>
 			<li class="active">
 				<?= $product->Name;?>
@@ -17,22 +16,24 @@
 </div>
 
 <div class="col-md-12" style="margin-bottom: 20px">
-
 	<div class="col-sm-6 col-md-6 pull-right">
-		<?= $this->Html->image($product->MainImage,['class'=>'img-responsive img', 'style' => 'max-height: 500px; z-index: 9999' ]);?>
+		<?= $this->Html->image($product->MainImage,['class'=>'img-responsive img', 'style' => 'max-height: 500px; ' ]);?>
 	</div>
 	<div class="col-sm-6 col-md-6 ">
 		<h1 class="page-header">
 			<b><?= $product->Name;?></b>
 		</h1>
-		<h2 style="padding: 0 5px 10px 10px;margin: 0;">Price:
+		<h2 style="padding: 0 5px 10px 10px; margin: 0;">Price:
 			<?= $this->Number->currency($product->Price, $currency);?>
 		</h2>
 		<?php if($loggedIn) : ?>
-			<?= $this->Form->create('Cart',array('id'=>'add-form','url'=>array('controller'=>'carts','action'=>'add')));?>
-			<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
-			<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px'));?>
-			<?= $this->Form->end();?>
+			<div class="form-group">
+				<?= $this->Form->create('Cart',array('id'=>'addtocart','url'=>array('controller'=>'product','action'=>'add')));?>
+				<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
+				<?= $this->Form->input('quantity', ['class' => 'numeric form-control input-small','id' => 'quantity', 'placeholder' => 'Quantity', 'style' => 'margin-left:10px; width: auto', 'label' => false, 'maxlength' => 2,'value'=> '1' ]); ?>
+				<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px; margin-top: 10px;'));?>
+				<?= $this->Form->end();?>
+			</div>
 		<?php else :   ?>
 			<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#buy" style="margin-left:10px">Add to cart</button>
 			<div id="buy" class="collapse out">
@@ -61,7 +62,10 @@
 					<?= $product->Size;?>
 
 					<h2>Material</h2>
-					<?= $product->Material;?>
+					<?= $product->material->Title;?>
+
+					<h2>Weight</h2>
+					<?= $product->Weight.' Kilogram';?>
 		    </div>
 
 		    <div id="menu1" class="tab-pane fade">
@@ -80,39 +84,29 @@
 		  </div>
 		</div>
 	</div>
-
+</div>
+<div class="c"></div>
+<div class="col-md-12" style="margin-bottom: 20px">
 </div>
 
-<script>
-$(document).ready(function(){
-	$('#add-form').submit(function(e){
-		e.preventDefault();
-		var tis = $(this);
-		$.post(tis.attr('action'),tis.serialize(),function(data){
-			$('#cart-counter').text(data);
-		});
-	});
-});
-</script>
-
-
 <style media="screen">
-.img:hover, .smallimg:hover{
-	color: #424242;
--webkit-transition: all .3s ease-in;
--moz-transition: all .3s ease-in;
--ms-transition: all .3s ease-in;
--o-transition: all .3s ease-in;
-transition: all .3s ease-in;
-opacity: 1;
-transform: scale(1.15);
--ms-transform: scale(1.15); /* IE 9 */
--webkit-transform: scale(1.15); /* Safari and Chrome */
-}
+	.img:hover, .smallimg:hover{
+		z-index: 9999
+		color: #424242;
+		-webkit-transition: all .3s ease-in;
+		-moz-transition: all .3s ease-in;
+		-ms-transition: all .3s ease-in;
+		-o-transition: all .3s ease-in;
+		transition: all .3s ease-in;
+		opacity: 1;
+		transform: scale(1.15);
+		-ms-transform: scale(1.15); /* IE 9 */
+		-webkit-transform: scale(1.15); /* Safari and Chrome */
+	}
 
-.smallimg:hover{
-transform: scale(2);
--ms-transform: scale(2); /* IE 9 */
--webkit-transform: scale(1.6); /* Safari and Chrome */
-}
+	.smallimg:hover{
+		transform: scale(2);
+		-ms-transform: scale(2); /* IE 9 */
+		-webkit-transform: scale(1.6); /* Safari and Chrome */
+	}
 </style>

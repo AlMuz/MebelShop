@@ -43,7 +43,16 @@
                     <span class="glyphicon glyphicon-thumbs-up" style="font-size: 5em"></span>
                   </div>
                   <div class="col-xs-5 text-right">
-                      <p class="alerts-heading"><?php echo $meow?></p>
+                      <p class="alerts-heading"><?= $material ?></p>
+                      <p class="alerts-text">Material count</p>
+                  </div>
+              </div>
+              <div class="row alert-success">
+                  <div class="col-xs-5">
+                    <span class="glyphicon glyphicon-thumbs-up" style="font-size: 5em"></span>
+                  </div>
+                  <div class="col-xs-5 text-right">
+                      <p class="alerts-heading"><?php echo $order?></p>
                       <p class="alerts-text">Orders</p>
                   </div>
               </div>

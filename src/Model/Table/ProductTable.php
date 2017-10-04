@@ -10,7 +10,6 @@ use Cake\Validation\Validator;
 class ProductTable extends Table
 {
 
-
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -24,26 +23,18 @@ class ProductTable extends Table
           'joinType' => 'INNER'
         ]);
 
+        $this->belongsTo('Material',[
+          'foreignKey' => 'Material_idMaterial',
+          'joinType' => 'INNER'
+        ]);
+
         $this->hasMany('Image',[
           'foreignKey' => 'Product_idProduct',
           'joinType' => 'INNER'
         ]);
 
-        $this->belongsToMany('Cart', [
-            'className' => 'Cart',
-            'joinTable' => 'product_has_cart',
-            'foreignKey' => 'product_idProduct',
-            'associationForeignKey' => 'product_idProduct'
-        ]);
-
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
     public function validationDefault(Validator $validator)
     {
       $validator
@@ -71,26 +62,24 @@ class ProductTable extends Table
           ->notEmpty('Interest');
 
       $validator
-          ->scalar('Material')
-          ->requirePresence('Material', 'create')
-          ->notEmpty('Material');
-
-      $validator
           ->scalar('Size')
           ->requirePresence('Size', 'create')
           ->notEmpty('Size');
-      //
-      // $validator
-      //     ->add('MainImage', 'file', [
-      //     // 'extension' => ['gif', 'jpeg', 'png', 'jpg'],
-      //     'required' => true,
-      //     // 'message' => 'Ludzu, upload tikai Gif,jpeg, jpg vai png formatu!'
-      //     ]);
+
+      $validator
+          ->decimal('Weight')
+          ->requirePresence('Weight', 'create')
+          ->notEmpty('Weight');
 
       $validator
           ->integer('Category_idCategory')
           ->requirePresence('Category_idCategory', 'create')
           ->notEmpty('Category_idCategory');
+
+      $validator
+          ->integer('Material_idMaterial')
+          ->requirePresence('Material_idMaterial', 'create')
+          ->notEmpty('Material_idMaterial');
 
         return $validator;
     }

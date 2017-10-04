@@ -1,9 +1,3 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="list-inline">
-        <li><?= $this->Html->link(__('Edit Product'), ['action' => 'edit', $product->idProduct]) ?> </li>
-        <li><?= $this->Html->link(__('List Product'), ['action' => 'index']) ?> </li>
-    </ul>
-</nav>
 <div class="product view large-9 medium-8 columns content">
     <h3><?= $product->Name ?></h3>
     <hr>
@@ -33,8 +27,8 @@
             <td><?= $this->Html->link(__($product->category->Title), ['controller'=>'category','action' => 'view',$product->category->idCategory]) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Category Description') ?></th>
-            <td><?= $product->category->Description ?></td>
+            <th scope="row"><?= __('Material title') ?></th>
+            <td><?= ($product->material->Title) ?></td>
         </tr>
     </table>
       <div class="row">

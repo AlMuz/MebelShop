@@ -9,6 +9,7 @@
 	        <h3><span class="glyphicon glyphicon-hand-right" style="width:50px;"></span> Name:  <?= $user->Name ?></h3>
 	        <h3><span class="glyphicon glyphicon-hand-right" style="width:50px;"></span> Surname: <?= $user->Surname ?></h3>
 	        <h3><span class="glyphicon glyphicon-phone" style="width:50px;"></span> Phonenumber: <?= $user->Phonenumber ?></h3>
+					<h3><span class="glyphicon glyphicon-copyright-mark" style="width:50px;"></span> Country: <?= $user->Country ?></h3>
 					<h3><span class="glyphicon glyphicon-heart" style="width:50px;"></span> City: <?= $user->City ?></h3>
 					<h3><span class="glyphicon glyphicon-home" style="width:50px;"></span> Adress: <?= $user->Adress ?></h3>
 

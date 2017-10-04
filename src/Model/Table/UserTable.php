@@ -17,10 +17,10 @@ class UserTable extends Table
         $this->setDisplayField('idUser');
         $this->setPrimaryKey('idUser');
 
-        // $this->hasMany('Orders', [
-        //     'foreignKey' => 'IdUser',
-        //     'joinType' => 'INNER'
-        // ]);
+        $this->hasMany('Orders', [
+            'foreignKey' => 'User_IdUser',
+            'joinType' => 'INNER'
+        ]);
     }
 
     public function validationDefault(Validator $validator)

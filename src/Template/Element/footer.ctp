@@ -44,6 +44,9 @@
               </ul>
           </div>
         </div>
+        <p style="text-align:center; margin: 0;">
+          &copy; <?= date('Y'); ?> <?= env('HTTP_HOST'); ?>
+        </p>
       </div>
   </div>
 </footer>

@@ -7,6 +7,7 @@ use Cake\Event\Event;
 
 class AppController extends Controller
 {
+    //default for all paginate elements on the page
     public $paginate = [
   		'limit' => 15
   	];
@@ -14,13 +15,15 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
-
+        // loading required  components
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->set('maintitle', 'Online store - MuzInterior');
+        $this->loadComponent('Csrf');
+        // setting global variables
+        $this->set('maintitle', 'Online store | MuzInterior');
         $this->set('currency', 'EUR');
 
-
+        // auth components helps handle with session allows disalows etc
         $this->loadComponent('Auth', [
           'loginAction' => [
             'controller' => 'User',
@@ -45,7 +48,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-      //show in prefix admin - admin layout and check access to admin
+      //show in prefix admin - admin layout and check access to admin panel
       if (isset($this->request->params['prefix']) == 'admin') {
         if($this->Auth->user('Root') == 1){
           $this->viewBuilder()->layout('admin');
@@ -76,9 +79,20 @@ class AppController extends Controller
 
     public function beforeRender(Event $event)
     {
+      // this must be for category menu in navbar
       $this->loadModel('Category');
-      $this->set('cat', $this->Category->find()
-      ->limit(10)
-      );
+      $this->set('cat', $this->Category->find('all',[
+      'limit'=> 5, 'order' => ['Category.title'=> 'asc']
+      ]));
+
+      // this part for cart counter
+      $session = $this->request->session();
+      if($session->read('Shop.Order.quantity')!= null){
+        $count = $session->read('Shop.Order.quantity');
+      }
+      else {
+        $count = 0;
+      }
+      $this->set('count',$count);
     }
 }
