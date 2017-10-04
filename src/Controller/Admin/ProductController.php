@@ -12,7 +12,8 @@ class ProductController extends AppController
           'contain' => ['Category','Material'],
           'order' => [
               'Product.idProduct' => 'asc'
-          ]
+          ],
+          'limit' => 15,
       ];
       $product = $this->paginate($this->Product);
 
@@ -81,7 +82,7 @@ class ProductController extends AppController
 
       $material = $this->Product->Material->find('list',['keyField' => 'idMaterial',
       'valueField' => 'Title']);
-      
+
       $this->set(compact('product','category','material'));
   }
 

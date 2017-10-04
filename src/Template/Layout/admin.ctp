@@ -37,11 +37,11 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li><a href="/admin">Main page</a></li>
-            <li><a href="/admin/user">Users</a></li>
             <li><a href="/admin/product">Products</a></li>
             <li><a href="/admin/material">Material</a></li>
             <li><a href="/admin/category">Categories</a></li>
             <li><a href="/admin/image">Images</a></li>
+            <li><a href="/admin/user">Users</a></li>
           </ul>
         </div>
       </nav>

@@ -7,6 +7,7 @@ use Cake\Event\Event;
 
 class AppController extends Controller
 {
+    //default for all paginate elements on the page
     public $paginate = [
   		'limit' => 15
   	];
@@ -14,14 +15,15 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
-
+        // loading required  components
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Csrf');
-        $this->set('maintitle', 'Online store - MuzInterior');
+        // setting global variables
+        $this->set('maintitle', 'Online store | MuzInterior');
         $this->set('currency', 'EUR');
 
-
+        // auth components helps handle with session allows disalows etc
         $this->loadComponent('Auth', [
           'loginAction' => [
             'controller' => 'User',
@@ -79,9 +81,9 @@ class AppController extends Controller
     {
       // this must be for category menu in navbar
       $this->loadModel('Category');
-      $this->set('cat', $this->Category->find()
-      ->limit(10)
-      );
+      $this->set('cat', $this->Category->find('all',[
+      'limit'=> 5, 'order' => ['Category.title'=> 'asc']
+      ]));
 
       // this part for cart counter
       $session = $this->request->session();

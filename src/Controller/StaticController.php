@@ -3,6 +3,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 
+// this controller is without any db
 class StaticController extends AppController
 {
 

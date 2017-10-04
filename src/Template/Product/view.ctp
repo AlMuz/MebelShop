@@ -17,7 +17,7 @@
 
 <div class="col-md-12" style="margin-bottom: 20px">
 	<div class="col-sm-6 col-md-6 pull-right">
-		<?= $this->Html->image($product->MainImage,['class'=>'img-responsive img', 'style' => 'max-height: 500px; z-index: 9999' ]);?>
+		<?= $this->Html->image($product->MainImage,['class'=>'img-responsive img', 'style' => 'max-height: 500px; ' ]);?>
 	</div>
 	<div class="col-sm-6 col-md-6 ">
 		<h1 class="page-header">
@@ -91,6 +91,7 @@
 
 <style media="screen">
 	.img:hover, .smallimg:hover{
+		z-index: 9999
 		color: #424242;
 		-webkit-transition: all .3s ease-in;
 		-moz-transition: all .3s ease-in;

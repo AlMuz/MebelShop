@@ -15,6 +15,7 @@ class UserController extends AppController
         $this->Auth->allow('register','login');
         $this->Auth->deny('index','logout','order','edit');
 
+        // setting allowed countries to register
         $country=['Latvia'=>'Latvia','Lithuania'=>'Lithuania','Estonia'=>'Estonia'];
         $this->set('country', $country);
     }
