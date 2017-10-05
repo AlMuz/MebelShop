@@ -47,6 +47,40 @@ body{
 	clear: both;
 }
 
+/*img in product/view*/
+.img:hover, .smallimg:hover{
+	z-index: 9999
+	color: #424242;
+	-webkit-transition: all .3s ease-in;
+	-moz-transition: all .3s ease-in;
+	-ms-transition: all .3s ease-in;
+	-o-transition: all .3s ease-in;
+	transition: all .3s ease-in;
+	opacity: 1;
+	transform: scale(1.15);
+	-ms-transform: scale(1.15); /* IE 9 */
+	-webkit-transform: scale(1.15); /* Safari and Chrome */
+}
+
+.smallimg:hover{
+	transform: scale(2);
+	-ms-transform: scale(2); /* IE 9 */
+	-webkit-transform: scale(1.6); /* Safari and Chrome */
+}
+
+/*for numbers*/
+
+/* For Firefox */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 /*Footer*/
 #footer-sub{
 	color:#FFFFFF;

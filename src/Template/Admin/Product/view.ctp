@@ -44,7 +44,7 @@
           <?php if(!empty($image)): ?>
     			<?=$this->Html->image($image->Image,array('escape'=>false,'class'=>'thumbnail','style'=>'height:140px; width:185px;display: inline;'));?>
         <?php else: ?>
-          <?= 'there are no galery' ?>
+          <?= 'there are no gallery' ?>
         <?php endif; ?>
     		<?php endforeach;?>
     	</div>

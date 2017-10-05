@@ -133,3 +133,13 @@ $( "#productadd" ).validate({
 		}
   }
 });
+
+// product/view
+$( "#addtocart" ).validate({
+  rules: {
+    quantity: {
+      number: true,
+      required: true
+    }
+  }
+});

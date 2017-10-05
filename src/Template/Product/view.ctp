@@ -30,7 +30,7 @@
 			<div class="form-group">
 				<?= $this->Form->create('Cart',array('id'=>'addtocart','url'=>array('controller'=>'product','action'=>'add')));?>
 				<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
-				<?= $this->Form->input('quantity', ['class' => 'numeric form-control input-small','id' => 'quantity', 'placeholder' => 'Quantity', 'style' => 'margin-left:10px; width: auto', 'label' => false, 'maxlength' => 2,'value'=> '1' ]); ?>
+				<?= $this->Form->input('quantity', ['class' => 'form-control input-small','id' => 'Quantity', 'placeholder' => 'Quantity', 'style' => 'margin-left:10px; width: auto', 'label' => false, 'maxlength' => 2,'value'=> '1' ]); ?>
 				<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'style' => 'margin-left:10px; margin-top: 10px;'));?>
 				<?= $this->Form->end();?>
 			</div>
@@ -50,7 +50,7 @@
 		<div style=" padding-top: 20px;">
 			<ul class="nav nav-tabs">
 		    <li class="active"><a data-toggle="tab" href="#home">Information</a></li>
-		    <li><a data-toggle="tab" href="#menu1">Galery</a></li>
+		    <li><a data-toggle="tab" href="#menu1">Gallery</a></li>
 		  </ul>
 
 		  <div class="tab-content">
@@ -69,14 +69,14 @@
 		    </div>
 
 		    <div id="menu1" class="tab-pane fade">
-					<h3>Galery</h3>
+					<h3>Gallery</h3>
 					<div style="display:inline;">
 						<?php if(!empty($product->image)): ?>
 							<?php foreach ($product->image as $image):?>
 								<?=$this->Html->image($image->Image,array('escape'=>false,'class'=>'img-responsive smallimg','style'=>'max-height:140px;display: inline; padding-bottom: 5px'));?>
 							<?php endforeach;?>
 						<?php else: ?>
-							<?= 'There are no photo in galery:(' ?>
+							<?= 'There are no photo in gallery:(' ?>
 						<?php endif; ?>
 					</div>
 		    </div>
@@ -89,24 +89,4 @@
 <div class="col-md-12" style="margin-bottom: 20px">
 </div>
 
-<style media="screen">
-	.img:hover, .smallimg:hover{
-		z-index: 9999
-		color: #424242;
-		-webkit-transition: all .3s ease-in;
-		-moz-transition: all .3s ease-in;
-		-ms-transition: all .3s ease-in;
-		-o-transition: all .3s ease-in;
-		transition: all .3s ease-in;
-		opacity: 1;
-		transform: scale(1.15);
-		-ms-transform: scale(1.15); /* IE 9 */
-		-webkit-transform: scale(1.15); /* Safari and Chrome */
-	}
-
-	.smallimg:hover{
-		transform: scale(2);
-		-ms-transform: scale(2); /* IE 9 */
-		-webkit-transform: scale(1.6); /* Safari and Chrome */
-	}
-</style>
+<script src="/js/validation.js"></script>

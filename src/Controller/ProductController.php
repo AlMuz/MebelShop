@@ -64,11 +64,19 @@ class ProductController extends AppController
             ));
         }
 
-        $product = $this->Product->find('all', array(
-            'recursive' => -1,
-            'conditions' => $conditions,
-            'limit' => 200,
-        ));
+        // check exists $conditions or not
+        if(!isset($conditions)){
+          $this->set(compact('search'));
+        }
+        else{
+          $product = $this->Product->find('all', array(
+              'recursive' => -1,
+              'conditions' => $conditions,
+              'limit' => 200,
+          ));
+        }
+
+
         $this->set(compact('product'));
     }
     $this->set(compact('search'));
@@ -82,7 +90,7 @@ class ProductController extends AppController
         $quantity =$this->request->data['quantity'] ;
         $product = $this->Cart->add($id, $quantity);
     }
-    
+
     if(!empty($product)) {
         $this->Flash->success($product->Name. ' was added to your shopping cart.');
     } else {
