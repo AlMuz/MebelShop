@@ -20,6 +20,32 @@ class CartController extends AppController
       $this->set(compact('shop'));
     }
 
+    //Checking user information after press button ckeckout in cart/index
+    public function checkout(){
+      $session = $this->request->session();
+
+      $shop = $session->read('Shop');
+      if(!$shop['Order']['total']) {
+          return $this->redirect('/');
+      }
+
+      $this->loadModel('User');
+      $query = $this->User->find('all')
+      ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
+      $this->set('user',$query);
+      $this->set(compact('shop'));
+    }
+
+    //
+    public function payment(){
+      $session = $this->request->session();
+      $shop = $session->read('Shop');
+
+      if(empty($shop)) {
+          return $this->redirect('/');
+      }
+    }
+
     // function to clear all cart
     public function clear() {
         // call cart Component function

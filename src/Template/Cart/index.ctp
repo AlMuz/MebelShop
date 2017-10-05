@@ -71,13 +71,17 @@
     </div>
     <hr>
     <div class="row">
-      <div class=" pull-right">
+      <div class="pull-right">
         Order Total: <span class="red" id="total"><?= $this->Number->currency($shop['Order']['total'], $currency); ?></span>
-        <br />
+        <br>
 			  Total weight: <span class="red" id="total"><?= ($shop['Order']['weight']); ?> KG</span>
-				<br />
-				<br />
-        <?= $this->Form->create(NULL, array('url' => array('controller' => 'shop', 'action' => 'step1'))); ?>
+				<br>
+				<br>
+				<?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'checkout'))); ?>
+					<?= $this->Form->button('checkout', array('class' => 'btn btn-md btn-success', 'escape' => false));?>
+				<?= $this->Form->end(); ?>
+				<br>
+        <?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'paypal'))); ?>
       		<input type='image' name='submit' src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' border='0' align='top' alt='Check out with PayPal' class="submit" />
         <?= $this->Form->end(); ?>
       </div>
