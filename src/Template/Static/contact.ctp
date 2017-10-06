@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<ol class="breadcrumb" style="margin-bottom: 10px">
+		<ol class="breadcrumb">
 			<li>
 				<?= $this->Html->link('Home','/');?>
 			</li>

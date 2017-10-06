@@ -1,5 +1,5 @@
 <footer>
-  <div style="min-height: 250px;" class="footer" id="footer-sub">
+  <div id="footer-sub">
       <div class="container">
         <div class="row" id="sub-two">
           <div class="col-md-4">

@@ -9,7 +9,7 @@
         <?= $this->Html->link(($product->Name),
             array('action'=>'view',$product->idProduct));
             if(($product->Interest) > 50 ){
-                echo '<p style="float: right;"><span style="color:red" class="glyphicon glyphicon-heart"></span> TOP!</p>';
+                echo '<p style="float: right;"><span class="glyphicon glyphicon-heart"></span>TOP!</p>';
             }
         ?>
       </h4>

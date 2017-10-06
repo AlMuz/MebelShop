@@ -1,8 +1,8 @@
-<?php $this->assign('title', 'Shopping cart - '.$maintitle);?>
+<?php $this->assign('title', 'Checkout - '.$maintitle);?>
 
 <div class="row">
 	<div class="col-lg-12">
-		<ol class="breadcrumb" style="margin-bottom: 10px">
+		<ol class="breadcrumb">
 			<li>
 				<?= $this->Html->link('Home','/');?>
 			</li>
@@ -16,7 +16,7 @@
 	</div>
 </div>
 <h1>Shipping information</h1>
-<div class="">
+<div>
   <?php foreach ($user as $user):?>
     <div class="col-md-6">
       <h3>
@@ -42,11 +42,12 @@
     </div>
   <?php endforeach;?>
   <br>
-  <div class="">
+  <div>
     <p style="font-size: 16px;">Is it correct information? if not:</p>&nbsp;
     <a href="/user/edit">Edit your profile</a>
     <br>
-    <a href="/cart/payment">Next</a>
+		<?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'payment'))); ?>
+			<?= $this->Form->button('Checkout', array('class' => 'btn btn-md btn-success', 'escape' => false));?>
+		<?= $this->Form->end(); ?>
   </div>
-
 </div>

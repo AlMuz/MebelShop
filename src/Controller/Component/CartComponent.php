@@ -109,4 +109,9 @@ class CartComponent  extends Component{
       $session->delete('Shop');
   }
 
+  public function clearOrderType() {
+      $session = $this->request->session();
+      $session->delete('Shop.Order.order_type');
+  }
+
 }

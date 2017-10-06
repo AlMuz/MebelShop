@@ -1,6 +1,6 @@
 <?php $this->assign('title', 'Edit profile - '.$maintitle);?>
 
-<div class="container-fluid well span6">
+<div class="container-fluid well">
 	<div class="row-fluid">
     <?= $this->Form->create($user,['id'=>'profile']) ?>
       <fieldset>

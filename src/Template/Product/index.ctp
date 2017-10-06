@@ -1,10 +1,10 @@
 <?php $this->assign('title', 'Main Page - '.$maintitle);?>
 <?php if (!empty($product)): ?>
-	<div class="">
+	<div>
 		<!-- will be some carousel-->
 	</div>
 	<div class="row">
-		<div style="padding-left:15px;">
+		<div class="padding-left">
 			<table>
 				<tbody>
 					<tr>

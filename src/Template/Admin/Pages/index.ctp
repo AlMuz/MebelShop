@@ -13,7 +13,7 @@
           <div class="panel-body">
               <div class="row alert-success">
                   <div class="col-xs-5">
-                    <span class="glyphicon glyphicon-thumbs-up" style="font-size: 5em"></span>
+                    <span class="glyphicon glyphicon-thumbs-up thumbsize" ></span>
                   </div>
                   <div class="col-xs-5 text-right">
                       <p class="alerts-heading"><?= $user ?></p>
@@ -22,7 +22,7 @@
               </div>
               <div class="row alert-success">
                   <div class="col-xs-5">
-                    <span class="glyphicon glyphicon-thumbs-up" style="font-size: 5em"></span>
+                    <span class="glyphicon glyphicon-thumbs-up thumbsize" ></span>
                   </div>
                   <div class="col-xs-5 text-right">
                       <p class="alerts-heading"><?= $product ?></p>
@@ -31,7 +31,7 @@
               </div>
               <div class="row alert-success">
                   <div class="col-xs-5">
-                    <span class="glyphicon glyphicon-thumbs-up" style="font-size: 5em"></span>
+                    <span class="glyphicon glyphicon-thumbs-up thumbsize" ></span>
                   </div>
                   <div class="col-xs-5 text-right">
                       <p class="alerts-heading"><?= $category ?></p>
@@ -40,7 +40,7 @@
               </div>
               <div class="row alert-success">
                   <div class="col-xs-5">
-                    <span class="glyphicon glyphicon-thumbs-up" style="font-size: 5em"></span>
+                    <span class="glyphicon glyphicon-thumbs-up thumbsize" ></span>
                   </div>
                   <div class="col-xs-5 text-right">
                       <p class="alerts-heading"><?= $material ?></p>
@@ -49,7 +49,7 @@
               </div>
               <div class="row alert-success">
                   <div class="col-xs-5">
-                    <span class="glyphicon glyphicon-thumbs-up" style="font-size: 5em"></span>
+                    <span class="glyphicon glyphicon-thumbs-up thumbsize" ></span>
                   </div>
                   <div class="col-xs-5 text-right">
                       <p class="alerts-heading"><?php echo $order?></p>

@@ -23,7 +23,6 @@ class CartController extends AppController
     //Checking user information after press button ckeckout in cart/index
     public function checkout(){
       $session = $this->request->session();
-
       $shop = $session->read('Shop');
       if(!$shop['Order']['total']) {
           return $this->redirect('/');
@@ -34,16 +33,23 @@ class CartController extends AppController
       ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
       $this->set('user',$query);
       $this->set(compact('shop'));
+      $order_type = 'creditcard';
+      $session->write('Shop.Order.'.'order_type', $order_type);
+
     }
 
     //
     public function payment(){
       $session = $this->request->session();
       $shop = $session->read('Shop');
-
       if(empty($shop)) {
           return $this->redirect('/');
       }
+      $this->loadModel('User');
+      $query = $this->User->find('all')
+      ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
+      $this->set('user',$query);
+      $this->set(compact('shop'));
     }
 
     // function to clear all cart
@@ -52,6 +58,14 @@ class CartController extends AppController
         $this->Cart->clear();
         $this->Flash->success(__('Cart successfully cleared'));
         return $this->redirect('/');
+    }
+
+    // function to clear all cart
+    public function clearOrderType() {
+        // call cart Component function
+        $this->Cart->clearOrderType();
+        $this->Flash->success(__('You changed order type'));
+        return $this->redirect('/cart');
     }
 
     // function to remove choosen product

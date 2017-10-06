@@ -15,7 +15,7 @@
               echo $this->Form->control('Material_idMaterial', ['options' => $material,'label'=>'Material','class' => 'form-control']);
           ?>
       </fieldset>
-      <?= $this->Form->button(__('Submit'),['class'=>'btn btn-success', 'style' => 'margin-top: 10px;']) ?>
+      <?= $this->Form->button(__('Submit'),['class'=>'btn btn-success margintop10']) ?>
     </div>
     <?= $this->Form->end() ?>
 </div>

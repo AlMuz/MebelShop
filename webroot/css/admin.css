@@ -1,5 +1,10 @@
 body {
   margin-top: 70px;
+  font-family: 'Trebuchet MS';
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
 }
 
 #wrapper {
@@ -16,16 +21,15 @@ body {
   margin: 0;
 }
 
+.margintop10{
+  margin-top: 10px;
+}
+
 .alerts-text{
   margin: 0;
 }
-
-body {
-  font-family: 'Trebuchet MS';
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333;
-  background-color: #fff;
+.thumbsize{
+  font-size: 5em
 }
 
 /*Nav bar styles*/

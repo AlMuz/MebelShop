@@ -12,6 +12,42 @@ body{
 	padding: 0 15px 30px 15px;
 }
 
+.limitControl{
+	padding: 5px 10px 0 15px;
+}
+
+.breadcrumb{
+	margin-bottom: 10px;
+}
+
+.padding-left{
+	padding-left: 15px;
+}
+
+.glyphicon-heart{
+	color:red
+}
+
+.margin-bottom{
+	margin-bottom: 20px;
+}
+
+.width50{
+	width:50px;
+}
+
+.margintop10{
+  margin-top: 10px;
+}
+
+.leftpos{
+	text-align: left;
+}
+
+.leftpos a{
+	font-size: 17px;
+}
+
 /* correcting margin navbar and maincontent for unauthorised user*/
 @media (max-width: 767px){
 	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
@@ -27,16 +63,14 @@ body{
 	}
 }
 
-.leftpos{
-	text-align: left;
-}
-
-.leftpos a{
-	font-size: 17px;
-}
-
+/*in product/view*/
 .mainproduct{
 	padding-top: 10px;
+}
+
+.productprice{
+	padding: 0 5px 10px 10px;
+	margin: 0;
 }
 
 .thumbnail{
@@ -47,9 +81,32 @@ body{
 	clear: both;
 }
 
+#Quantity-error{
+	padding-top: 5px;
+  padding-left: 10px;
+}
+
+.socialforproduct{
+	margin-bottom: 20px;
+}
+
+/*For print styles in product/view*/
+.smallerpic{
+	margin-top: 10px;
+	height: 300px;
+}
+
+.title-product{
+	font-size: 28px;
+	border-bottom: 0;
+}
+
+.display-none{
+	display: none;
+}
+
 /*img in product/view*/
 .img:hover, .smallimg:hover{
-	z-index: 9999
 	color: #424242;
 	-webkit-transition: all .3s ease-in;
 	-moz-transition: all .3s ease-in;
@@ -68,8 +125,7 @@ body{
 	-webkit-transform: scale(1.6); /* Safari and Chrome */
 }
 
-/*for numbers*/
-
+/*for numbers hide scroll*/
 /* For Firefox */
 input[type='number'] {
     -moz-appearance:textfield;
@@ -83,6 +139,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /*Footer*/
 #footer-sub{
+	min-height: 250px;
 	color:#FFFFFF;
   background-color: #333;
   border-top: 1px solid #000000;

@@ -2,6 +2,7 @@
 
 <div class="row">
   <div class="col-md-12">
+    <!-- need to centrate grid  -->
     <div class="col-md-1 hidden-xs hidden-sm">
     </div>
     <div class="col-md-10">
@@ -68,6 +69,7 @@
         </div>
       </div>
     </div>
+    <!-- need to centrate grid  -->
     <div class="col-md-1 hidden-xs hidden-sm">
     </div>
   </div>

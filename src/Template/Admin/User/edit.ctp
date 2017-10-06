@@ -17,7 +17,7 @@
           echo $this->Form->select('Root',[1=>'Yes',0=>'No'], ['empty' => '(choose one)','class' => 'form-control']);
           ?>
       </fieldset>
-      <?= $this->Form->button(__('Submit'),['class'=>'btn btn-success', 'style' => 'margin-top: 10px;']) ?>
+      <?= $this->Form->button(__('Submit'),['class'=>'btn btn-success margintop10']) ?>
     </div>
     <?= $this->Form->end() ?>
 </div>

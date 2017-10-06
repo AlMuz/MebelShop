@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<ol class="breadcrumb" style="margin-bottom: 10px">
+		<ol class="breadcrumb">
 			<li>
 				<?= $this->Html->link('Home','/');?>
 			</li>
@@ -12,9 +12,8 @@
 		</ol>
 	</div>
 </div>
-<div class="col-md-12" style="margin-bottom: 20px">
+<div class="col-md-12 margin-bottom">
   <h1>Shopping Cart</h1>
-	<hr>
   <?php if(empty($shop['OrderItem'])) : ?>
     <h2 style="padding-left:10px">Shopping Cart is empty</h2>
   <?php else: ?>
@@ -63,8 +62,8 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="pull-right" style="float:right">
+				<?= $this->Form->button('Update cart', array('class' => 'btn btn-sm btn-default', 'escape' => false));?>
         <?= $this->Html->link('Clear Shopping Cart', array('controller' => 'Cart', 'action' => 'clear'), array('class' => 'btn btn-sm btn-danger', 'escape' => false,'confirm' => __('Are you sure you want to clear all your cart?' ))); ?>
-        <?= $this->Form->button('Update', array('class' => 'btn btn-sm btn-default', 'escape' => false));?>
         <?= $this->Form->end(); ?>
         </div>
       </div>
@@ -78,12 +77,12 @@
 				<br>
 				<br>
 				<?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'checkout'))); ?>
-					<?= $this->Form->button('checkout', array('class' => 'btn btn-md btn-success', 'escape' => false));?>
+					<?= $this->Form->button('Checkout', array('class' => 'btn btn-md btn-success', 'escape' => false));?>
 				<?= $this->Form->end(); ?>
 				<br>
-        <?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'paypal'))); ?>
+        <!-- <?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'paypal'))); ?>
       		<input type='image' name='submit' src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' border='0' align='top' alt='Check out with PayPal' class="submit" />
-        <?= $this->Form->end(); ?>
+        <?= $this->Form->end(); ?> -->
       </div>
     </div>
   <?php endif; ?>

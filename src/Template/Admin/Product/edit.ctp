@@ -16,7 +16,7 @@
 
           ?>
       </fieldset>
-      <?= $this->Form->button(__('Submit'),['class'=>'btn btn-success', 'style' => 'margin-top: 10px;']) ?>
+      <?= $this->Form->button(__('Submit'),['class'=>'btn btn-success margintop10']) ?>
     </div>
     <?= $this->Form->end() ?>
 </div>
