@@ -86,8 +86,6 @@
   <hr>
 <?php endforeach; ?>
 
-<hr>
-
 <div class="row">
   <div class="col col-sm-10">Products: <?= $shop['Order']['order_item_count']; ?></div>
   <div class="col col-sm-1" style="text-align: right;">Items: <?= $shop['Order']['quantity']; ?></div>

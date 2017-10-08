@@ -9,19 +9,19 @@ $( "#regform" ).validate({
     Name: {
       required: true,
       minlength: 2,
-      maxlength: 64,
+      maxlength: 45,
       lettersonly: true
     },
     Surname: {
       required: true,
       minlength: 2,
-      maxlength: 64,
+      maxlength: 45,
       lettersonly: true
     },
     Login:{
       required: true,
       minlength: 6,
-      maxlength: 64
+      maxlength: 45
     },
     Email:{
       required: true,
@@ -51,11 +51,13 @@ $( "#regform" ).validate({
     City:{
       required: true,
       minlength: 3,
-      lettersonly: true
+      lettersonly: true,
+      maxlength: 50
     },
     Adress:{
       required: true,
-      minlength: 5
+      minlength: 5,
+      maxlength: 150
     }
   }
 });
@@ -106,7 +108,7 @@ $( "#productadd" ).validate({
     Name: {
       required: true,
       minlength: 2,
-      maxlength: 64,
+      maxlength: 100
     },
     Price: {
 			number: true,

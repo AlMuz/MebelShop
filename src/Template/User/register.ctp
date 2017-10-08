@@ -46,7 +46,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <?= $this->Form->control('Country',['empty' => '(choose one)','class' => 'form-control','options' => $country,'label'=>false,'placeholder' => 'Country','tabindex' => '7']) ?>
+                <?= $this->Form->control('Country',['empty' => '(Country: choose one)','class' => 'form-control','options' => $country,'label'=>false,'placeholder' => 'Country','tabindex' => '7']) ?>
               </div>
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
