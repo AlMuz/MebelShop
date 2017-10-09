@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Network\Email\Email;
 
 class CartController extends AppController
 {
@@ -50,7 +51,7 @@ class CartController extends AppController
       ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
       $this->set('user',$query);
       $this->set(compact('shop'));
-      $order_type = 'creditcard';
+      $order_type = 'Creditcard';
       $session->write('Shop.Order.'.'order_type', $order_type);
     }
 
@@ -69,9 +70,8 @@ class CartController extends AppController
       ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
       $this->set('user',$query);
       $this->set(compact('shop'));
-      
+
       $order = $this->Orders->newEntity();
-      $orderItem = $this->OrderItem->newEntity();
       if ($this->request->is('post')) {
         if(isset($this->request->data['creditcard_number'])){
             if(($this->request->data['creditcard_number'] == 4716108999716531) && ($this->request->data['creditcard_code'] == 257) && ($this->request->data['creditcard_year'] == 17) && ($this->request->data['creditcard_month'] == 01 )){
@@ -85,10 +85,9 @@ class CartController extends AppController
             $order->Shipping = 1;
             if ($this->Orders->save($order)) {
               $idorder = $order->idOrder;
-              $orderItem = $this->OrderItem->patchEntity($orderItem, $this->request->getData());
-              // debug($shop['OrderItem']);
-              // die();
               foreach ($shop['OrderItem'] as  $item){
+                $orderItem = $this->OrderItem->newEntity();
+                $orderItem = $this->OrderItem->patchEntity($orderItem, $this->request->getData());
                 $orderItem->orders_idOrder = $idorder;
                 $orderItem->idProduct = $item['product_id'];
                 $orderItem->quantity = $item['quantity'];

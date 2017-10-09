@@ -1,22 +1,3 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Order $order
-  */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Order'), ['action' => 'edit', $order->idOrder]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Order'), ['action' => 'delete', $order->idOrder], ['confirm' => __('Are you sure you want to delete # {0}?', $order->idOrder)]) ?> </li>
-        <li><?= $this->Html->link(__('List Orders'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Order'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List User'), ['controller' => 'User', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'User', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Order Item'), ['controller' => 'OrderItem', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Order Item'), ['controller' => 'OrderItem', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
 <div class="orders view large-9 medium-8 columns content">
     <h3><?= h($order->idOrder) ?></h3>
     <table class="vertical-table">

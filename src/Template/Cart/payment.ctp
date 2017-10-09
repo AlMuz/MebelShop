@@ -95,7 +95,7 @@
 </div>
 
 <hr>
-<?php if($shop['Order']['order_type'] == 'creditcard') : ?>
+<?php if($shop['Order']['order_type'] == 'Creditcard') : ?>
 	<div class="row">
     <div class="col col-sm-4">
       <strong>Credit or debit card</strong>
