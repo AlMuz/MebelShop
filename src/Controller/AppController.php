@@ -11,7 +11,8 @@ class AppController extends Controller
     public $paginate = [
   		'limit' => 15
   	];
-
+    public $helpers = ['CkEditor.Ck'];
+    
     public function initialize()
     {
         parent::initialize();

@@ -6,7 +6,8 @@
           <?php
               echo $this->Form->control('Name',['class' => 'form-control']);
               echo $this->Form->control('Price',['class' => 'form-control']);
-              echo $this->Form->control('Description',['class' => 'form-control']);
+              echo $this->Ck->input('Description',['class' => 'form-control']);
+              // echo $this->Form->control('Description',['class' => 'form-control']);
               echo $this->Form->control('Interest',['class' => 'form-control']);
               // echo $this->Form->input('MainImage', array('label' => __('Add main image'),'type' => 'file'));
               echo $this->Form->control('Size',['class' => 'form-control']);

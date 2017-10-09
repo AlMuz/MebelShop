@@ -1,4 +1,6 @@
 <div class="product view large-9 medium-8 columns content">
+  <?= $this->Html->link(__('Edit product'), ['controller'=>'product','action' => 'edit', $product->idProduct], ['class' => 'btn btn-success pull-right']) ?>
+
     <h3><?= $product->Name ?></h3>
     <hr>
     <table class="vertical-table">
@@ -33,7 +35,7 @@
     </table>
       <div class="row">
           <h4><?= __('Description') ?></h4>
-          <?= $this->Text->autoParagraph(h($product->Description)); ?>
+          <?= $this->Text->autoParagraph($product->Description); ?>
       </div>
       <br>
       <?= $this->Html->link(__('Add new photos'), ['controller'=>'image','action' => 'add'], ['class' => 'btn btn-xs btn-warning', 'escapeTitle' => false]) ?>
