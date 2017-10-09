@@ -50,6 +50,13 @@ class CartController extends AppController
       ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
       $this->set('user',$query);
       $this->set(compact('shop'));
+      // if ($this->request->is('post')) {
+      //   if($this->request->data['creditcard_number'] == 5012322214881337 || $this->request->data['creditcard_code'] == 1337 || $this->request->data['creditcard_year'] == 17 || $this->request->data['creditcard_month'] == 01 ){
+      //     debug('allrigt');
+      //   }
+      //
+      //   // die();
+      // }
     }
 
     // function to clear all cart

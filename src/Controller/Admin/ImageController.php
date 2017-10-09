@@ -31,7 +31,7 @@ class ImageController extends AppController
 
       if ($this->request->is('post')) {
         debug($this->request->data);
-        // die();
+        die();
           $image = $this->Image->patchEntity($image, $this->request->getData());
 
           if ($this->Image->save($image)) {

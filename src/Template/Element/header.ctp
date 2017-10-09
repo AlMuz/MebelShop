@@ -62,9 +62,12 @@
                 <?= $this->Html->css('loggedin.css') ?>
 
                 <li>
-        	      	<?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.$count.'</span>',
-        	      								array('controller'=>'cart','action'=>'index'),array('escape'=>false));
-                  ?>
+                    <?php if($count != 0): ?>
+          	      	  <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.$count.'</span>',
+          	      								array('controller'=>'cart','action'=>'index'),array('escape'=>false));
+                      ?>
+                    <?php endif; ?>
+
         	      </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('User Section') ?><span class="caret"></span></a>

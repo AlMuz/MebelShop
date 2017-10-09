@@ -71,9 +71,9 @@
     <hr>
     <div class="row">
       <div class="pull-right">
-        Order Total: <span class="red" id="total"><?= $this->Number->currency($shop['Order']['total'], $currency); ?></span>
+        Order Total: <span id="total"><?= $this->Number->currency($shop['Order']['total'], $currency); ?></span>
         <br>
-			  Total weight: <span class="red" id="total"><?= ($shop['Order']['weight']); ?> KG</span>
+			  Total weight: <span id="weight"><?= ($shop['Order']['weight']); ?> KG</span>
 				<br>
 				<br>
 				<?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'checkout'))); ?>

@@ -1,4 +1,5 @@
 <?php $this->assign('title', 'Payment - '.$maintitle);?>
+<script src="/js/payment.js"></script>
 
 <div class="row">
 	<div class="col-lg-12">
@@ -18,6 +19,7 @@
 		</ol>
 	</div>
 </div>
+<?= $this->Form->create('Order'); ?>
 
 <h1>Place Your Order</h1>
 <?php foreach ($user as $user):?>
@@ -89,75 +91,56 @@
 <div class="row">
   <div class="col col-sm-10">Products: <?= $shop['Order']['order_item_count']; ?></div>
   <div class="col col-sm-1" style="text-align: right;">Items: <?= $shop['Order']['quantity']; ?></div>
-  <div class="col col-sm-1" style="text-align: right;">Total<br /><strong><?= $this->Number->currency($item['total'], $currency);?></strong></div>
+  <div class="col col-sm-1" style="text-align: right;">Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency); ?></strong></div>
 </div>
 
 <hr>
-
-<?= $this->Form->create('Order'); ?>
-
 <?php if($shop['Order']['order_type'] == 'creditcard') : ?>
-
-<div class="row">
+	<div class="row">
     <div class="col col-sm-4">
-
-        <strong>Credit or debit card</strong>
-
-        <br />
-
-        <?= $this->Form->input('creditcard_number', array('label' => false, 'class' => 'form-control ccinput', 'type' => 'tel', 'maxLength' => 16, 'autocomplete' => 'off')); ?>
-
+      <strong>Credit or debit card</strong>
+      <br>
+      <?= $this->Form->input('creditcard_number', array('label' => false, 'class' => 'form-control ccinput', 'type' => 'tel', 'maxLength' => 16, 'autocomplete' => 'off')); ?>
     </div>
     <div class="col col-sm-2">
-
-        <strong>Card Security Code</strong>
-
-        <br />
-
-        <?= $this->Form->input('creditcard_code', array('label' => false, 'class' => 'form-control', 'type' => 'tel', 'maxLength' => 4)); ?>
-
+      <strong>Card Security Code</strong>
+      <br>
+      <?= $this->Form->input('creditcard_code', array('label' => false, 'class' => 'form-control', 'type' => 'tel', 'maxLength' => 4)); ?>
     </div>
-</div>
-
-<br />
-
-<div class="row">
+	</div>
+	<br>
+	<div class="row">
     <div class="col col-sm-3">
-        <?= $this->Form->input('creditcard_month', array(
-            'label' => 'Expiration Month',
-            'class' => 'form-control',
-            'options' => array(
-                '01' => '01 - January',
-                '02' => '02 - February',
-                '03' => '03 - March',
-                '04' => '04 - April',
-                '05' => '05 - May',
-                '06' => '06 - June',
-                '07' => '07 - July',
-                '08' => '08 - August',
-                '09' => '09 - September',
-                '10' => '10 - October',
-                '11' => '11 - November',
-                '12' => '12 - December'
-            )
-        )); ?>
+      <?= $this->Form->input('creditcard_month', array(
+          'label' => 'Expiration Month',
+          'class' => 'form-control',
+          'options' => array(
+              '01' => '01 - January',
+              '02' => '02 - February',
+              '03' => '03 - March',
+              '04' => '04 - April',
+              '05' => '05 - May',
+              '06' => '06 - June',
+              '07' => '07 - July',
+              '08' => '08 - August',
+              '09' => '09 - September',
+              '10' => '10 - October',
+              '11' => '11 - November',
+              '12' => '12 - December'
+          )
+      )); ?>
     </div>
     <div class="col col-sm-3">
-        <?= $this->Form->input('creditcard_year', array(
-            'label' => 'Expiration Year',
-            'class' => 'form-control',
-            'options' => array_combine(range(date('y'), date('y') + 10), range(date('Y'), date('Y') + 10))
-        ));?>
+      <?= $this->Form->input('creditcard_year', array(
+          'label' => 'Expiration Year',
+          'class' => 'form-control',
+          'options' => array_combine(range(date('y'), date('y') + 10), range(date('Y'), date('Y') + 10))
+      ));?>
     </div>
-</div>
-
-<br />
-<br />
-
+	</div>
 <?php endif; ?>
-
-<?= $this->Form->button('<i class="fa fa-check"></i> &nbsp; Place your order', array('class' => 'btn btn-sm btn-success', 'ecape' => false)); ?>
-
+<br>
+<?= $this->Form->button('Place your order', array('class' => 'btn btn-sm btn-success', 'ecape' => false)); ?>
 <?= $this->Form->end(); ?>
 <br>
 

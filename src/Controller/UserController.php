@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
+use Cake\Network\Email\Email;
 
 class UserController extends AppController
 {
@@ -47,20 +48,34 @@ class UserController extends AppController
                )
           );
           $result = $this->User->find('list', $conditions);
-
           if (!$result->count()==0){
             $this->Flash->error(__('This username already exists'));
           }
-          // if not exists username -> all right and successfull registration
+          // if not exists username -> allright and successfull registration
           else{
             if ($this->User->save($user)) {
-                $this->Flash->success(__('You successfuly registered'));
-                return $this->redirect(['controller'=>'user','action' => 'login']);
+              //sending welcome email to new user
+              $email = new Email('default');
+              $email->transport('gmail');
+              $subject = 'Welcome!'. $user->Login;
+              $msg = 'Hello! <b>'.$user->Name.' '.$user->Surname.' '.'<b>!</br> Nice to meet you there! </br> Feel free to buy something';
+              try {
+                $email
+                     ->transport('gmail')
+                     ->from(['teregan1996@gmail.com' => 'MuzInterior - Online shop'])
+                     ->to($user->Email)
+                     ->subject('Welcome! '. $user->Name)
+                      ->emailFormat('html')
+                     ->viewVars(array('msg' => $msg))
+                     ->send($msg);
+              } catch (Exception $e) {
+                echo 'Exception : ',  $e->getMessage(), "\n";
+              }
+              $this->Flash->success(__('You successfuly registered'));
+              return $this->redirect(['controller'=>'user','action' => 'login']);
             }
           }
       }
-
-
       $this->set('user', $user);
     }
 
