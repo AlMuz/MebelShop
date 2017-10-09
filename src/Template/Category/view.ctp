@@ -49,13 +49,13 @@
     	<?php foreach ($product as $product):?>
       	<div class="col-sm-6 col-md-4 mainproduct">
     			<?= $this->Html->link($this->Html->image($product->MainImage),
-    					array('controller'=>'product','action'=>'view',$product->idProduct),
-    					array('escape'=>false,'class'=>'thumbnail'));
+    					['controller'=>'product','action'=>'view',$product->idProduct],
+    					['escape'=>false,'class'=>'thumbnail']);
           ?>
     			<div>
     				<h4>
               <?= $this->Html->link(($product->Name),
-		    					array('controller'=>'product','action'=>'view',$product->idProduct));
+		    					['controller'=>'product','action'=>'view',$product->idProduct]);
 
 									if(($product->Interest) > 50 ){
 											echo '<p style="float: right;"><span class="glyphicon glyphicon-heart"></span> TOP!</p>';

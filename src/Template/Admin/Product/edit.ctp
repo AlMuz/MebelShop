@@ -9,7 +9,7 @@
               echo $this->Ck->input('Description',['class' => 'form-control']);
               // echo $this->Form->control('Description',['class' => 'form-control']);
               echo $this->Form->control('Interest',['class' => 'form-control']);
-              // echo $this->Form->input('MainImage', array('label' => __('Add main image'),'type' => 'file'));
+              // echo $this->Form->input('MainImage', ['label' => __('Add main image'),'type' => 'file']);
               echo $this->Form->control('Size',['class' => 'form-control']);
               echo $this->Form->control('Weight',['class' => 'form-control']);
               echo $this->Form->control('Category_idCategory', ['options' => $category,'label'=>'Category','class' => 'form-control']);

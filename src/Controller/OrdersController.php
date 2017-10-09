@@ -8,12 +8,10 @@ class OrdersController extends AppController
 
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['User']
-        ];
-        $orders = $this->paginate($this->Orders);
-
-        $this->set(compact('orders'));
+      $query = $this->Orders->find('all')
+      ->where(['User_IdUser = ' => $this->Auth->user('idUser')]);
+      $query = $this->paginate($query);
+      $this->set('orders',$query);
     }
 
     public function view($id = null)
@@ -57,7 +55,6 @@ class OrdersController extends AppController
         }
         $user = $this->Orders->User->find('list', ['limit' => 200]);
         $this->set(compact('order', 'user'));
-        $this->set('_serialize', ['order']);
     }
 
     public function delete($id = null)

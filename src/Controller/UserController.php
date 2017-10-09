@@ -58,7 +58,9 @@ class UserController extends AppController
               $email = new Email('default');
               $email->transport('gmail');
               $subject = 'Welcome!'. $user->Login;
-              $msg = 'Hello! <b>'.$user->Name.' '.$user->Surname.' '.'<b>!</br> Nice to meet you there! </br> Feel free to buy something';
+              $msg = 'Hello! <b>'.$user->Name.' '.$user->Surname.' '.'<b>!
+              </br> Nice to meet you there!
+              </br> Feel free to buy something';
               try {
                 $email
                      ->transport('gmail')
@@ -66,7 +68,7 @@ class UserController extends AppController
                      ->to($user->Email)
                      ->subject('Welcome! '. $user->Name)
                       ->emailFormat('html')
-                     ->viewVars(array('msg' => $msg))
+                     ->viewVars(['msg' => $msg])
                      ->send($msg);
               } catch (Exception $e) {
                 echo 'Exception : ',  $e->getMessage(), "\n";

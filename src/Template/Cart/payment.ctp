@@ -19,7 +19,7 @@
 		</ol>
 	</div>
 </div>
-<?= $this->Form->create('Order'); ?>
+<?= $this->Form->create('Order',['id'=>'paymentform']); ?>
 
 <h1>Place Your Order</h1>
 <?php foreach ($user as $user):?>
@@ -100,48 +100,50 @@
     <div class="col col-sm-4">
       <strong>Credit or debit card</strong>
       <br>
-      <?= $this->Form->input('creditcard_number', array('label' => false, 'class' => 'form-control ccinput', 'type' => 'tel', 'maxLength' => 16, 'autocomplete' => 'off')); ?>
+      <?= $this->Form->input('creditcard_number', [
+				'label' => false,
+				'class' => 'form-control',
+				'id'=>'creditcard_number',
+				'type' => 'number',
+				'maxLength' => 16,
+				'autocomplete' => 'off'
+			]); ?>
     </div>
     <div class="col col-sm-2">
       <strong>Card Security Code</strong>
       <br>
-      <?= $this->Form->input('creditcard_code', array('label' => false, 'class' => 'form-control', 'type' => 'tel', 'maxLength' => 4)); ?>
+      <?= $this->Form->input('creditcard_code', [
+				'type'=>'password',
+				'label' => false,
+				'class' => 'form-control',
+				'maxLength' => 4,
+				'id'=>'creditcard_code'
+			]); ?>
     </div>
 	</div>
 	<br>
 	<div class="row">
     <div class="col col-sm-3">
-      <?= $this->Form->input('creditcard_month', array(
+      <?= $this->Form->input('creditcard_month', [
           'label' => 'Expiration Month',
           'class' => 'form-control',
-          'options' => array(
-              '01' => '01 - January',
-              '02' => '02 - February',
-              '03' => '03 - March',
-              '04' => '04 - April',
-              '05' => '05 - May',
-              '06' => '06 - June',
-              '07' => '07 - July',
-              '08' => '08 - August',
-              '09' => '09 - September',
-              '10' => '10 - October',
-              '11' => '11 - November',
-              '12' => '12 - December'
-          )
-      )); ?>
+          'options' => $months
+      ]); ?>
     </div>
     <div class="col col-sm-3">
-      <?= $this->Form->input('creditcard_year', array(
+      <?= $this->Form->input('creditcard_year', [
           'label' => 'Expiration Year',
           'class' => 'form-control',
-          'options' => array_combine(range(date('y'), date('y') + 10), range(date('Y'), date('Y') + 10))
-      ));?>
+          'options' => $years
+      ]);?>
     </div>
 	</div>
 <?php endif; ?>
 <br>
-<?= $this->Form->button('Place your order', array('class' => 'btn btn-sm btn-success', 'ecape' => false)); ?>
+<?= $this->Form->button('Place your order', ['class' => 'btn btn-sm btn-success', 'ecape' => false]); ?>
 <?= $this->Form->end(); ?>
-<br>
+<!-- <br>
 
-<?= $this->Html->link('Clear Order Type', array('controller' => 'Cart', 'action' => 'clearOrderType'), array('class' => 'btn btn-sm btn-danger', 'escape' => false,'confirm' => __('Are you sure you want to clear all your cart?' ))); ?>
+<?= $this->Html->link('Clear Order Type', ['controller' => 'Cart', 'action' => 'clearOrderType'], ['class' => 'btn btn-sm btn-danger', 'escape' => false,'confirm' => __('Are you sure you want to clear all your cart?' )]); ?> -->
+
+<script src="/js/validation.js"></script>

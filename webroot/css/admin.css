@@ -32,6 +32,11 @@ body {
   font-size: 5em
 }
 
+.panel-body{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /*Nav bar styles*/
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,

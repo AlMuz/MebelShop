@@ -64,7 +64,7 @@
                 <li>
                     <?php if($count != 0): ?>
           	      	  <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.$count.'</span>',
-          	      								array('controller'=>'cart','action'=>'index'),array('escape'=>false));
+          	      								['controller'=>'cart','action'=>'index'],['escape'=>false]);
                       ?>
                     <?php endif; ?>
 

@@ -57,7 +57,6 @@ class OrdersController extends AppController
         }
         $user = $this->Orders->User->find('list', ['limit' => 200]);
         $this->set(compact('order', 'user'));
-        $this->set('_serialize', ['order']);
     }
 
     public function delete($id = null)

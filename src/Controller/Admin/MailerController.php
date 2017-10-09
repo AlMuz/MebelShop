@@ -24,7 +24,7 @@ class MailerController extends AppController
       $subject = $this->request->data['subject'];
       $msg = $this->request->data['message'];
       // getting all existing emails
-      $mails = array();
+      $mails = [];
       foreach($user as $user)
       {
           $mails[] = $user->Email;
@@ -36,12 +36,14 @@ class MailerController extends AppController
              ->to($mails)
              ->subject($subject)
               ->emailFormat('html')
-             ->viewVars(array('msg' => $msg))
+             ->viewVars(['msg' => $msg])
              ->send($msg);
       } catch (Exception $e) {
         echo 'Exception : ',  $e->getMessage(), "\n";
       }
       $this->Flash->success(__('Emails successfully sended!'));
+      return $this->redirect(['action' => 'index']);
+
     }
   }
 
@@ -49,7 +51,7 @@ class MailerController extends AppController
   {
     $this->loadModel('User');
     $user = $this->User->find('list',['keyField' => 'Email',
-    'valueField' => 'Email']);
+    'valueField' => ['Name','Email']]);
     $this->set(compact('user'));
 
     if ($this->request->is('post')) {
@@ -65,12 +67,14 @@ class MailerController extends AppController
              ->to($useremail)
              ->subject($subject)
               ->emailFormat('html')
-             ->viewVars(array('msg' => $msg))
+             ->viewVars(['msg' => $msg])
              ->send($msg);
       } catch (Exception $e) {
         echo 'Exception : ',  $e->getMessage(), "\n";
       }
       $this->Flash->success(__('Email successfully sended!'));
+      return $this->redirect(['action' => 'index']);
+
     }
   }
 }

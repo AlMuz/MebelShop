@@ -145,3 +145,18 @@ $( "#addtocart" ).validate({
     }
   }
 });
+
+// cart/payment
+$( "#paymentform" ).validate({
+  rules: {
+    creditcard_number: {
+      required: true,
+      creditcard: true
+    },
+    creditcard_code: {
+      required: true,
+      digits: true,
+      minlength: 3
+    }
+  }
+});

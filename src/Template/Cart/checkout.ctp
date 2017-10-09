@@ -46,8 +46,8 @@
     <p style="font-size: 16px;">Is it correct information? if not:</p>&nbsp;
     <a href="/user/edit">Edit your profile</a>
     <br>
-		<?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'payment'))); ?>
-			<?= $this->Form->button('Checkout', array('class' => 'btn btn-md btn-success', 'escape' => false));?>
+		<?= $this->Form->create(NULL, ['url' => ['controller' => 'cart', 'action' => 'payment']]); ?>
+			<?= $this->Form->button('Checkout', ['class' => 'btn btn-md btn-success', 'escape' => false]);?>
 		<?= $this->Form->end(); ?>
   </div>
 </div>

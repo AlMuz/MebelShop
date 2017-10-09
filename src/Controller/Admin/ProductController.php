@@ -33,7 +33,6 @@ class ProductController extends AppController
   {
     $product = $this->Product->newEntity();
     if ($this->request->is('post')) {
-
         $product = $this->Product->patchEntity($product, $this->request->getData());
         $data = $this->request->data;
         if($data['MainImage']['name']){

@@ -30,10 +30,10 @@
 		</h2>
 		<?php if($loggedIn) : ?>
 			<div class="form-group">
-				<?= $this->Form->create('Cart',array('id'=>'addtocart','url'=>array('controller'=>'product','action'=>'add')));?>
-				<?= $this->Form->hidden('product_id',array('value'=>$product->idProduct))?>
+				<?= $this->Form->create('Cart',['id'=>'addtocart','url'=>['controller'=>'product','action'=>'add']]);?>
+				<?= $this->Form->hidden('product_id',['value'=>$product->idProduct])?>
 				<?= $this->Form->input('quantity', ['class' => 'form-control input-small','id' => 'Quantity', 'placeholder' => 'Quantity', 'style' => 'margin-left:10px; width: auto', 'label' => false, 'maxlength' => 2,'value'=> '1' ]); ?>
-				<?= $this->Form->submit('Add to cart',array('class'=>'btn-success btn', 'id'=>'display-button','style' => 'margin-left:10px; margin-top: 10px;'));?>
+				<?= $this->Form->submit('Add to cart',['class'=>'btn-success btn', 'id'=>'display-button','style' => 'margin-left:10px; margin-top: 10px;']);?>
 				<?= $this->Form->end();?>
 			</div>
 		<?php else :   ?>
@@ -75,7 +75,7 @@
 					<div style="display:inline;">
 						<?php if(!empty($product->image)): ?>
 							<?php foreach ($product->image as $image):?>
-								<?=$this->Html->image($image->Image,array('escape'=>false,'class'=>'img-responsive smallimg','style'=>'max-height:140px;display: inline; padding-bottom: 5px'));?>
+								<?=$this->Html->image($image->Image,['escape'=>false,'class'=>'img-responsive smallimg','style'=>'max-height:140px;display: inline; padding-bottom: 5px']);?>
 							<?php endforeach;?>
 						<?php else: ?>
 							<?= 'There are no photo in gallery:(' ?>

@@ -43,7 +43,7 @@
       <div style="display:inline;">
     		<?php foreach ($product->image as $image):?>
           <?php if(!empty($image)): ?>
-    			<?=$this->Html->image($image->Image,array('escape'=>false,'class'=>'thumbnail','style'=>'height:140px; width:185px;display: inline;'));?>
+    			<?=$this->Html->image($image->Image,['escape'=>false,'class'=>'thumbnail','style'=>'height:140px; width:185px;display: inline;']);?>
         <?php else: ?>
           <?= 'there are no gallery' ?>
         <?php endif; ?>

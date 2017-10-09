@@ -6,7 +6,9 @@
         <?php
             echo $this->Form->control('useremail', ['label'=>'Email','empty' => '(choose one)','options' => $user,'class' => 'form-control','required' => true]);
             echo $this->Form->control('subject',['class' => 'form-control','required' => true]);
-            echo $this->Form->control('message',['class' => 'form-control','required' => true]);
+            echo $this->Ck->input('message',['class' => 'form-control','required' => true]);
+
+            // echo $this->Form->control('message',['class' => 'form-control','required' => true]);
         ?>
       </fieldset>
     <?= $this->Form->button(__('Send'),['class'=>'btn btn-success margintop10']) ?>

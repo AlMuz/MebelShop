@@ -17,7 +17,7 @@
   <?php if(empty($shop['OrderItem'])) : ?>
     <h2 style="padding-left:10px">Shopping Cart is empty</h2>
   <?php else: ?>
-    <?= $this->Form->create(NULL, array('id'=>'quantitycheck','url' => array('controller' => 'cart', 'action' => 'cartupdate'))); ?>
+    <?= $this->Form->create(NULL, ['id'=>'quantitycheck','url' => ['controller' => 'cart', 'action' => 'cartupdate']]); ?>
     <hr>
     <div class="row">
       <div class="col col-sm-5 hidden-xs">ITEM</div>
@@ -37,7 +37,7 @@
         <div class="col col-sm-5">
 					<label class="hidden-sm hidden-md hidden-lg">Item Name:</label><br>
           <strong>
-            <?= $this->Html->link($item['name'], array('controller' => 'product', 'action' => 'view', $item['product_id'])); ?>
+            <?= $this->Html->link($item['name'], ['controller' => 'product', 'action' => 'view', $item['product_id']]); ?>
           </strong>
         </div>
         <div class="col col-sm-2">
@@ -46,7 +46,8 @@
         </div>
         <div class="col col-sm-2">
 					<label class="hidden-sm hidden-md hidden-lg">Quantity:</label>
-				 	<?= $this->Form->input('quantity-' . $key, array('class' => 'form-control input-small', 'label' => false, 'size' => 2, 'maxlength' => 2, 'tabindex' => $tabindex++, 'data-id' => $item['product_id'], 'value' => $item['quantity'],'pattern' =>'\d*','title'=>'It must be positive number or zero ')); ?>
+				 	<?= $this->Form->input('quantity-' . $key,
+					['class' => 'form-control input-small', 'label' => false, 'size' => 2, 'maxlength' => 2, 'tabindex' => $tabindex++, 'data-id' => $item['product_id'], 'value' => $item['quantity'],'pattern' => '\d*','title' => 'It must be positive number or zero ']); ?>
         </div>
         <div class="col col-sm-1">
 					<label class="hidden-sm hidden-md hidden-lg">Total:</label>
@@ -54,7 +55,7 @@
         </div>
         <div class="col col-sm-1">
 					<label class="hidden-sm hidden-md hidden-lg">Action</label>
-          <?= $this->Html->link('Delete', array('controller' => 'cart', 'action' => 'remove', $key),['confirm' => __('Are you sure you want to delete this product from cart?')]); ?>
+          <?= $this->Html->link('Delete', ['controller' => 'cart', 'action' => 'remove', $key],['confirm' => __('Are you sure you want to delete this product from cart?')]); ?>
         </div>
       </div>
       <hr>
@@ -62,8 +63,8 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="pull-right" style="float:right">
-				<?= $this->Form->button('Update cart', array('class' => 'btn btn-sm btn-default', 'escape' => false));?>
-        <?= $this->Html->link('Clear Shopping Cart', array('controller' => 'Cart', 'action' => 'clear'), array('class' => 'btn btn-sm btn-danger', 'escape' => false,'confirm' => __('Are you sure you want to clear all your cart?' ))); ?>
+				<?= $this->Form->button('Update cart', ['class' => 'btn btn-sm btn-default', 'escape' => false]);?>
+        <?= $this->Html->link('Clear Shopping Cart', ['controller' => 'Cart', 'action' => 'clear'], ['class' => 'btn btn-sm btn-danger', 'escape' => false,'confirm' => __('Are you sure you want to clear all your cart?' )]); ?>
         <?= $this->Form->end(); ?>
         </div>
       </div>
@@ -76,13 +77,10 @@
 			  Total weight: <span id="weight"><?= ($shop['Order']['weight']); ?> KG</span>
 				<br>
 				<br>
-				<?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'checkout'))); ?>
-					<?= $this->Form->button('Checkout', array('class' => 'btn btn-md btn-success', 'escape' => false));?>
+				<?= $this->Form->create(NULL, ['url' => ['controller' => 'cart', 'action' => 'checkout']]); ?>
+					<?= $this->Form->button('Checkout', ['class' => 'btn btn-md btn-success', 'escape' => false]);?>
 				<?= $this->Form->end(); ?>
 				<br>
-        <!-- <?= $this->Form->create(NULL, array('url' => array('controller' => 'cart', 'action' => 'paypal'))); ?>
-      		<input type='image' name='submit' src='https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif' border='0' align='top' alt='Check out with PayPal' class="submit" />
-        <?= $this->Form->end(); ?> -->
       </div>
     </div>
   <?php endif; ?>
