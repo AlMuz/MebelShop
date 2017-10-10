@@ -16,7 +16,7 @@
     </div>
     <div>
       Price:
-      <?= $this->Number->currency($product->Price, $currency);?>
+      <?= $this->Number->currency($product->Price, $currency,['locale' => 'it_IT']);?>
     </div>
   </div>
 <?php endforeach;?>

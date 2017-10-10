@@ -31,7 +31,7 @@
           </td>
     			<td data-title="Order item count" ><?= $order->Order_item_count ?></td>
     			<td data-title="Shipping" ><?= $order->Shipping ?></td>
-    			<td data-title="Total" ><?= $this->Number->currency($order->Total, $currency)?></td>
+    			<td data-title="Total" ><?= $this->Number->currency($order->Total, $currency,['locale' => 'it_IT'])?></td>
     			<td data-title="Order Type" ><?= $order->Order_Type ?></td>
     			<td data-title="Created"><?= $order->Created ?></td>
           <td>

@@ -22,6 +22,10 @@ class OrderItemTable extends Table
           'foreignKey' => 'Orders_idOrder',
           'joinType' => 'INNER'
         ]);
+        $this->belongsTo('Product',[
+          'foreignKey' => 'Product_idProduct',
+          'joinType' => 'INNER'
+        ]);
     }
 
     public function validationDefault(Validator $validator)
@@ -36,9 +40,9 @@ class OrderItemTable extends Table
             ->notEmpty('orders_idOrder');
 
         $validator
-            ->scalar('idProduct')
-            ->requirePresence('idProduct', 'create')
-            ->notEmpty('idProduct');
+            ->scalar('Product_idProduct')
+            ->requirePresence('Product_idProduct', 'create')
+            ->notEmpty('Product_idProduct');
 
         $validator
             ->integer('quantity')

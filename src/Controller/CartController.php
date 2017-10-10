@@ -10,7 +10,9 @@ class CartController extends AppController
   {
       parent::initialize();
       $this->loadComponent('Cart');
+      // array to show this year and plus ten years in future
       $years =array_combine(range(date('y'), date('y') + 10), range(date('Y'), date('Y') + 10));
+      // array for months
       $months=[
           '01' => '01 - January',
           '02' => '02 - February',
@@ -25,6 +27,7 @@ class CartController extends AppController
           '11' => '11 - November',
           '12' => '12 - December'
       ];
+
       $this->set('months', $months);
       $this->set('years', $years);
   }
@@ -45,17 +48,19 @@ class CartController extends AppController
       if(!$shop['Order']['total']) {
           return $this->redirect('/');
       }
-
+      // loading model User
       $this->loadModel('User');
+      // loading information about logged in user
       $query = $this->User->find('all')
       ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
       $this->set('user',$query);
       $this->set(compact('shop'));
       $order_type = 'Creditcard';
+      // saving information in session, what order type is Credit card
       $session->write('Shop.Order.'.'order_type', $order_type);
     }
 
-    //cart/payment
+    //cart/payment, page where user paying for his order
     public function payment(){
       $session = $this->request->session();
       $shop = $session->read('Shop');
@@ -66,46 +71,67 @@ class CartController extends AppController
       $this->loadModel('Orders');
       $this->loadModel('OrderItem');
 
+      // loading information about logged in user
       $query = $this->User->find('all')
       ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
       $this->set('user',$query);
       $this->set(compact('shop'));
+      // saved cards for testing
+      $cards=['01'=>[ 'creditcard_number' => '4716108999716531', 'creditcard_code' => '257','creditcard_month' => '11','creditcard_year' => '17' ],
+              '02'=>[ 'creditcard_number' => '5281037048916168', 'creditcard_code' => '043','creditcard_month' => '05','creditcard_year' => '18' ],
+              '03'=>[ 'creditcard_number' => '342498818630298', 'creditcard_code' => '3156','creditcard_month' => '09','creditcard_year' => '18' ]
+             ];
+      $this->set('cards', $cards);
 
       $order = $this->Orders->newEntity();
       if ($this->request->is('post')) {
         if(isset($this->request->data['creditcard_number'])){
-            if(($this->request->data['creditcard_number'] == 4716108999716531) && ($this->request->data['creditcard_code'] == 257) && ($this->request->data['creditcard_year'] == 17) && ($this->request->data['creditcard_month'] == 01 )){
+          // checking for testing card
+          foreach ($cards as $cards) {
+          if(($this->request->data['creditcard_number'] == $cards['creditcard_number'])
+            && ($this->request->data['creditcard_code'] == $cards['creditcard_code'])
+            && ($this->request->data['creditcard_year'] == $cards['creditcard_year'])
+            && ($this->request->data['creditcard_month'] ==  $cards['creditcard_month'] )){
+            // adding information for order
             $order = $this->Orders->patchEntity($order, $this->request->getData());
             $order->User_IdUser = $this->Auth->user('idUser');
+            // status -> ordered
             $order->Status = 0;
             $order->Weight = $shop['Order']['weight'];
             $order->Order_item_count = $shop['Order']['order_item_count'];
             $order->Total = $shop['Order']['total'];
             $order->Order_Type = $shop['Order']['order_type'];
             $order->Shipping = 1;
+            // saving order
             if ($this->Orders->save($order)) {
               $idorder = $order->idOrder;
               foreach ($shop['OrderItem'] as  $item){
+                // adding information for order items
                 $orderItem = $this->OrderItem->newEntity();
                 $orderItem = $this->OrderItem->patchEntity($orderItem, $this->request->getData());
                 $orderItem->orders_idOrder = $idorder;
-                $orderItem->idProduct = $item['product_id'];
+                $orderItem->Product_idProduct = $item['product_id'];
                 $orderItem->quantity = $item['quantity'];
                 $orderItem->price = $item['price'];
                 $orderItem->sub_total = $item['total'];
+                // debug($orderItem);
+                // die();
+                // saving all order items
                 $this->OrderItem->save($orderItem);
               }
               $this->Flash->success(__('You ordered all'));
+              // clearing all cart information and redirecting user to the main page
               $this->Cart->clear();
               return $this->redirect('/');
             }
-            $this->Flash->error(__('The order could not be saved. Please, try again.'));
-          }
-          else {
-            $this->Flash->error(__('Credit number or something else is not right!'));
-          }
+          $this->Flash->error(__('The order could not be saved. Please, try again.'));
+        }
+        else {
+          $this->Flash->error(__('Credit number or something else is not right!'));
+        }
         }
       }
+    }
     }
 
     // function to clear all cart
@@ -117,12 +143,12 @@ class CartController extends AppController
     }
 
     // function to clear all cart
-    public function clearOrderType() {
-        // call cart Component function
-        $this->Cart->clearOrderType();
-        $this->Flash->success(__('You changed order type'));
-        return $this->redirect('/cart');
-    }
+    // public function clearOrderType() {
+    //     // call cart Component function
+    //     $this->Cart->clearOrderType();
+    //     $this->Flash->success(__('You changed order type'));
+    //     return $this->redirect('/cart');
+    // }
 
     // function to remove choosen product
     public function remove($id = null) {

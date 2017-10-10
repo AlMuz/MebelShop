@@ -201,6 +201,23 @@ input[type=number]::-webkit-outer-spin-button {
 	}
 }
 
+/*Cart/payment*/
+.payment-icon{
+	font-size: 20px;
+	margin-top: 25px;
+	right: 20px;
+}
+@media (max-width: 767px){
+	.payment-icon{
+		margin-top: 5px;
+		right: 0;
+	}
+}
+
+.align-right{
+	text-align: right;
+}
+
 /*Footer*/
 #footer-sub{
 	min-height: 250px;

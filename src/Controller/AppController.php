@@ -12,7 +12,7 @@ class AppController extends Controller
   		'limit' => 15
   	];
     public $helpers = ['CkEditor.Ck'];
-    
+
     public function initialize()
     {
         parent::initialize();

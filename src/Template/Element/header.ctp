@@ -62,40 +62,37 @@
                 <?= $this->Html->css('loggedin.css') ?>
 
                 <li>
-                    <?php if($count != 0): ?>
-          	      	  <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.$count.'</span>',
-          	      								['controller'=>'cart','action'=>'index'],['escape'=>false]);
-                      ?>
-                    <?php endif; ?>
-
+      	      	  <?php echo $this->Html->link('<span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart <span class="badge" id="cart-counter">'.$count.'</span>',
+      	      								['controller'=>'cart','action'=>'index'],['escape'=>false]);
+                  ?>
         	      </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('User Section') ?><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="/user/"><?= __('Profile') ?></a>
-                      </li>
-                      <li>
-                        <a href="/orders"><?= __('Orders') ?></a>
-                      </li>
-                        <li role="separator" class="divider"></li>
-                      <li>
-                        <a href="/user/logout"><?= __('Logout') ?></a>
-                      </li>
-                    </ul>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('User Section') ?><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href="/user/"><?= __('Profile') ?></a>
+                    </li>
+                    <li>
+                      <a href="/orders"><?= __('Orders') ?></a>
+                    </li>
+                      <li role="separator" class="divider"></li>
+                    <li>
+                      <a href="/user/logout"><?= __('Logout') ?></a>
+                    </li>
+                  </ul>
                 </li>
               <?php else :   ?>
                 <!--Else there will be dropdown with sign in and register  -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Sign in') ?><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li>
-                          <a href='/user/login'><?= __('Sign in') ?></a>
-                      </li>
-                      <li>
-                          <a href='/user/register'><?= __('Register') ?></a>
-                      </li>
-                    </ul>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= __('Sign in') ?><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a href='/user/login'><?= __('Sign in') ?></a>
+                    </li>
+                    <li>
+                      <a href='/user/register'><?= __('Register') ?></a>
+                    </li>
+                  </ul>
                 </li>
               <?php endif; ?>
             </ul>

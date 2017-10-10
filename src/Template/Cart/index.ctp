@@ -42,7 +42,7 @@
         </div>
         <div class="col col-sm-2">
 					<label class="hidden-sm hidden-md hidden-lg">Price:</label>
-          <?= $this->Number->currency($item['price'], $currency); ?>
+          <?= $this->Number->currency($item['price'], $currency,['locale' => 'it_IT']); ?>
         </div>
         <div class="col col-sm-2">
 					<label class="hidden-sm hidden-md hidden-lg">Quantity:</label>
@@ -51,7 +51,7 @@
         </div>
         <div class="col col-sm-1">
 					<label class="hidden-sm hidden-md hidden-lg">Total:</label>
-          <?= $this->Number->currency($item['total'], $currency); ?>
+          <?= $this->Number->currency($item['total'], $currency,['locale' => 'it_IT']); ?>
         </div>
         <div class="col col-sm-1">
 					<label class="hidden-sm hidden-md hidden-lg">Action</label>
@@ -72,7 +72,7 @@
     <hr>
     <div class="row">
       <div class="pull-right">
-        Order Total: <span id="total"><?= $this->Number->currency($shop['Order']['total'], $currency); ?></span>
+        Order Total: <span id="total"><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></span>
         <br>
 			  Total weight: <span id="weight"><?= ($shop['Order']['weight']); ?> KG</span>
 				<br>

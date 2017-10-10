@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Price') ?></th>
-            <td><?= $this->Number->currency($product->Price, $currency) ?></td>
+            <td><?= $this->Number->currency($product->Price, $currency,['locale' => 'it_IT']) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Interest') ?></th>
@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Material') ?></th>
-            <td><?= h($product->Material) ?></td>
+            <td><?= h($product->material->Title) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Size') ?></th>

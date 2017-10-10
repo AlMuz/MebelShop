@@ -33,6 +33,11 @@ class ProductTable extends Table
           'joinType' => 'INNER'
         ]);
 
+        $this->hasMany('order_item',[
+          'foreignKey' => 'Product_idProduct',
+          'joinType' => 'INNER'
+        ]);
+
     }
 
     public function validationDefault(Validator $validator)

@@ -1,5 +1,4 @@
 <?php $this->assign('title', 'Payment - '.$maintitle);?>
-<script src="/js/payment.js"></script>
 
 <div class="row">
 	<div class="col-lg-12">
@@ -30,7 +29,7 @@
             <h3 class="panel-title"><b>Customer Info</b></h3>
           </div>
           <div class="panel-body">
-            <?= $user->Name ?> <?= $user->Surname ?><br>
+            Customer: <?= $user->Name ?> <?= $user->Surname ?><br>
             Email: <?= $user->Email ?><br>
             Phone: <?= $user->Phonenumber ?>
           </div>
@@ -72,7 +71,7 @@
     </div>
     <div class="col col-sm-2">
       <label class="hidden-sm hidden-md hidden-lg">Price:</label>
-      <?= $this->Number->currency($item['price'], $currency); ?>
+      <?= $this->Number->currency($item['price'], $currency,['locale' => 'it_IT']); ?>
     </div>
 
     <div class="col col-sm-2">
@@ -82,7 +81,7 @@
 
     <div class="col col-sm-1">
       <label class="hidden-sm hidden-md hidden-lg">Total:</label>
-      <?= $this->Number->currency($item['total'], $currency); ?>
+      <?= $this->Number->currency($item['total'], $currency,['locale' => 'it_IT']); ?>
     </div>
   </div>
   <hr>
@@ -90,8 +89,8 @@
 
 <div class="row">
   <div class="col col-sm-10">Products: <?= $shop['Order']['order_item_count']; ?></div>
-  <div class="col col-sm-1" style="text-align: right;">Items: <?= $shop['Order']['quantity']; ?></div>
-  <div class="col col-sm-1" style="text-align: right;">Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency); ?></strong></div>
+  <div class="col col-sm-1 align-right" >Items: <?= $shop['Order']['quantity']; ?></div>
+  <div class="col col-sm-1 align-right" >Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></strong></div>
 </div>
 
 <hr>
@@ -110,7 +109,7 @@
 			]); ?>
     </div>
     <div class="col col-sm-2">
-      <strong>Card Security Code</strong>
+      <strong>CSC</strong>
       <br>
       <?= $this->Form->input('creditcard_code', [
 				'type'=>'password',
@@ -119,7 +118,14 @@
 				'maxLength' => 4,
 				'id'=>'creditcard_code'
 			]); ?>
-    </div>
+
+		</div>
+		<div class="col col-sm-1">
+			<span class="glyphicon glyphicon-info-sign payment-icon" data-toggle="popover" data-container="body" data-html="true" data-title="Card Security Code"
+				data-content="<div class='text-center'>The 3 or 4 digit code on back of the card..<img src='/img/cards/card.png'></div>"
+				data-trigger="hover">
+		 </span>
+		</div>
 	</div>
 	<br>
 	<div class="row">
@@ -142,8 +148,10 @@
 <br>
 <?= $this->Form->button('Place your order', ['class' => 'btn btn-sm btn-success', 'ecape' => false]); ?>
 <?= $this->Form->end(); ?>
-<!-- <br>
-
-<?= $this->Html->link('Clear Order Type', ['controller' => 'Cart', 'action' => 'clearOrderType'], ['class' => 'btn btn-sm btn-danger', 'escape' => false,'confirm' => __('Are you sure you want to clear all your cart?' )]); ?> -->
 
 <script src="/js/validation.js"></script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>

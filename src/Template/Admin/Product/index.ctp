@@ -21,7 +21,7 @@
             <tr>
               <td><?= $this->Number->format($product->idProduct) ?></td>
               <td><?= h($product->Name) ?></td>
-              <td><?= $this->Number->currency($product->Price, $currency) ?></td>
+              <td><?= $this->Number->currency($product->Price, $currency,['locale' => 'it_IT']) ?></td>
               <td><?= $this->Number->format($product->Interest) ?></td>
               <td><?= $product->Size ?></td>
               <td><?= $product->Weight ?></td>

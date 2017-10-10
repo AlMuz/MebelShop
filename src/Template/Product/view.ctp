@@ -24,9 +24,9 @@
 			<b><?= $product->Name;?></b>
 		</h1>
 		<h2 class="productprice">Price:
-			<?= $this->Number->currency($product->Price, $currency);?>
+			<?= $this->Number->currency($product->Price, $currency,['locale' => 'it_IT']);?>
 			<?php $withoutpvn = ($product->Price/1.21) ?>
-			<span style="font-size: 20px" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title='Price already with 21% VAT rate (PVN) Without VAT: <?= $this->Number->currency($withoutpvn, $currency);?>'></span>
+			<span style="font-size: 20px" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title='Price already with 21% VAT rate (PVN) Without VAT: <?= $this->Number->currency($withoutpvn, $currency,['locale' => 'it_IT']);?>'></span>
 		</h2>
 		<?php if($loggedIn) : ?>
 			<div class="form-group">
@@ -78,7 +78,7 @@
 								<?=$this->Html->image($image->Image,['escape'=>false,'class'=>'img-responsive smallimg','style'=>'max-height:140px;display: inline; padding-bottom: 5px']);?>
 							<?php endforeach;?>
 						<?php else: ?>
-							<?= 'There are no photo in gallery:(' ?>
+							<?= 'There are no photo in gallery.' ?>
 						<?php endif; ?>
 					</div>
 		    </div>

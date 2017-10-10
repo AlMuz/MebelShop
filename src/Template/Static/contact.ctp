@@ -26,12 +26,13 @@
   <div class="row">
     <div class="col-md-12">
       <div class="well well-sm">
-        <form>
+				<?= $this->Form->create() ?>
+
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label for="name"> Name </label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                <input type="text" class="form-control" id="name" placeholder="Enter name" required="required"  name="name"/>
               </div>
               <div class="form-group">
                 <label for="email"> Email Address </label>
@@ -39,7 +40,7 @@
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-envelope"></span>
                   </span>
-                  <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" />
+                  <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" name="email"/>
                 </div>
               </div>
               <div class="form-group">
@@ -55,13 +56,13 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="name"> Message </label>
-              <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
-                  placeholder="Message">
+              <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required">
               </textarea>
             </div>
           </div>
           <div class="col-md-12">
-            <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">Send Message</button>
+						<?= $this->Form->button(__('Send'),['class' => 'btn btn-success col-xs-12 col-sm-1','tabindex' => '11']) ?>
+					<?= $this->Form->end() ?>
           </div>
           </div>
         </form>

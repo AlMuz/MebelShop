@@ -65,10 +65,10 @@ class OrdersTable extends Table
             ->requirePresence('Total', 'create')
             ->notEmpty('Total');
 
-        $validator
-            ->integer('Order_Type')
-            ->requirePresence('Order_Type', 'create')
-            ->notEmpty('Order_Type');
+        // $validator
+        //     ->integer('Order_Type')
+        //     ->requirePresence('Order_Type', 'create')
+        //     ->notEmpty('Order_Type');
 
         // $validator
         //     ->dateTime('Created')
