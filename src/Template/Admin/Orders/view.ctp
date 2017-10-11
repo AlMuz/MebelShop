@@ -1,4 +1,6 @@
 <div class="orders view large-9 medium-8 columns content">
+  <?= $this->Html->link(__('Edit'), ['action' => 'edit',$order->idOrder], ['class' => 'btn btn-success pull-right']) ?>
+
   <h3>Order ID: <?= ($order->idOrder) ?></h3>
   <div class="orders">
     <table style="width:70%">

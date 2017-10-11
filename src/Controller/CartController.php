@@ -65,7 +65,7 @@ class CartController extends AppController
       $session = $this->request->session();
       $shop = $session->read('Shop');
       if(empty($shop)) {
-          return $this->redirect('/');
+          return $this->redirect('/orders');
       }
       $this->loadModel('User');
       $this->loadModel('Orders');
@@ -120,9 +120,9 @@ class CartController extends AppController
                 $this->OrderItem->save($orderItem);
               }
               $this->Flash->success(__('You ordered all'));
-              // clearing all cart information and redirecting user to the main page
+              // clearing all cart information and redirecting user to the orders page
               $this->Cart->clear();
-              return $this->redirect('/');
+              return $this->redirect('/orders/');
             }
           $this->Flash->error(__('The order could not be saved. Please, try again.'));
         }
