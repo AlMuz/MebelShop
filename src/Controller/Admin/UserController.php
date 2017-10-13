@@ -6,9 +6,11 @@ use App\Controller\AppController;
 class UserController extends AppController
 {
 
-
   public function index()
   {
+      $this->paginate = [
+          'limit' => 10,
+      ];
       $user = $this->paginate($this->User);
 
       $this->set(compact('user'));

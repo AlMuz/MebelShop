@@ -7,11 +7,14 @@ class MaterialController extends AppController
 {
     public function index()
     {
+        $this->paginate = [
+            'limit' => 10,
+        ];
+
         $material = $this->paginate($this->Material);
 
         $this->set(compact('material'));
     }
-
 
     public function view($id = null)
     {

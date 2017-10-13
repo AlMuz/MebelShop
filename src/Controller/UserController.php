@@ -67,7 +67,7 @@ class UserController extends AppController
                      ->from(['teregan1996@gmail.com' => 'MuzInterior - Online shop'])
                      ->to($user->Email)
                      ->subject('Welcome! '. $user->Name)
-                      ->emailFormat('html')
+                    ->emailFormat('html')
                      ->viewVars(['msg' => $msg])
                      ->send($msg);
               } catch (Exception $e) {

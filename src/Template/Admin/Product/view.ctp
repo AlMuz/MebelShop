@@ -38,7 +38,7 @@
           <?= $this->Text->autoParagraph($product->Description); ?>
       </div>
       <br>
-      <?= $this->Html->link(__('Add new photos'), ['controller'=>'image','action' => 'add'], ['class' => 'btn btn-xs btn-warning', 'escapeTitle' => false]) ?>
+      <?= $this->Html->link(__('Add new photos'), ['controller'=>'image','action' => 'add', $product->idProduct], ['class' => 'btn btn-xs btn-warning', 'escapeTitle' => false]) ?>
       <br>
       <div style="display:inline;">
     		<?php foreach ($product->image as $image):?>

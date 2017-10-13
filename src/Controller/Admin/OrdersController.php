@@ -9,7 +9,12 @@ class OrdersController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['User']
+            'limit' => 10,
+            'contain' => ['User'],
+            'order' => [
+              'Orders.Status' => 'asc'
+            ]
+
         ];
         $orders = $this->paginate($this->Orders);
 

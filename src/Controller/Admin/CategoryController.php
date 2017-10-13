@@ -7,6 +7,10 @@ class CategoryController extends AppController
 {
   public function index()
     {
+        $this->paginate = [
+            'limit' => 10,
+        ];
+
         $category = $this->paginate($this->Category);
 
         $this->set(compact('category'));

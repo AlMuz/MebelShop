@@ -6,7 +6,7 @@
         <legend><?= __('Add Image') ?></legend>
         <?php
             echo $this->Form->control('Image', ['type'=>'file','label'=>'Image']);
-            echo $this->Form->control('Product_idProduct', ['options' => $product,'label'=>'Product','class' => 'form-control']);
+            echo $this->Form->control('Product_idProduct', ['options' => $product,'label'=>'Product','class' => 'form-control','value'=>$value]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

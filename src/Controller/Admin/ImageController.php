@@ -8,6 +8,10 @@ class ImageController extends AppController
 
   public function index()
   {
+      $this->paginate = [
+          'limit' => 10,
+      ];
+
       $image = $this->paginate($this->Image,[
           'contain' => ['Product']
       ]);
@@ -24,14 +28,13 @@ class ImageController extends AppController
       $this->set('image', $image);
   }
 
- public function add()
+ public function add($id = null)
   {
       $image = $this->Image->newEntity();
       $this->loadModel('Product');
 
       if ($this->request->is('post')) {
-        debug($this->request->data);
-        die();
+
           $image = $this->Image->patchEntity($image, $this->request->getData());
 
           if ($this->Image->save($image)) {
@@ -43,7 +46,8 @@ class ImageController extends AppController
       }
       $product = $this->Product->find('list',['keyField' => 'idProduct',
       'valueField' => 'Name']);
-      $this->set(compact('image','product'));
+      $value = $id;
+      $this->set(compact('image','product','value'));
   }
 
   public function edit($id = null)

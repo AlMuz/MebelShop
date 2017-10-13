@@ -20,12 +20,19 @@ class PagesController extends AppController
      $user= $this->User->find('all')->count();
      $material= $this->Material->find('all')->count();
      $order =  $this->Orders->find('all')->count();
-
+     $ordered =  $this->Orders->find('all')
+                                   ->where(['Orders.Status =' => '0'])
+                                   ->count();
+     $delivered =  $this->Orders->find('all')
+                                   ->where(['Orders.Status =' => '1'])
+                                   ->count();
      $this->set('product', $product);
      $this->set('category', $category);
      $this->set('user', $user);
      $this->set('material', $material);
      $this->set('order', $order);
+     $this->set('ordered', $ordered);
+     $this->set('delivered', $delivered);
   }
 
 }

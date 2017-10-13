@@ -8,6 +8,13 @@ class OrdersController extends AppController
     // /orders, shows all users orders and their status
     public function index()
     {
+      $this->paginate = [
+          'limit' => 15,
+          'order' => [
+            'Orders.Created' => 'Desc'
+          ]
+      ];
+
       $query = $this->Orders->find('all')
       ->where(['User_IdUser = ' => $this->Auth->user('idUser')]);
       $query = $this->paginate($query);

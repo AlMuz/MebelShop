@@ -88,9 +88,9 @@
 <?php endforeach; ?>
 
 <div class="row">
-  <div class="col col-sm-10">Products: <?= $shop['Order']['order_item_count']; ?></div>
+  <div class="col col-sm-9">Products: <?= $shop['Order']['order_item_count']; ?></div>
   <div class="col col-sm-1 align-right" >Items: <?= $shop['Order']['quantity']; ?></div>
-  <div class="col col-sm-1 align-right" >Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></strong></div>
+  <div class="col col-sm-2 align-right" >Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></strong><br>Already with VAT(PVN) 21%</div>
 </div>
 
 <hr>
@@ -118,7 +118,7 @@
 				'maxLength' => 4,
 				'id'=>'creditcard_code'
 			]); ?>
-
+			<?php $this->Form->hidden($user->Email); ?>
 		</div>
 		<div class="col col-sm-1">
 			<span class="glyphicon glyphicon-info-sign payment-icon" data-toggle="popover" data-container="body" data-html="true" data-title="Card Security Code"

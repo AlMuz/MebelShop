@@ -72,9 +72,9 @@
     <hr>
     <div class="row">
       <div class="pull-right">
-        Order Total: <span id="total"><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></span>
+        Order Total: <span id="total"><b><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></b></span> Already with VAT(PVN) 21%
         <br>
-			  Total weight: <span id="weight"><?= ($shop['Order']['weight']); ?> KG</span>
+			  Total weight: <b><span id="weight"><?= ($shop['Order']['weight']); ?> KG</b></span>
 				<br>
 				<br>
 				<?= $this->Form->create(NULL, ['url' => ['controller' => 'cart', 'action' => 'checkout']]); ?>

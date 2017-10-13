@@ -8,28 +8,28 @@ class CartController extends AppController
 {
   public function initialize()
   {
-      parent::initialize();
-      $this->loadComponent('Cart');
-      // array to show this year and plus ten years in future
-      $years =array_combine(range(date('y'), date('y') + 10), range(date('Y'), date('Y') + 10));
-      // array for months
-      $months=[
-          '01' => '01 - January',
-          '02' => '02 - February',
-          '03' => '03 - March',
-          '04' => '04 - April',
-          '05' => '05 - May',
-          '06' => '06 - June',
-          '07' => '07 - July',
-          '08' => '08 - August',
-          '09' => '09 - September',
-          '10' => '10 - October',
-          '11' => '11 - November',
-          '12' => '12 - December'
-      ];
+    parent::initialize();
+    $this->loadComponent('Cart');
+    // array to show this year and plus ten years in future
+    $years =array_combine(range(date('y'), date('y') + 10), range(date('Y'), date('Y') + 10));
+    // array for months
+    $months=[
+      '01' => '01 - January',
+      '02' => '02 - February',
+      '03' => '03 - March',
+      '04' => '04 - April',
+      '05' => '05 - May',
+      '06' => '06 - June',
+      '07' => '07 - July',
+      '08' => '08 - August',
+      '09' => '09 - September',
+      '10' => '10 - October',
+      '11' => '11 - November',
+      '12' => '12 - December'
+    ];
 
-      $this->set('months', $months);
-      $this->set('years', $years);
+    $this->set('months', $months);
+    $this->set('years', $years);
   }
 
     // cart page, where are all information about products in cart
@@ -76,16 +76,20 @@ class CartController extends AppController
       ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
       $this->set('user',$query);
       $this->set(compact('shop'));
+
       // saved cards for testing
-      $cards=['01'=>[ 'creditcard_number' => '4716108999716531', 'creditcard_code' => '257','creditcard_month' => '11','creditcard_year' => '17' ],
-              '02'=>[ 'creditcard_number' => '5281037048916168', 'creditcard_code' => '043','creditcard_month' => '05','creditcard_year' => '18' ],
-              '03'=>[ 'creditcard_number' => '342498818630298', 'creditcard_code' => '3156','creditcard_month' => '09','creditcard_year' => '18' ]
-             ];
+      $cards=[
+        '01'=>[ 'creditcard_number' => '4716108999716531', 'creditcard_code' => '257','creditcard_month' => '11','creditcard_year' => '17' ],
+        '02'=>[ 'creditcard_number' => '5281037048916168', 'creditcard_code' => '043','creditcard_month' => '05','creditcard_year' => '18' ],
+        '03'=>[ 'creditcard_number' => '342498818630298', 'creditcard_code' => '3156','creditcard_month' => '09','creditcard_year' => '18' ]
+      ];
+
       $this->set('cards', $cards);
 
       $order = $this->Orders->newEntity();
       if ($this->request->is('post')) {
         if(isset($this->request->data['creditcard_number'])){
+          $user = $query;
           // checking for testing card
           foreach ($cards as $cards) {
           if(($this->request->data['creditcard_number'] == $cards['creditcard_number'])
@@ -114,11 +118,61 @@ class CartController extends AppController
                 $orderItem->quantity = $item['quantity'];
                 $orderItem->price = $item['price'];
                 $orderItem->sub_total = $item['total'];
-                // debug($orderItem);
-                // die();
                 // saving all order items
                 $this->OrderItem->save($orderItem);
               }
+              // sending email to user
+              $email = new Email('default');
+              $email->transport('gmail');
+              // getting data from request
+              $subject = 'Your Order: '. $idorder. ' is ordered!';
+              $msg = '
+                <div style="width:800px; margin:0 auto;">
+                  <h1> Hello, '.$this->Auth->user('Email').'! </h1>
+                  <br> <h2> Status: Ordered </h2>
+                  <br> Order Item Count: '.$order['Order_item_count'].'
+                  <br> There are all your products which you ordered:
+                  <br><br>
+                  <table style="border:1px black solid">
+                    <thead>
+                      <tr>
+                        <th style="padding-right: 15px">Product ID</th>
+                        <th style="padding-right: 15px">Quantity</th>
+                        <th style="padding-right: 15px">Price </th>
+                        <th style="padding-right: 15px">Sub total </th>
+                      </tr>
+                    </thead>
+                    <tbody>';
+              // typing all product which were in cart
+              foreach($shop['OrderItem'] as  $item) {
+                $msg .='
+                      <tr style="border:1px black solid">
+                        <td>' . $item['product_id'] .'</td>
+                        <td>'.$item['quantity'].'</td>
+                        <td>'.$item['price'].' €</td>
+                        <td>'.$item['total'].' €</td>
+                      </tr>';
+               }
+               $msg .= '
+                    </tbody>
+                 </table>
+                 Total price: <b>'.$shop['Order']['total']. '<b> €
+                 <br> Thank you for your order! We hope you will buy something new later!
+               </div>';
+              //  sending email to the user
+              try {
+                $email
+                     ->transport('gmail')
+                     ->from(['teregan1996@gmail.com' => 'MuzInterior - Online shop'])
+                     ->to($this->Auth->user('Email'))
+                     ->subject($subject)
+                     ->emailFormat('html')
+                     ->viewVars(['msg' => $msg])
+                     ->send($msg);
+              } catch (Exception $e) {
+                echo 'Exception : ',  $e->getMessage(), "\n";
+              }
+
               $this->Flash->success(__('You ordered all'));
               // clearing all cart information and redirecting user to the orders page
               $this->Cart->clear();
@@ -141,14 +195,6 @@ class CartController extends AppController
         $this->Flash->success(__('Cart successfully cleared'));
         return $this->redirect('/');
     }
-
-    // function to clear all cart
-    // public function clearOrderType() {
-    //     // call cart Component function
-    //     $this->Cart->clearOrderType();
-    //     $this->Flash->success(__('You changed order type'));
-    //     return $this->redirect('/cart');
-    // }
 
     // function to remove choosen product
     public function remove($id = null) {
