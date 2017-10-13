@@ -83,7 +83,8 @@ class AppController extends Controller
       // this must be for category menu in navbar
       $this->loadModel('Category');
       $this->set('cat', $this->Category->find('all',[
-      'limit'=> 5, 'order' => ['Category.title'=> 'asc']
+        'limit'=> 5, 
+        'order' => ['Category.title'=> 'asc']
       ]));
 
       // this part for cart counter

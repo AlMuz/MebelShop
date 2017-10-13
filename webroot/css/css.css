@@ -48,6 +48,16 @@ body{
 	font-size: 17px;
 }
 
+.forstar{
+	font-size: 11px;
+}
+
+.star{
+	color: red;
+	font-size: 16px;
+  top: 0.01em;
+}
+
 /* correcting margin navbar and maincontent for unauthorised user*/
 @media (max-width: 767px){
 	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
@@ -69,7 +79,7 @@ body{
 }
 
 .productprice{
-	padding: 0 5px 10px 10px;
+	padding: 5px 5px 10px 10px;
 	margin: 0;
 }
 
@@ -103,6 +113,10 @@ body{
 
 .display-none{
 	display: none;
+}
+
+#display{
+	border-bottom: 0;
 }
 
 /*img in product/view*/

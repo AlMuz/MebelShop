@@ -21,6 +21,7 @@ class CartComponent  extends Component{
   public function add($id, $quantity = 1) {
     $session = $this->request->session();
 
+    // checking if quantity = null, it will be 1
     if(!is_numeric($quantity)) {
         $quantity = 1;
     }
@@ -47,8 +48,9 @@ class CartComponent  extends Component{
     $data['weight'] = $product->Weight;
     $data['price'] = $product->Price;
     $data['quantity'] = $quantity;
+    // formating  price like 0.10
     $data['total'] = sprintf('%01.2f', $product->Price * $quantity);
-    $data['totalweight'] = sprintf('%01.2f', $product->Weight * $quantity);
+    $data['totalweight'] =  $product->Weight * $quantity;
     // and saving it in session
     $session->write('Shop.OrderItem.' . $id, $data);
 
@@ -69,6 +71,7 @@ class CartComponent  extends Component{
       return false;
   }
 
+  // this function count and sum date for order
   public function cart() {
     $session = $this->request->session();
     $shop = $session->read('Shop');
@@ -77,7 +80,7 @@ class CartComponent  extends Component{
     $subtotal = 0;
     $total = 0;
     $order_item_count = 0;
-
+    // counting how many items in order and summing another data
     if (count($shop['OrderItem']) > 0) {
       foreach ($shop['OrderItem'] as $item) {
         $quantity += $item['quantity'];

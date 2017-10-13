@@ -13,7 +13,7 @@ class ProductController extends AppController
           'order' => [
               'Product.idProduct' => 'asc'
           ],
-          'limit' => 15,
+          'limit' => 10,
       ];
       $product = $this->paginate($this->Product);
 
@@ -65,14 +65,22 @@ class ProductController extends AppController
           'contain' => ['Category', 'Image','Material']
       ]);
       if ($this->request->is(['patch', 'post', 'put'])) {
-          $product = $this->Product->patchEntity($product, $this->request->getData());
+        unlink(WWW_ROOT.'img/'.$product->MainImage);
+        $product = $this->Product->patchEntity($product, $this->request->getData());
+        $data = $this->request->data;
+        if($data['MainImage']['name']){
+          $filename = $this->Product->savefile($data);
 
-          if ($this->Product->save($product)) {
-              $this->Flash->success(__('The product has been saved.'));
-
-              return $this->redirect(['action' => 'index']);
+          $product->MainImage = $filename;
+          $result = $this->Product->save($product);
+          if($result) {
+            $this->Flash->success(__('The product has been saved.'));
+            return $this->redirect(['action' => 'index']);
           }
-          $this->Flash->error(__('The product could not be saved. Please, try again.'));
+          else{
+            $this->Flash->error(__('The product could not be saved. Please, try again.'));
+          }
+        }
       }
       $category = $this->Product->Category->find('list',['keyField' => 'idCategory',
       'valueField' => 'Title']);

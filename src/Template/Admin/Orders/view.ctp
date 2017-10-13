@@ -56,7 +56,7 @@
       </tr>
       <tr>
           <th scope="row"><?= __('Created') ?></th>
-          <td><?= h($order->Created) ?></td>
+          <td><?= date("Y-m-d H:i:s", strtotime($order->Created)) ?></td>
       </tr>
     </table>
   </div>

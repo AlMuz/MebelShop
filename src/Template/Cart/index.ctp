@@ -18,6 +18,7 @@
     <h2 style="padding-left:10px">Shopping Cart is empty</h2>
   <?php else: ?>
     <?= $this->Form->create(NULL, ['id'=>'quantitycheck','url' => ['controller' => 'cart', 'action' => 'cartupdate']]); ?>
+		<p class="forstar"><sup class="star">*</sup> Already with VAT (PVN) 21%</p>
     <hr>
     <div class="row">
       <div class="col col-sm-5 hidden-xs">ITEM</div>
@@ -72,7 +73,7 @@
     <hr>
     <div class="row">
       <div class="pull-right">
-        Order Total: <span id="total"><b><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></b></span> Already with VAT(PVN) 21%
+        Order Total: <span id="total"><b><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></b></span> <sup class="star">*</sup>
         <br>
 			  Total weight: <b><span id="weight"><?= ($shop['Order']['weight']); ?> KG</b></span>
 				<br>

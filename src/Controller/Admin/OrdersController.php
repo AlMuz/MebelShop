@@ -12,9 +12,9 @@ class OrdersController extends AppController
             'limit' => 10,
             'contain' => ['User'],
             'order' => [
-              'Orders.Status' => 'asc'
+              'Orders.Status' => 'asc',
+              'Orders.Created' => 'asc'
             ]
-
         ];
         $orders = $this->paginate($this->Orders);
 
@@ -29,7 +29,6 @@ class OrdersController extends AppController
 
         $this->set('order', $order);
     }
-
 
     public function edit($id = null)
     {

@@ -42,6 +42,10 @@
           <td><?= h($user->Adress) ?></td>
       </tr>
       <tr>
+          <th scope="row"><?= __('Created') ?></th>
+          <td><?= date("Y-m-d H:i:s", strtotime($user->Created)) ?></td>
+      </tr>
+      <tr>
           <th scope="row"><?= __('Root') ?></th>
           <td><?= $user->Root ? __('Yes') : __('No') ?></td>
       </tr>

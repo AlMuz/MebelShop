@@ -35,7 +35,7 @@
             <td><?= $this->Number->format($order->Shipping) ?></td>
             <td><?= $this->Number->currency($order->Total, $currency ,['locale' => 'it_IT'])?></td>
             <td><?= ($order->Order_Type) ?></td>
-            <td><?= h($order->Created) ?></td>
+            <td><?= date("Y-m-d H:i:s", strtotime($order->Created)) ?></td>
             <td class="actions">
               <?= $this->Html->link(__('<i class="glyphicon glyphicon-eye-open"></i>'), ['action' => 'view',$order->idOrder], ['class' => 'btn btn-xs btn-primary', 'escapeTitle' => false]) ?>
               <?= $this->Html->link(__('<i class="glyphicon glyphicon-edit"></i>'), ['action' => 'edit', $order->idOrder], ['class' => 'btn btn-xs btn-warning', 'escapeTitle' => false]) ?>

@@ -34,15 +34,20 @@ class ImageController extends AppController
       $this->loadModel('Product');
 
       if ($this->request->is('post')) {
-
-          $image = $this->Image->patchEntity($image, $this->request->getData());
-
-          if ($this->Image->save($image)) {
-              $this->Flash->success(__('The image has been saved.'));
-
-              return $this->redirect(['action' => 'index']);
+        $image = $this->Image->patchEntity($image, $this->request->getData());
+        $data = $this->request->data;
+        if($data['Image']['name']){
+  				$filename = $this->Image->savefile($data);
+          $image->Image = $filename;
+  				$result = $this->Image->save($image);
+  				if($result) {
+            $this->Flash->success(__('The Image has been saved.'));
+            return $this->redirect(['action' => 'index']);
+  				}
+          else{
+            $this->Flash->error(__('The Image could not be saved. Please, try again.'));
           }
-          $this->Flash->error(__('The image could not be saved. Please, try again.'));
+  			}
       }
       $product = $this->Product->find('list',['keyField' => 'idProduct',
       'valueField' => 'Name']);
@@ -55,15 +60,23 @@ class ImageController extends AppController
       $image = $this->Image->get($id, [
           'contain' => []
       ]);
-        $this->loadModel('Product');
+      $this->loadModel('Product');
       if ($this->request->is(['patch', 'post', 'put'])) {
-          $image = $this->Image->patchEntity($image, $this->request->getData());
-          if ($this->Image->save($image)) {
-              $this->Flash->success(__('The image has been saved.'));
-
-              return $this->redirect(['action' => 'index']);
+        unlink(WWW_ROOT.'img/'.$image->Image);
+        $image = $this->Image->patchEntity($image, $this->request->getData());
+        $data = $this->request->data;
+        if($data['Image']['name']){
+          $filename = $this->Image->savefile($data);
+          $image->Image = $filename;
+          $result = $this->Image->save($image);
+          if($result) {
+            $this->Flash->success(__('The image has been saved.'));
+            return $this->redirect(['action' => 'index']);
           }
-          $this->Flash->error(__('The image could not be saved. Please, try again.'));
+          else{
+            $this->Flash->error(__('The image could not be saved. Please, try again.'));
+          }
+        }
       }
       $product = $this->Product->find('list',['keyField' => 'idProduct',
       'valueField' => 'Name']);
@@ -74,6 +87,7 @@ class ImageController extends AppController
   {
       $this->request->allowMethod(['post', 'delete']);
       $image = $this->Image->get($id);
+      unlink(WWW_ROOT.'img/'.$image->Image);
       if ($this->Image->delete($image)) {
           $this->Flash->success(__('The image has been deleted.'));
       } else {

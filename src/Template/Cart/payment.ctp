@@ -21,6 +21,8 @@
 <?= $this->Form->create('Order',['id'=>'paymentform']); ?>
 
 <h1>Place Your Order</h1>
+<p class="forstar"><sup class="star">*</sup> Already with VAT (PVN) 21%</p>
+
 <?php foreach ($user as $user):?>
   <div class="row">
     <div class="col col-sm-6">
@@ -88,9 +90,9 @@
 <?php endforeach; ?>
 
 <div class="row">
-  <div class="col col-sm-9">Products: <?= $shop['Order']['order_item_count']; ?></div>
+  <div class="col col-sm-10">Products: <?= $shop['Order']['order_item_count']; ?></div>
   <div class="col col-sm-1 align-right" >Items: <?= $shop['Order']['quantity']; ?></div>
-  <div class="col col-sm-2 align-right" >Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></strong><br>Already with VAT(PVN) 21%</div>
+  <div class="col col-sm-1 align-right" >Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></strong><sup class="star"> *</sup></div>
 </div>
 
 <hr>

@@ -33,7 +33,7 @@
     			<td data-title="Shipping" ><?= $order->Shipping ?></td>
     			<td data-title="Total" ><?= $this->Number->currency($order->Total, $currency,['locale' => 'it_IT'])?></td>
     			<td data-title="Order Type" ><?= $order->Order_Type ?></td>
-    			<td data-title="Created"><?= $order->Created ?></td>
+    			<td data-title="Created"><?=date("Y-m-d H:i:s", strtotime($order->Created)) ?></td>
           <td>
             <?= $this->Html->link(__('View'), ['action' => 'view', $order->idOrder]) ?>
           </td>

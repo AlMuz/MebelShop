@@ -20,7 +20,7 @@
 		<?= $this->Html->image($product->MainImage,['class'=>'img-responsive img', 'style' => 'max-height: 500px; ', 'id' =>'picproduct' ]);?>
 	</div>
 	<div class="col-sm-6 col-md-6">
-		<h1 class="page-header" id="title-print">
+		<h1 style="margin:0" id="title-print">
 			<b><?= $product->Name;?></b>
 		</h1>
 		<h2 class="productprice">Price:

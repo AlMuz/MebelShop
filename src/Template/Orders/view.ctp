@@ -38,7 +38,7 @@
       </tr>
       <tr>
           <th scope="row"><?= __('Created') ?></th>
-          <td><?= h($order->Created) ?></td>
+          <td><?=date("Y-m-d H:i:s", strtotime($order->Created)) ?></td>
       </tr>
     </table>
   </div>
@@ -59,7 +59,9 @@
           	<tbody>
               <?php foreach ($order->order_item as $orderItem): ?>
           		<tr>
-          			<td data-title="Product ID"><?= $orderItem->Product_idProduct ?></td>
+          			<td data-title="Product ID"><?=$this->Html->link(($orderItem->Product_idProduct),
+                    ['controller'=>'product','action'=>'view', $orderItem->Product_idProduct])  ?>
+                </td>
           			<td data-title="Quantity"><?= $orderItem->quantity ?></td>
           			<td data-title="Price" ><?= $this->Number->currency($orderItem->price, $currency,['locale' => 'it_IT'])?></td>
           			<td data-title="Sub Total" ><?= $this->Number->currency($orderItem->sub_total, $currency,['locale' => 'it_IT'])?> </td>

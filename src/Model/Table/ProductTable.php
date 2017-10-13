@@ -29,8 +29,7 @@ class ProductTable extends Table
         ]);
 
         $this->hasMany('Image',[
-          'foreignKey' => 'Product_idProduct',
-          'joinType' => 'INNER'
+          'foreignKey' => 'Product_idProduct'
         ]);
 
         $this->hasMany('order_item',[

@@ -12,6 +12,7 @@ class OrdersTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
+        $this->addBehavior('Timestamp');
 
         $this->setTable('orders');
         $this->setDisplayField('idOrder');
@@ -65,15 +66,15 @@ class OrdersTable extends Table
             ->requirePresence('Total', 'create')
             ->notEmpty('Total');
 
-        // $validator
-        //     ->integer('Order_Type')
-        //     ->requirePresence('Order_Type', 'create')
-        //     ->notEmpty('Order_Type');
+        $validator
+            ->integer('Order_Type')
+            ->requirePresence('Order_Type', 'create')
+            ->notEmpty('Order_Type');
 
-        // $validator
-        //     ->dateTime('Created')
-        //     ->requirePresence('Created', 'create')
-        //     ->notEmpty('Created');
+        $validator
+            ->dateTime('Created')
+            ->requirePresence('Created', 'create')
+            ->notEmpty('Created');
 
         return $validator;
     }

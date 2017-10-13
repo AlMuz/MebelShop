@@ -13,6 +13,7 @@
               <th scope="col"><?= $this->Paginator->sort('Country') ?></th>
               <th scope="col"><?= $this->Paginator->sort('City') ?></th>
               <th scope="col"><?= ('Adress') ?></th>
+              <th scope="col"><?= ('Created') ?></th>
               <th scope="col"><?= ('Root') ?></th>
               <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -30,7 +31,7 @@
               <td><?= h($user->Country) ?></td>
               <td><?= h($user->City) ?></td>
               <td><?= h($user->Adress) ?></td>
-
+              <td><?= date("Y-m-d H:i:s", strtotime($user->Created)) ?></td>
               <td><?= h($user->Root) ? __('Yes') : __('No') ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('<i class="glyphicon glyphicon-eye-open"></i>'), ['action' => 'view',$user->idUser], ['class' => 'btn btn-xs btn-primary', 'escapeTitle' => false]) ?>
