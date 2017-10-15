@@ -62,7 +62,7 @@ class ImageController extends AppController
       ]);
       $this->loadModel('Product');
       if ($this->request->is(['patch', 'post', 'put'])) {
-        unlink(WWW_ROOT.'img/'.$image->Image);
+        // unlink(WWW_ROOT.'img/'.$image->Image);
         $image = $this->Image->patchEntity($image, $this->request->getData());
         $data = $this->request->data;
         if($data['Image']['name']){

@@ -105,7 +105,7 @@ class CartController extends AppController
             $order->Order_item_count = $shop['Order']['order_item_count'];
             $order->Total = $shop['Order']['total'];
             $order->Order_Type = $shop['Order']['order_type'];
-            $order->Shipping = 1;
+            $order->Shipping = $this->request->data['Shipping'];
             // saving order
             if ($this->Orders->save($order)) {
               $idorder = $order->idOrder;

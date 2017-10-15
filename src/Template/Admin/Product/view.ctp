@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Size') ?></th>
-            <td><?= $this->Number->format($product->Size) ?></td>
+            <td><?= ($product->Size) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Category title') ?></th>

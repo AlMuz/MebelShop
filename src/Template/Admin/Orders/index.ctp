@@ -11,7 +11,7 @@
           <th scope="col"><?= $this->Paginator->sort('Order_item_count') ?></th>
           <th scope="col"><?= ('Shipping') ?></th>
           <th scope="col"><?= $this->Paginator->sort('Total') ?></th>
-          <th scope="col"><?= ('Order_Type') ?></th>
+          <th scope="col"><?= ('Order Type') ?></th>
           <th scope="col"><?= $this->Paginator->sort('Created') ?></th>
           <th scope="col" class="actions"><?= __('Actions') ?></th>
         </tr>
@@ -32,7 +32,7 @@
             </td>
             <td><?= ($order->Weight) ?> KG</td>
             <td><?= $this->Number->format($order->Order_item_count) ?></td>
-            <td><?= $this->Number->format($order->Shipping) ?></td>
+            <td><?= h($order->Shipping) ? __('Free shipping') : __('Take away') ?></td>
             <td><?= $this->Number->currency($order->Total, $currency ,['locale' => 'it_IT'])?></td>
             <td><?= ($order->Order_Type) ?></td>
             <td><?= date("Y-m-d H:i:s", strtotime($order->Created)) ?></td>

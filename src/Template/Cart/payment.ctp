@@ -90,12 +90,20 @@
 <?php endforeach; ?>
 
 <div class="row">
-  <div class="col col-sm-10">Products: <?= $shop['Order']['order_item_count']; ?></div>
+  <div class="col col-sm-9">Products: <?= $shop['Order']['order_item_count']; ?></div>
   <div class="col col-sm-1 align-right" >Items: <?= $shop['Order']['quantity']; ?></div>
-  <div class="col col-sm-1 align-right" >Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></strong><sup class="star"> *</sup></div>
+  <div class="col col-sm-2 align-right" >Total<br><strong><?= $this->Number->currency($shop['Order']['total'], $currency,['locale' => 'it_IT']); ?></strong><sup class="star"> *</sup></div>
 </div>
 
 <hr>
+<div class="row">
+	<div class="col col-sm-4">
+		<strong>Shipping method</strong>
+		<br>
+		<?= $this->Form->select('Shipping',[1=>'Free shippment',0=>'Take from our office'], ['class' => 'form-control']) ?>
+	</div>
+</div>
+<br>
 <?php if($shop['Order']['order_type'] == 'Creditcard') : ?>
 	<div class="row">
     <div class="col col-sm-4">

@@ -65,12 +65,14 @@ class ProductController extends AppController
           'contain' => ['Category', 'Image','Material']
       ]);
       if ($this->request->is(['patch', 'post', 'put'])) {
-        unlink(WWW_ROOT.'img/'.$product->MainImage);
+        // $data = $this->request->data;
+        // debug($data['MainImage']['name']);
+        // die();
+        // unlink(WWW_ROOT.'img/'.$product->MainImage);
         $product = $this->Product->patchEntity($product, $this->request->getData());
         $data = $this->request->data;
         if($data['MainImage']['name']){
           $filename = $this->Product->savefile($data);
-
           $product->MainImage = $filename;
           $result = $this->Product->save($product);
           if($result) {
@@ -80,6 +82,8 @@ class ProductController extends AppController
           else{
             $this->Flash->error(__('The product could not be saved. Please, try again.'));
           }
+        }else {
+          $this->Flash->error(__('The product could not be saved. Please, try again.'));
         }
       }
       $category = $this->Product->Category->find('list',['keyField' => 'idCategory',

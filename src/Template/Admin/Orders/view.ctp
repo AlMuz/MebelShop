@@ -44,7 +44,7 @@
       </tr>
       <tr>
           <th scope="row"><?= __('Shipping') ?></th>
-          <td><?= $this->Number->format($order->Shipping) ?></td>
+          <td><?= h($order->Shipping) ? __('Free shipping') : __('Take away') ?></td>
       </tr>
       <tr>
           <th scope="row"><?= __('Total price') ?></th>
@@ -71,19 +71,17 @@
           			<th>Quantity</th>
           			<th>Price</th>
           			<th>Sub Total</th>
-                <th></th>
           		</tr>
           	</thead>
           	<tbody>
               <?php foreach ($order->order_item as $orderItem): ?>
           		<tr>
-          			<td data-title="Product ID"><?= $orderItem->Product_idProduct ?></td>
+          			<td data-title="Product ID"><?=$this->Html->link(($orderItem->Product_idProduct),
+                    ['controller'=>'product','action'=>'view', $orderItem->Product_idProduct])  ?>
+                </td>
           			<td data-title="Quantity"><?= $orderItem->quantity ?></td>
           			<td data-title="Price" ><?= $this->Number->currency($orderItem->price, $currency,['locale' => 'it_IT'])?></td>
           			<td data-title="Sub Total" ><?= $this->Number->currency($orderItem->sub_total, $currency,['locale' => 'it_IT'])?> </td>
-                <td>
-                   <?= $this->Html->link(__('View'), ['controller' => 'OrderItem', 'action' => 'view', $orderItem->idOrder_item]) ?>
-                 </td>
           		</tr>
             <?php endforeach; ?>
           	</tbody>

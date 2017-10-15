@@ -71,11 +71,6 @@ class OrdersTable extends Table
             ->requirePresence('Order_Type', 'create')
             ->notEmpty('Order_Type');
 
-        $validator
-            ->dateTime('Created')
-            ->requirePresence('Created', 'create')
-            ->notEmpty('Created');
-
         return $validator;
     }
 }

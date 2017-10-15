@@ -27,11 +27,19 @@
                 </div>
               </div>
               </div>
-              <div class="form-group">
-                <?= $this->Form->control('Login',['class' => 'form-control','label'=>false,'placeholder' => 'Username', 'tabindex' => '3']) ?>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <?= $this->Form->control('Login',['class' => 'form-control','label'=>false,'placeholder' => 'Username', 'tabindex' => '3']) ?>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <?= $this->Form->control('Email',['class' => 'form-control','label'=>false,'placeholder' => 'Email Address', 'type' => 'email','tabindex' => '4']) ?>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <?= $this->Form->control('Email',['class' => 'form-control','label'=>false,'placeholder' => 'Email Address', 'type' => 'email','tabindex' => '4']) ?>
+                  </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
@@ -45,8 +53,12 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <?= $this->Form->control('Country',['empty' => '(Country: choose one)','class' => 'form-control','options' => $country,'label'=>false,'placeholder' => 'Country','tabindex' => '7']) ?>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <?= $this->Form->control('Country',['empty' => '(Country: choose one)','class' => 'form-control','options' => $country,'label'=>false,'placeholder' => 'Country','tabindex' => '7']) ?>
+                  </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
@@ -60,8 +72,12 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <?= $this->Form->control('Phonenumber',['type' => 'text','class' => 'form-control','label'=>false,'placeholder' => 'Phonenumber 20001234', 'tabindex' => '10']) ?>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                  <div class="form-group">
+                    <?= $this->Form->control('Phonenumber',['type' => 'text','class' => 'form-control','label'=>false,'placeholder' => 'Phonenumber 20001234', 'tabindex' => '10']) ?>
+                  </div>
+                </div>
               </div>
             </fieldset>
             <?= $this->Form->button(__('Register'),['class' => 'btn btn-success col-xs-12 col-sm-1','tabindex' => '11']) ?>

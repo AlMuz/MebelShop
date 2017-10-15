@@ -26,7 +26,7 @@
       </tr>
       <tr>
           <th scope="row"><?= __('Shipping') ?></th>
-          <td><?= $this->Number->format($order->Shipping) ?></td>
+          <td><?= h($order->Shipping) ? __('Free shipping') : __('Take away') ?></td>
       </tr>
       <tr>
           <th scope="row"><?= __('Total price') ?></th>
