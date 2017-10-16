@@ -9,15 +9,14 @@ use Cake\Validation\Validator;
 class OrderItemTable extends Table
 {
 
-
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        // setting table from db to this model
         $this->setTable('order_item');
         $this->setDisplayField('idOrder_item');
         $this->setPrimaryKey('idOrder_item');
-
+        // setting realations between this table and:
         $this->belongsTo('Orders',[
           'foreignKey' => 'Orders_idOrder',
           'joinType' => 'INNER'
@@ -30,6 +29,7 @@ class OrderItemTable extends Table
 
     public function validationDefault(Validator $validator)
     {
+      // validation for inputs
         $validator
             ->integer('idOrder_item')
             ->allowEmpty('idOrder_item', 'create');

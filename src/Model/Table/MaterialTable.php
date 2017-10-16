@@ -12,17 +12,18 @@ class MaterialTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        // setting table from db to this model
         $this->setTable('material');
         $this->setDisplayField('idMaterial');
         $this->setPrimaryKey('idMaterial');
-
+        // setting realations between this table and:
         $this->hasMany('Product')
          ->setForeignKey('Material_idMaterial');
     }
 
     public function validationDefault(Validator $validator)
     {
+      // validation for inputs
         $validator
             ->integer('idMaterial')
             ->allowEmpty('idMaterial', 'create');

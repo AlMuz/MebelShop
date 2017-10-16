@@ -12,17 +12,18 @@ class CategoryTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        // setting table from db to this model
         $this->setTable('category');
         $this->setDisplayField('idCategory');
         $this->setPrimaryKey('idCategory');
-
+        // setting realations between this table and:
         $this->hasMany('Product')
          ->setForeignKey('Category_idCategory');
     }
 
     public function validationDefault(Validator $validator)
     {
+        // validation for inputs
         $validator
             ->integer('idCategory')
             ->allowEmpty('idCategory', 'create');

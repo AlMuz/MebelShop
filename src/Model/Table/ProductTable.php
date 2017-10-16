@@ -13,11 +13,11 @@ class ProductTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        // setting table from db to this model
         $this->setTable('product');
         $this->setDisplayField('idProduct');
         $this->setPrimaryKey('idProduct');
-
+        // setting realations between this table and:
         $this->belongsTo('Category',[
           'foreignKey' => 'Category_idCategory',
           'joinType' => 'INNER'
@@ -41,6 +41,7 @@ class ProductTable extends Table
 
     public function validationDefault(Validator $validator)
     {
+      // validation for inputs
       $validator
           ->integer('idProduct')
           ->allowEmpty('idProduct', 'create');

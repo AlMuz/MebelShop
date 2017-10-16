@@ -12,16 +12,17 @@ class ImageTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        // setting table from db to this model
         $this->setTable('image');
         $this->setDisplayField('idImage');
         $this->setPrimaryKey('idImage');
-
+        // setting realations between this table and:
         $this->belongsTo('Product',[
           'foreignKey' => 'Product_idProduct'
         ]);
     }
 
+    // custom functions to upload, rename pic
     public function savefile($data){
   		$uploadDir = WWW_ROOT . 'img/product/';
   		if(!file_exists($uploadDir)) {

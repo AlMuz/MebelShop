@@ -12,11 +12,11 @@ class UserTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        // setting table from db to this model
         $this->setTable('user');
         $this->setDisplayField('idUser');
         $this->setPrimaryKey('idUser');
-
+        // setting realations between this table and:
         $this->hasMany('Orders', [
             'foreignKey' => 'User_IdUser',
             'joinType' => 'INNER'
@@ -25,6 +25,7 @@ class UserTable extends Table
 
     public function validationDefault(Validator $validator)
     {
+      // validation for inputs
       $validator
           ->integer('idUser')
           ->allowEmpty('idUser', 'create');

@@ -13,11 +13,11 @@ class OrdersTable extends Table
     {
         parent::initialize($config);
         $this->addBehavior('Timestamp');
-
+        // setting table from db to this model
         $this->setTable('orders');
         $this->setDisplayField('idOrder');
         $this->setPrimaryKey('idOrder');
-
+        // setting realations between this table and:
         $this->belongsTo('User',[
           'foreignKey' => 'User_IdUser',
           'joinType' => 'INNER'
@@ -32,6 +32,7 @@ class OrdersTable extends Table
 
     public function validationDefault(Validator $validator)
     {
+      // validation for inputs
         $validator
             ->integer('idOrder')
             ->allowEmpty('idOrder', 'create');
