@@ -16,7 +16,7 @@ class UserController extends AppController
       $this->set(compact('user'));
   }
 
-
+  //showing information about chosen user
   public function view($id = null)
   {
       $user = $this->User->get($id, [
@@ -24,10 +24,9 @@ class UserController extends AppController
       ]);
 
       $this->set('user', $user);
-
   }
 
-
+  // editing user information, but administrator can't to edit user password
   public function edit($id = null)
   {
       $user = $this->User->get($id, [
@@ -45,7 +44,5 @@ class UserController extends AppController
       $country=['Latvia'=>'Latvia','Lithuania'=>'Lithuania','Estonia'=>'Estonia'];
       $this->set('country', $country);
       $this->set(compact('user'));
-
   }
-
 }

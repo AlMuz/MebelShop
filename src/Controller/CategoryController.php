@@ -26,7 +26,7 @@ class CategoryController extends AppController
       $this->set(compact('category'));
   }
 
-  // show us the choosen one category and all products in it 
+  // show us the chosen one category and all products in it 
   public function view($id = null)
   {
       $this->loadModel('Product');

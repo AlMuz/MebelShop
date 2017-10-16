@@ -196,7 +196,7 @@ class CartController extends AppController
         return $this->redirect('/');
     }
 
-    // function to remove choosen product
+    // function to remove chosen product
     public function remove($id = null) {
         // call cart Component function
         $product = $this->Cart->remove($id);

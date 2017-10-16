@@ -12,6 +12,7 @@ class OrderItemController extends AppController
       return $this->redirect('/');
     }
 
+    // show specific order item from order
     public function view($id = null)
     {
         $orderItem = $this->OrderItem->get($id, [

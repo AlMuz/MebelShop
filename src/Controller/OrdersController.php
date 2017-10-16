@@ -26,10 +26,8 @@ class OrdersController extends AppController
     {
       if($id == null || $id == 0){
         $this->Flash->error('There are no this page');
-
         return $this->redirect('/orders');
       }
-
       $session = $this->request->session();
       $user_id  = $session->read('Auth.User.idUser');
       $order = $this->Orders->get($id, [

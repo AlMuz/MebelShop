@@ -7,11 +7,13 @@ use Cake\Network\Email\Email;
 class MailerController extends AppController
 {
 
+  // mail page with static content.
   public function index()
   {
 
   }
 
+  // page where administrator can send email to all users
   public function all()
   {
     $this->loadModel('User');
@@ -47,6 +49,7 @@ class MailerController extends AppController
     }
   }
 
+  // sending email to chosen one user
   public function one()
   {
     $this->loadModel('User');
@@ -74,7 +77,6 @@ class MailerController extends AppController
       }
       $this->Flash->success(__('Email successfully sended!'));
       return $this->redirect(['action' => 'index']);
-
     }
   }
 }

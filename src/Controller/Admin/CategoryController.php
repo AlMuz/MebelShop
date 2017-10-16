@@ -16,6 +16,7 @@ class CategoryController extends AppController
         $this->set(compact('category'));
     }
 
+    // show specific category information
     public function view($id = null)
     {
         $category = $this->Category->get($id, [
@@ -25,6 +26,7 @@ class CategoryController extends AppController
         $this->set('category', $category);
     }
 
+    // adminn add new category
     public function add()
     {
         $category = $this->Category->newEntity();
@@ -40,6 +42,7 @@ class CategoryController extends AppController
         $this->set(compact('category'));
     }
 
+    // admin editing existing category
     public function edit($id = null)
     {
         $category = $this->Category->get($id, [
@@ -57,6 +60,7 @@ class CategoryController extends AppController
         $this->set(compact('category'));
     }
 
+    // admin deleiting chosen category
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
