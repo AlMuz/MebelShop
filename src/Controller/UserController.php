@@ -58,7 +58,7 @@ class UserController extends AppController
               $email = new Email('default');
               $email->transport('gmail');
               $subject = 'Welcome!'. $user->Login;
-              $msg = 'Hello! <b>'.$user->Name.' '.$user->Surname.' '.'<b>!
+              $msg = 'Hello! <b>'.$user->Name.' '.$user->Surname.' '.'</b>!
               </br> Nice to meet you there!
               </br> Feel free to buy something';
               try {

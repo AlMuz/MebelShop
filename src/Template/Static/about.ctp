@@ -20,15 +20,10 @@
       <address>
         <strong>MuzInterior</strong><br>
         Online interior store <br>
-        We are heading in <b>Latvia</b><br>
-        Riga<br>
+        We are heading in <b>Latvia</b>, Riga<br>
         Iluksties iela<br>
         <abbr title="Phone">P:</abbr> +371 20361226 <br>
         <abbr title="Email"><span class="glyphicon glyphicon-envelope"></span></abbr> contact@muzinterior.lv
-      </address>
-      <address>
-        <strong>Full Name</strong><br>
-        <p>Aleksejs Muzicenko</p>
       </address>
     </article>
   </div>

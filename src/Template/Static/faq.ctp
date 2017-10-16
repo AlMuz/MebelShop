@@ -18,15 +18,25 @@
   <!--1 block   about registration-->
   <a href="#registration" data-toggle="collapse">How to buy</a>
   <div id="registration" class="collapse">
-    <a href="#registration1" data-toggle="collapse" style="padding-left:10px;">Register</a>
+    <a href="#registration1" data-toggle="collapse" style="padding-left:10px;">1.step. Register</a>
     <div id="registration1" class="collapse" style="padding-left:20px;">
-			<p>Register on register page, need to write all information in input field</p>
+			<p>Register on <a href="/user/register">register page</a>, need to write all information in input field to register. </p>
     </div>
   </br>
-    <a href="#registration2" data-toggle="collapse" style="padding-left:10px;">Sign in</a>
+    <a href="#registration2" data-toggle="collapse" style="padding-left:10px;">2.step. Sign in</a>
     <div id="registration2" class="collapse" style="padding-left:20px;">
-      <p>Next step to sign in.</p>
+      <p>Next step to <a href="/user/login">sign in</a>.</p>
     </div>
+	</br>
+		<a href="#registration3" data-toggle="collapse" style="padding-left:10px;">3.step. Add product</a>
+		<div id="registration3" class="collapse" style="padding-left:20px;">
+			<p>Add product to shopping cart.</p>
+		</div>
+	</br>
+		<a href="#registration4" data-toggle="collapse" style="padding-left:10px;">4.step. Shopping cart</a>
+		<div id="registration4" class="collapse" style="padding-left:20px;">
+			<p>Pay for your order in shopping cart last step.</p>
+		</div>
   </div>
   <br>
   <!--2 block  - payment -->
@@ -43,7 +53,7 @@
   <div id="shipping" class="collapse">
     <a href="#shipping1" data-toggle="collapse" style="padding-left:10px;">Information</a>
     <div id="shipping1" class="collapse" style="padding-left:20px;">
-			<p>Shipping i</p>
+			<p>Shipping is free. And also you can get all your order from our office</p>
     </div>
 
   </div>
