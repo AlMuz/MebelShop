@@ -11,7 +11,7 @@
     			<th>Order item count</th>
     			<th>Shipping</th>
     			<th>Total</th>
-    			<th>Order Type</th>
+    			<!-- <th>Order Type</th> -->
           <th>Created</th>
     			<th></th>
     		</tr>
@@ -32,7 +32,7 @@
     			<td data-title="Order item count" ><?= $order->Order_item_count ?></td>
     			<td data-title="Shipping" ><?= h($order->Shipping) ? __('Free shipping') : __('Take away') ?></td>
     			<td data-title="Total" ><?= $this->Number->currency($order->Total, $currency,['locale' => 'it_IT'])?></td>
-    			<td data-title="Order Type" ><?= $order->Order_Type ?></td>
+    			<!-- <td data-title="Order Type" ><?= $order->Order_Type ?></td> -->
     			<td data-title="Created"><?=date("Y-m-d H:i:s", strtotime($order->Created)) ?></td>
           <td>
             <?= $this->Html->link(__('View'), ['action' => 'view', $order->idOrder]) ?>

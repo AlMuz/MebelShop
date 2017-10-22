@@ -8,11 +8,11 @@
           <th scope="row"><?= __('Status') ?></th>
           <td>
             <?php if($order->Status == 0): ?>
-              <p>Ordered</p>
+              Ordered
             <?php elseif ($order->Status == 1):?>
-              <p>Sended</p>
+              Sended
             <?php else: ?>
-              <p>Delivered</p>
+              Delivered
             <?php endif; ?>
           </td>
       </tr>
@@ -32,10 +32,10 @@
           <th scope="row"><?= __('Total price') ?></th>
           <td><?= $this->Number->currency($order->Total, $currency,['locale' => 'it_IT'])?></td>
       </tr>
-      <tr>
+      <!-- <tr>
           <th scope="row"><?= __('Order Type') ?></th>
           <td><?= ($order->Order_Type) ?></td>
-      </tr>
+      </tr> -->
       <tr>
           <th scope="row"><?= __('Created') ?></th>
           <td><?=date("Y-m-d H:i:s", strtotime($order->Created)) ?></td>

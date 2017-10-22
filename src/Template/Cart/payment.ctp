@@ -52,8 +52,8 @@
   </div>
 <?php endforeach;?>
 <div class="row">
-  <div class="col col-sm-5 hidden-xs">ITEM</div>
-  <div class="col col-sm-2 hidden-xs">WEIGHT</div>
+  <div class="col col-sm-7 hidden-xs">ITEM</div>
+  <!-- <div class="col col-sm-2 hidden-xs">WEIGHT</div> -->
   <div class="col col-sm-2 hidden-xs">PRICE</div>
   <div class="col col-sm-2 hidden-xs">QUANTITY</div>
   <div class="col col-sm-1 hidden-xs">TOTAL</div>
@@ -63,14 +63,14 @@
 
 <?php foreach ($shop['OrderItem'] as  $item): ?>
   <div class="row">
-    <div class="col col-sm-5">
+    <div class="col col-sm-7">
       <label class="hidden-sm hidden-md hidden-lg">Item Name:</label>
         <?= $item['name'] ?>
     </div>
-    <div class="col col-sm-2">
+    <!-- <div class="col col-sm-2">
       <label class="hidden-sm hidden-md hidden-lg">Weight:</label>
       <?= $item['weight'] ?> KG
-    </div>
+    </div> -->
     <div class="col col-sm-2">
       <label class="hidden-sm hidden-md hidden-lg">Price:</label>
       <?= $this->Number->currency($item['price'], $currency,['locale' => 'it_IT']); ?>

@@ -70,6 +70,7 @@ class CartController extends AppController
       $this->loadModel('User');
       $this->loadModel('Orders');
       $this->loadModel('OrderItem');
+      $this->loadModel('Product');
 
       // loading information about logged in user
       $query = $this->User->find('all')
@@ -125,18 +126,18 @@ class CartController extends AppController
               $email = new Email('default');
               $email->transport('gmail');
               // getting data from request
-              $subject = 'Your Order: '. $idorder. ' is ordered!';
+              $subject = 'Your order successfully is ordered!';
               $msg = '
                 <div style="width:800px; margin:0 auto;">
-                  <h1> Hello, '.$this->Auth->user('Email').'! </h1>
-                  <br> <h2> Status: Ordered </h2>
-                  <br> Order Item Count: '.$order['Order_item_count'].'
+                  <h1> Hello, '.$this->Auth->user('Name').' '.$this->Auth->user('Surname').'! </h1>
+                  <h2> Order status: Ordered </h2>
+                  Order item count: '.$order['Order_item_count'].'
                   <br> There are all your products which you ordered:
-                  <br><br>
+                  <br>
                   <table style="border:1px black solid">
                     <thead>
                       <tr>
-                        <th style="padding-right: 15px">Product ID</th>
+                        <th style="padding-right: 15px">Product Name</th>
                         <th style="padding-right: 15px">Quantity</th>
                         <th style="padding-right: 15px">Price </th>
                         <th style="padding-right: 15px">Sub total </th>
@@ -145,19 +146,26 @@ class CartController extends AppController
                     <tbody>';
               // typing all product which were in cart
               foreach($shop['OrderItem'] as  $item) {
-                $msg .='
-                      <tr style="border:1px black solid">
-                        <td>' . $item['product_id'] .'</td>
-                        <td>'.$item['quantity'].'</td>
-                        <td>'.$item['price'].' €</td>
-                        <td>'.$item['total'].' €</td>
-                      </tr>';
+                $query = $this->Product->find('all')
+                ->where(['Product.idProduct = ' => $item['product_id']]);
+                $this->set('product',$query);
+                foreach ($query as $product) {
+                  $msg .='
+                    <tr style="border:1px black solid">
+                      <td style="padding-right: 5px; padding-left: 5px;">'.$product['Name'].'</td>
+                      <td style="padding-right: 5px; padding-left: 5px;">'.$item['quantity'].'</td>
+                      <td style="padding-right: 5px; padding-left: 5px;">'.$item['price'].' €</td>
+                      <td style="padding-right: 5px; padding-left: 5px;">'.$item['total'].' €</td>
+                    </tr>';
+                }
                }
                $msg .= '
                     </tbody>
                  </table>
-                 Total price: <b>'.$shop['Order']['total']. '<b> €
+                 Total price: <b>'.$shop['Order']['total']. '</b> €
+                 <br> Total price without 21% VAT(PVN): <b>'.sprintf('%01.2f',($shop['Order']['total']/1.21)) .'</b> €
                  <br> Thank you for your order! We hope you will buy something new later!
+                 <br> <h2><a href="http://onlineshop.mendo.lv/"> MuzInterior</a> Online Store </h2>
                </div>';
               //  sending email to the user
               try {
