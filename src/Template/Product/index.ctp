@@ -1,55 +1,40 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  * @var \App\Model\Entity\Product[]|\Cake\Collection\CollectionInterface $product
-  */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Product'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="product index large-9 medium-8 columns content">
-    <h3><?= __('Product') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('idProduct') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Price') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('MiniDescription') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('MainImage') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Category_idCategory') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($product as $product): ?>
-            <tr>
-                <td><?= $this->Number->format($product->idProduct) ?></td>
-                <td><?= h($product->Name) ?></td>
-                <td><?= $this->Number->format($product->Price) ?></td>
-                <td><?= h($product->MiniDescription) ?></td>
-                <td><?= h($product->MainImage) ?></td>
-                <td><?= $this->Number->format($product->Category_idCategory) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $product->idProduct]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $product->idProduct]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $product->idProduct], ['confirm' => __('Are you sure you want to delete # {0}?', $product->idProduct)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
-</div>
+<?php $this->assign('title', 'Main Page - '.$maintitle);?>
+<?php if (!empty($product)): ?>
+	<div>
+		<!-- will be some carousel-->
+	</div>
+	<div class="row">
+		<div class="padding-left">
+			<table>
+				<tbody>
+					<tr>
+						<td style="padding: 5px 10px 0 5px;"><?= $this->Paginator->limitControl([15=>15, 30 => 30, 45 => 45] ); ?></td>
+						<td>
+							<div class="dropdown">
+								<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+									Sort <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+									<li>
+										<?= $this->Paginator->sort('Interest', 'Popular products',['direction' => 'desc', 'lock' => true]); ?>
+									</li>
+									<li>
+										<?= $this->Paginator->sort('Price', 'Price asc',['direction' => 'asc', 'lock' => true]); ?>
+									</li>
+									<li>
+										<?= $this->Paginator->sort('Price', 'Price desc',['direction' => 'desc', 'lock' => true]); ?>
+									</li>
+								</ul>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+			<!-- it print product with their style  -->
+			<?= $this->element('product') ?>
+	</div>
+	<?= $this->element('paginator') ?>
+
+
+<?php endif; ?>

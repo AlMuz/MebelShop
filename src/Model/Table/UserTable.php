@@ -6,66 +6,73 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-/**
- * User Model
- *
- * @method \App\Model\Entity\User get($primaryKey, $options = [])
- * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
- */
 class UserTable extends Table
 {
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        // setting table from db to this model
         $this->setTable('user');
         $this->setDisplayField('idUser');
         $this->setPrimaryKey('idUser');
+        // setting realations between this table and:
+        $this->hasMany('Orders', [
+            'foreignKey' => 'User_IdUser',
+            'joinType' => 'INNER'
+        ]);
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->integer('idUser')
-            ->allowEmpty('idUser', 'create');
+      // validation for inputs
+      $validator
+          ->integer('idUser')
+          ->allowEmpty('idUser', 'create');
 
-        $validator
-            ->scalar('Login')
-            ->requirePresence('Login', 'create')
-            ->notEmpty('Login');
+      $validator
+          ->scalar('Login')
+          ->requirePresence('Login', 'create')
+          ->notEmpty('Login');
 
-        $validator
-            ->scalar('Password')
-            ->requirePresence('Password', 'create')
-            ->notEmpty('Password');
+      $validator
+          ->scalar('Password')
+          ->requirePresence('Password', 'create')
+          ->notEmpty('Password');
 
-        $validator
-            ->scalar('Email')
-            ->requirePresence('Email', 'create')
-            ->notEmpty('Email');
+      $validator
+          ->scalar('Email')
+          ->requirePresence('Email', 'create')
+          ->notEmpty('Email');
 
-        $validator
-            ->integer('Root')
-            ->requirePresence('Root', 'create')
-            ->notEmpty('Root');
+      $validator
+          ->scalar('Name')
+          ->requirePresence('Name', 'create')
+          ->notEmpty('Name');
+
+      $validator
+          ->scalar('Surname')
+          ->requirePresence('Surname', 'create')
+          ->notEmpty('Surname');
+
+      $validator
+          ->integer('Phonenumber')
+          ->requirePresence('Phonenumber', 'create')
+          ->notEmpty('Phonenumber');
+
+      $validator
+          ->scalar('City')
+          ->requirePresence('City', 'create')
+          ->notEmpty('City');
+
+      $validator
+          ->scalar('Adress')
+          ->requirePresence('Adress', 'create')
+          ->notEmpty('Adress');
+
+      $validator
+          ->integer('Root')
+          ->allowEmpty('Root', 'create');
 
         return $validator;
     }

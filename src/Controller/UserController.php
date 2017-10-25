@@ -2,110 +2,127 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Network\Email\Email;
 
-/**
- * User Controller
- *
- * @property \App\Model\Table\UserTable $User
- *
- * @method \App\Model\Entity\User[] paginate($object = null, array $settings = [])
- */
 class UserController extends AppController
 {
+    // allow to not authorized users access to register and login pages
+    // disallow to use index( profile page), logout(function), order and edit pages if user unauthorized
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('register','login');
+        $this->Auth->deny('index','logout','order','edit');
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
+        // setting allowed countries to register
+        $country=['Latvia'=>'Latvia','Lithuania'=>'Lithuania','Estonia'=>'Estonia'];
+        $this->set('country', $country);
+    }
+
+    // user profile
     public function index()
     {
-        $user = $this->paginate($this->User);
+      $query = $this->User->find('all')
+      ->where(['User.idUser = ' => $this->Auth->user('idUser')]);
+      $this->set('user',$query);
 
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
+    // Registration page
+    public function register()
     {
-        $user = $this->User->get($id, [
-            'contain' => []
-        ]);
+      if ($this->Auth->user()){
+           $this->redirect(['controller'=>'user','action' => 'index']);
+       }
 
-        $this->set('user', $user);
-        $this->set('_serialize', ['user']);
-    }
+      $user = $this->User->newEntity();
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $user = $this->User->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->User->patchEntity($user, $this->request->getData());
+      if ($this->request->is('post')) {
+          $user = $this->User->patchEntity($user, $this->request->getData());
+          // check exists username or not
+          $conditions = array(
+              'conditions' => array(
+                  'Login' => $user->Login
+               )
+          );
+          $result = $this->User->find('list', $conditions);
+          if (!$result->count()==0){
+            $this->Flash->error(__('This username already exists'));
+          }
+          // if not exists username -> allright and successfull registration
+          else{
             if ($this->User->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+              //sending welcome email to new user
+              $email = new Email('default');
+              $email->transport('gmail');
+              $subject = 'Welcome!'. $user->Login;
+              $msg = 'Hello! <b>'.$user->Name.' '.$user->Surname.' '.'</b>!
+              </br> Nice to meet you there!
+              </br> Feel free to buy something';
+              try {
+                $email
+                     ->transport('gmail')
+                     ->from(['teregan1996@gmail.com' => 'MuzInterior - Online shop'])
+                     ->to($user->Email)
+                     ->subject('Welcome! '. $user->Name)
+                    ->emailFormat('html')
+                     ->viewVars(['msg' => $msg])
+                     ->send($msg);
+              } catch (Exception $e) {
+                echo 'Exception : ',  $e->getMessage(), "\n";
+              }
+              $this->Flash->success(__('You successfuly registered'));
+              return $this->redirect(['controller'=>'user','action' => 'login']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
-        }
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
+          }
+      }
+      $this->set('user', $user);
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
+    // login page
+    public function login()
     {
-        $user = $this->User->get($id, [
+        if ($this->Auth->user()){
+             $this->redirect(['controller'=>'user','action' => 'index']);
+         }
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                $this->Flash->success(__('You successfuly logged in'));
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Invalid username or password, try again'));
+
+        }
+    }
+
+    // function to logout user
+    public function logout()
+    {
+        $this->loadComponent('Cart');
+        $this->Flash->success(__('You logged off'));
+        $this->Cart->clear();
+        return $this->redirect($this->Auth->logout());
+    }
+
+    // edit user profile function and page
+    public function edit()
+    {
+        $user = $this->User->get($this->Auth->user('idUser'), [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->User->patchEntity($user, $this->request->getData());
             if ($this->User->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('New information in profile successfuly saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $user = $this->User->get($id);
-        if ($this->User->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
-        } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
     }
 }

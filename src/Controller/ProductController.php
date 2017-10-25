@@ -2,110 +2,100 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
-/**
- * Product Controller
- *
- * @property \App\Model\Table\ProductTable $Product
- *
- * @method \App\Model\Entity\Product[] paginate($object = null, array $settings = [])
- */
+
 class ProductController extends AppController
 {
+  public function initialize()
+  {
+      parent::initialize();
+      $this->loadComponent('Cart');
+  }
+  // allow to not authorized users access to all product pages
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $product = $this->paginate($this->Product);
+  public function beforeFilter(Event $event)
+  {
+      parent::beforeFilter($event);
+      $this->Auth->allow();
+  }
 
-        $this->set(compact('product'));
-        $this->set('_serialize', ['product']);
-    }
+  public $paginate = [
+    'limit' => 15,
+    'order' => [
+      'Product.Interest' => 'desc'
+    ]
+  ];
 
-    /**
-     * View method
-     *
-     * @param string|null $id Product id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $product = $this->Product->get($id, [
-            'contain' => []
-        ]);
+  // Main page
+  public function index()
+  {
+      $product = $this->paginate($this->Product);
 
-        $this->set('product', $product);
-        $this->set('_serialize', ['product']);
-    }
+      $this->set(compact('product'));
+  }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $product = $this->Product->newEntity();
-        if ($this->request->is('post')) {
-            $product = $this->Product->patchEntity($product, $this->request->getData());
-            if ($this->Product->save($product)) {
-                $this->Flash->success(__('The product has been saved.'));
+  // specific product view
+  public function view($id = null)
+  {
+      $product = $this->Product->get($id, [
+          'contain' => ['Image','Category','Material']
+      ]);
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The product could not be saved. Please, try again.'));
-        }
-        $this->set(compact('product'));
-        $this->set('_serialize', ['product']);
-    }
+      $this->set('category', 'category');
+      $this->set('product', $product);
+  }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Product id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $product = $this->Product->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $product = $this->Product->patchEntity($product, $this->request->getData());
-            if ($this->Product->save($product)) {
-                $this->Flash->success(__('The product has been saved.'));
+  // search page
+  public function search(){
+    $search = null;
+    if(!empty($this->request->query['search']) || !empty($this->request->data['name'])) {
+        $search = empty($this->request->query['search']) ? $this->request->data['name'] : $this->request->query['search'];
+        // checking for bad simbols. can be only alphabet and digits
+        $search = preg_replace('/[^a-zA-Z0-9 ]/', '', $search);
+        $terms = explode(' ', trim($search));
+        $terms = array_diff($terms, array(''));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The product could not be saved. Please, try again.'));
-        }
-        $this->set(compact('product'));
-        $this->set('_serialize', ['product']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Product id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $product = $this->Product->get($id);
-        if ($this->Product->delete($product)) {
-            $this->Flash->success(__('The product has been deleted.'));
-        } else {
-            $this->Flash->error(__('The product could not be deleted. Please, try again.'));
+        // condition for the query
+        foreach($terms as $term) {
+            $conditions[] = array("OR" => array (
+              'Product.Name LIKE' => '%' . $term . '%',
+              'Product.Description LIKE' => '%' . $term . '%'
+            ));
         }
 
-        return $this->redirect(['action' => 'index']);
+        // check exists $conditions or not
+        if(!isset($conditions)){
+          $this->set(compact('search'));
+        }
+        else{
+          $product = $this->Product->find('all', array(
+              'recursive' => -1,
+              'conditions' => $conditions,
+              'limit' => 200,
+          ));
+        }
+
+
+        $this->set(compact('product'));
     }
+    $this->set(compact('search'));
+  }
+
+  // function which add specific product and quantity to the cart
+  public function add()
+  {
+    if ($this->request->is('post')) {
+        $id = $this->request->data['product_id'];
+        $quantity =$this->request->data['quantity'] ;
+        $product = $this->Cart->add($id, $quantity);
+    }
+
+    if(!empty($product)) {
+        $this->Flash->success($product->Name. ' was added to your shopping cart.');
+    } else {
+        $this->Flash->error('Unable to add this product to your shopping cart.');
+    }
+    $this->redirect($this->referer());
+  }
 }

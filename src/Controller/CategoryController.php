@@ -2,111 +2,48 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
-/**
- * Category Controller
- *
- * @property \App\Model\Table\CategoryTable $Category
- *
- * @method \App\Model\Entity\Category[] paginate($object = null, array $settings = [])
- */
 class CategoryController extends AppController
 {
+  // allow to not authorized users watch category/ and category/view/id
+  public function beforeFilter(Event $event)
+  {
+      parent::beforeFilter($event);
+      $this->Auth->allow();
+  }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
-    {
-        $category = $this->paginate($this->Category);
+  // show all existing categories
+  public function index()
+  {
+      $category = $this->paginate($this->Category, [
+          'limit' => 15,
+          'order' => [
+              'Category.Title' => 'asc'
+          ]
+      ]);
 
-        $this->set(compact('category'));
-        $this->set('_serialize', ['category']);
-    }
+      $this->set(compact('category'));
+  }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Category id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        
-        $category = $this->Category->get($id, [
-            'contain' => []
-        ]);
+  // show us the chosen one category and all products in it 
+  public function view($id = null)
+  {
+      $this->loadModel('Product');
 
-        $this->set('category', $category);
-        $this->set('_serialize', ['category']);
-    }
+      $query = $this->Product->find('all')
+        ->where(['Product.Category_idCategory = ' => $id]);
+      $product = $this->paginate($query,[
+        'limit' => 15,
+        'order' => [
+          'Product.Interest' => 'desc'
+        ]
+      ]);
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $category = $this->Category->newEntity();
-        if ($this->request->is('post')) {
-            $category = $this->Category->patchEntity($category, $this->request->getData());
-            if ($this->Category->save($category)) {
-                $this->Flash->success(__('The category has been saved.'));
+      $category = $this->Category->get($id);
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The category could not be saved. Please, try again.'));
-        }
-        $this->set(compact('category'));
-        $this->set('_serialize', ['category']);
-    }
+      $this->set('category', $category);
+      $this->set('product', $product);
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Category id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $category = $this->Category->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $category = $this->Category->patchEntity($category, $this->request->getData());
-            if ($this->Category->save($category)) {
-                $this->Flash->success(__('The category has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The category could not be saved. Please, try again.'));
-        }
-        $this->set(compact('category'));
-        $this->set('_serialize', ['category']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Category id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $category = $this->Category->get($id);
-        if ($this->Category->delete($category)) {
-            $this->Flash->success(__('The category has been deleted.'));
-        } else {
-            $this->Flash->error(__('The category could not be deleted. Please, try again.'));
-        }
-
-        return $this->redirect(['action' => 'index']);
-    }
+  }
 }

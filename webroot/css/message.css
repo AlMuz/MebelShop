@@ -1,0 +1,58 @@
+/*if screen is <768px then will be this style*/
+@media (max-width: 768px){
+	div.message{
+		width: 325px!important;
+    font-size: 12px;
+    font-weight: bold!important;
+	}
+}
+
+div.message {
+  width: 425px;
+  position: absolute;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  font-weight: normal;
+  transition: height 300ms ease-out 0s;
+  background-color: #a0d3e8;
+  color: #626262;
+  right: 10px;
+  top: 50px;
+  z-index: 999;
+  overflow: hidden;
+  height: auto;
+  line-height: 2.5em;
+}
+
+div.message:before {
+  line-height: 0px;
+  font-size: 20px;
+  height: 12px;
+  width: 12px;
+  border-radius: 15px;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  left: -11px;
+  background-color: #FFF;
+  padding: 12px 14px 12px 10px;
+  content: "i";
+  color: #a0d3e8;
+}
+
+div.message.error {
+  background-color: #C3232D;
+  color: #FFF;
+  width: 350px;
+}
+
+div.message.error:before {
+  padding: 11px 16px 14px 7px;
+  color: #C3232D;
+  content: "x";
+}
+div.message.hidden {
+  height: 0;
+}

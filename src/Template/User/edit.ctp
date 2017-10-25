@@ -1,31 +1,48 @@
-<?php
-/**
-  * @var \App\View\AppView $this
-  */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->idUser],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->idUser)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List User'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="user form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Edit User') ?></legend>
-        <?php
-            echo $this->Form->control('Login');
-            echo $this->Form->control('Password');
-            echo $this->Form->control('Email');
-            echo $this->Form->control('Root');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+<?php $this->assign('title', 'Edit profile - '.$maintitle);?>
+
+<div class="container-fluid well">
+	<div class="row-fluid">
+    <?= $this->Form->create($user,['id'=>'profile']) ?>
+      <fieldset>
+        <legend><?= __('Edit Profile') ?></legend>
+        <div class="form-group">
+          <label>Name</label>
+          <?= $this->Form->control('Name',['class' => 'form-control','label'=>false,'placeholder' => 'Name', 'tabindex' => '1']) ?>
+        </div>
+
+        <div class="form-group">
+          <label>Surname</label>
+          <?= $this->Form->control('Surname',['class' => 'form-control','label'=>false,'placeholder' => 'Surname', 'tabindex' => '2']) ?>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <?= $this->Form->control('Email',['class' => 'form-control','label'=>false,'placeholder' => 'Email Address', 'type' => 'email','tabindex' => '3']) ?>
+        </div>
+
+				<div class="form-group">
+					<label>Country</label>
+					<?= $this->Form->control('Country',['class' => 'form-control','options' => $country,'label'=>false,'placeholder' => 'Riga', 'tabindex' => '4','id' => 'Country']) ?>
+				</div>
+
+        <div class="form-group">
+          <label>City</label>
+          <?= $this->Form->control('City',['class' => 'form-control','label'=>false,'placeholder' => 'Riga', 'tabindex' => '5','id' => 'City']) ?>
+        </div>
+
+        <div class="form-group">
+          <label>Adress</label>
+          <?= $this->Form->control('Adress',['class' => 'form-control','label'=>false,'placeholder' => 'Brivibas iela', 'tabindex' => '6','id' => 'Adress']) ?>
+        </div>
+
+        <div class="form-group">
+          <label>Phonenumber</label>
+          <?= $this->Form->control('Phonenumber',['type' => 'text','class' => 'form-control','label'=>false,'placeholder' => 'Phonenumber 20001234', 'tabindex' => '7']) ?>
+        </div>
+      </fieldset>
+    <?= $this->Form->button(__('Submit'),['class' => 'btn btn-success col-xs-12 col-sm-1','tabindex' => '8']) ?>
     <?= $this->Form->end() ?>
+  </div>
 </div>
+
+<script src="/js/validation.js"></script>
